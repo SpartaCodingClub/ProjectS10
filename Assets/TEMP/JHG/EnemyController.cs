@@ -22,10 +22,12 @@ public class EnemyController : MonoBehaviour
 
     [Header("Target")]
     [SerializeField] Transform target;
+    [SerializeField] Transform playerTarget;
     public float targetDistance;
+    float playerDistance;
     public LayerMask layerMask;
     [Header("Wanderign")]
-    public float minWanderDistance;
+    public float WanderDistance;
     public float maxWanderDistance;
     public float minWanderWaitTime;
     public float maxWanderWaitTime;
@@ -37,14 +39,17 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        FindNextTarget();
         SetState(State.Idle);
     }
 
     private void Update()
     {
-        if (target == null) FindNextTarget();
+        playerDistance = Vector3.Distance(transform.position, playerTarget.position);
 
         if (target !=  null) targetDistance = Vector3.Distance(transform.position, target.position);
+
+        if (WanderDistance < playerDistance) FindNextTarget();
 
         switch (_state)
         {
@@ -84,6 +89,7 @@ public class EnemyController : MonoBehaviour
 
     public void Wandering()
     {
+        FindNextTarget();
         // 타겟팅을 한 오브젝트가 파괴 되었을 때 잠시 대기
         if (target != null)
         {
@@ -117,9 +123,10 @@ public class EnemyController : MonoBehaviour
 
     public void Attacking()
     {
-        if (targetDistance < attackRange)
+        if (targetDistance < attackRange && target != null)
         {
             Debug.Log("공격");
+            if (target != playerTarget) FindPlayerTarget();
         }
         else
         {
@@ -127,8 +134,23 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void FindPlayerTarget()
+    {
+        if (WanderDistance > playerDistance)
+        {
+            target = playerTarget;
+
+            SetState(State.Move);
+
+            //if (attackRange > targetDistance) SetState(State.Attack);
+            //else SetState(State.Move);
+        }
+        else return;
+    }
+
     public void FindNextTarget()
-    {   
+    {
+        FindPlayerTarget();
         // 특정 반경 내에 레이어에 속한 콜라이더 모두 찾기
         Collider[] colliders = Physics.OverlapSphere(transform.position, maxWanderDistance, layerMask);
         Transform closestTarget = null;
@@ -147,7 +169,9 @@ public class EnemyController : MonoBehaviour
         if (closestTarget != null)
         {
             target = closestTarget;
-            SetState(State.Move);
+
+            if (attackRange > targetDistance) SetState(State.Attack);
+            else SetState(State.Move);
         }
         else
         {
