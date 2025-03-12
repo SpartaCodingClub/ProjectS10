@@ -13,7 +13,52 @@ MonoBehaviour:
   m_Name: vFavorites Data
   m_EditorClassIdentifier: 
   pages:
-  - items: []
+  - items:
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-0afe542aba7dff644b5e73baca955974-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 0afe542aba7dff644b5e73baca955974, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1054493098
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-4173de9c815149740a26ae6569976550-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 4173de9c815149740a26ae6569976550, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1050570809
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-76ab2b0306830ab4c93570d29d4dc968-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 76ab2b0306830ab4c93570d29d4dc968, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1036354018
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-7a786256c5960c24fa5a2a7ba6a4633c-102900000-0
+      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 7a786256c5960c24fa5a2a7ba6a4633c, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1058755821
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-d765f3e4ff26d254b978430bac766012-102900000-0
+      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: d765f3e4ff26d254b978430bac766012, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1056226122
     name: Page 1
     _id: 1039380866
   - items: []
