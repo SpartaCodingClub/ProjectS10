@@ -12,5 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066cf82f8f80d408c856e48fc8f1127b, type: 3}
   m_Name: vFavorites Data
   m_EditorClassIdentifier: 
-  pages: []
+  pages:
+  - items: []
+    name: Page 1
+    _id: 1039380866
+  - items: []
+    name: Page 2
+    _id: 1052984330
+  - items: []
+    name: Page 3
+    _id: 1060748091
+  - items: []
+    name: Page 4
+    _id: 1049740005
+  - items: []
+    name: Page 5
+    _id: 1064797982
+  - items: []
+    name: Page 6
+    _id: 0
   rowScale: 1
