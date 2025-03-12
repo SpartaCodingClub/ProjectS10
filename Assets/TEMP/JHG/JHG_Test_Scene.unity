@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 211514370}
   - component: {fileID: 211514369}
   - component: {fileID: 211514368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 849709539}
   - component: {fileID: 849709538}
   - component: {fileID: 849709537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 2134577954}
   - component: {fileID: 2134577953}
   - component: {fileID: 2134577952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
