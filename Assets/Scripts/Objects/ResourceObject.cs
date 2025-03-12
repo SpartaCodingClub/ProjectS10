@@ -1,4 +1,4 @@
-public class ResourceObject : IInteractable
+public class ResourceObject : InteractableObject
 {
     // Start is called before the first frame update
     void Start()
