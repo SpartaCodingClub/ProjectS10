@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class StatHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] float hp;
+    public float Hp => hp;
+    [SerializeField] float maxHp;
+    public float MaxHp => maxHp;
+    [SerializeField] float speed;
+    public float Speed => speed;
+    [SerializeField] float maxSpeed;
+    public float MaxSpeed => maxSpeed;
 }
