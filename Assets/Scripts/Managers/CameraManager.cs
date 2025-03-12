@@ -27,6 +27,7 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindWithTag("Player").transform;
         cam = Camera.main;
         IsFollowing = true;
     }
