@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     Camera cam;
 
     [Header("이동")]
-    [SerializeField] float moveSpeed = 3f;
     [SerializeField] float curSpeed;
     [SerializeField] float speedChangeValue;
     [SerializeField] float MoveAngle;
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour
         float targetSpeed = curMovementInput.magnitude;
         curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
         Vector3 direction = Vector3.forward * curMovementInput.y + Vector3.right * curMovementInput.x;
-        direction *= moveSpeed;
+        direction *= PStat.Speed;
         direction.y = 0;
 
         float angle = Vector3.Angle(transform.forward, direction);
