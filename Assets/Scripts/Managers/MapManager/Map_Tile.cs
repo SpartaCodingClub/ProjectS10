@@ -13,7 +13,7 @@ public class Map_Tile : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        return new(Cell.x * Map.TILE_SIZE, 0.0f, Cell.y * Map.TILE_SIZE);
+        return new(Cell.x * Map.TILE_SIZE - Map.OFFSET_X, 0.0f, Cell.y * Map.TILE_SIZE);
     }
 
     public Vector3 GetRandomPosition()

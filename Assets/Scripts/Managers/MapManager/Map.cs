@@ -4,6 +4,7 @@ using VInspector;
 
 public class Map : MonoBehaviour
 {
+    public static float OFFSET_X { get; private set; }
     public static readonly float TILE_SIZE = 4.0f;
 
     #region Inspecor
@@ -118,8 +119,11 @@ public class Map : MonoBehaviour
             }
         }
 
-        // 초기화
-        transform.Find("Entrance").transform.position = columns / 2 * TILE_SIZE * Vector3.right;
+        // 맵 위치 설정
+        OFFSET_X = columns / 2 * TILE_SIZE;
+        transform.Find("Entrance").transform.position = OFFSET_X * Vector3.right;
+        transform.position = OFFSET_X * Vector3.left;
+
         Managers.Game.CurrentMap = this;
     }
 
