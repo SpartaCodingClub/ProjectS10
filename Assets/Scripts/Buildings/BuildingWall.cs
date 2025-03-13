@@ -7,6 +7,7 @@ public class BuildingWall : BuildingBase
     public override void Initialize()
     {
         base.Initialize();
+        gameObject.SetActive(true);
         StartConstruction(2f);
     }
 }

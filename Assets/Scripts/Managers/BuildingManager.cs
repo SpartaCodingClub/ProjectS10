@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static BuildingManager Instance { get; private set; }
+    public GameObject wall;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    // 테스트
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            PlaceWall(new Vector3(0, 0, 0));
+        }
+    }
+
+    public void PlaceWall(Vector3 position)
+    {
+        GameObject newWall = Instantiate(wall, position, Quaternion.identity);
+        BuildingWall wallComponent = newWall.GetComponent<BuildingWall>();
+
+        if (wallComponent != null)
+        {
+            wallComponent.Initialize(); 
+        }
     }
 }
