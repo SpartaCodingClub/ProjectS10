@@ -12,19 +12,9 @@ public class Pool
         transform = new GameObject(poolable.name).transform;
         transform.SetParent(parent);
 
-        //string pathType = Define.PATH_OBJECT;
-        //switch (poolable.name)
-        //{
-        //    case var name when name.Contains("Effect"):
-        //        pathType = Define.PATH_EFFECT;
-        //        break;
-        //    case var name when name.Contains("UI"):
-        //        pathType = Define.PATH_UI;
-        //        break;
-        //}
-
-        //original = Resources.Load<GameObject>($"{pathType}/{poolable.name}");
-        //objectPool = new ObjectPool<GameObject>(CreateFunc, ActionOnGet, ActionOnRelease, ActionOnDestroy);
+        string pathType = Define.PATH_OBJECT;
+        original = Resources.Load<GameObject>($"{pathType}/{poolable.name}");
+        objectPool = new ObjectPool<GameObject>(CreateFunc, ActionOnGet, ActionOnRelease, ActionOnDestroy);
     }
 
     public void Push(Poolable poolable)

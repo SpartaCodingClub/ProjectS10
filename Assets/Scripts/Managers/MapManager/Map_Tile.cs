@@ -15,4 +15,13 @@ public class Map_Tile : MonoBehaviour
     {
         return new(Cell.x * Map.TILE_SIZE, 0.0f, Cell.y * Map.TILE_SIZE);
     }
+
+    public Vector3 GetRandomPosition()
+    {
+        Vector3 position = GetPosition();
+        float x = position.x + Random.Range(-Map.TILE_SIZE * 0.5f, Map.TILE_SIZE * 0.5f);
+        float z = position.z + Random.Range(-Map.TILE_SIZE * 0.5f, Map.TILE_SIZE * 0.5f);
+
+        return new(x, 0.0f, z);
+    }
 }

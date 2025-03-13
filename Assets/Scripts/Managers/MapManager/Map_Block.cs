@@ -43,7 +43,7 @@ public class Map_Block : Map_Tile
 
     private void OnMouseEnter()
     {
-        if (_renderer == null)
+        if (map == null)
         {
             return;
         }
@@ -59,7 +59,7 @@ public class Map_Block : Map_Tile
 
     private void OnMouseExit()
     {
-        if (_renderer == null)
+        if (map == null)
         {
             return;
         }
@@ -69,7 +69,7 @@ public class Map_Block : Map_Tile
 
     private void OnMouseDown()
     {
-        if (_renderer == null)
+        if (map == null)
         {
             return;
         }

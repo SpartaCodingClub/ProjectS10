@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using VInspector;
 
@@ -17,7 +18,6 @@ public class Map : MonoBehaviour
 
     [EndTab]
     #endregion
-
 
     // 초기 던전 크기
     private static readonly int TILE_COLUMNS = 3;
@@ -109,12 +109,18 @@ public class Map : MonoBehaviour
                 }
 
                 Vector3 position = new(column * TILE_SIZE, 0.0f, row * TILE_SIZE);
-                Instantiate(prefab_Block, position, Quaternion.identity, Walls);
+                Map_Block block = Instantiate(prefab_Block, position, Quaternion.identity, Walls).GetComponent<Map_Block>();
+                if (row == rows && column >= 0 && column < columns)
+                {
+                    block.Initialize(null);
+                    block.SetActive_Wall(Map_Block.Direction.South);
+                }
             }
         }
 
-        // 입구 위치 변경
+        // 초기화
         transform.Find("Entrance").transform.position = columns / 2 * TILE_SIZE * Vector3.right;
+        Managers.Game.CurrentMap = this;
     }
 
     private void CreateBlock(int row, int column)
@@ -173,5 +179,16 @@ public class Map : MonoBehaviour
         wall.Initialize(this);
 
         return wall;
+    }
+
+    public Vector3 GetRandomPosition()
+    {
+        Map_Tile[] tiles = this.tiles
+            .SelectMany(row => row)
+            .Where(tile => tile is not Map_Block)
+            .ToArray();
+
+        int randomIndex = Random.Range(0, tiles.Length);
+        return tiles[randomIndex].GetRandomPosition();
     }
 }
