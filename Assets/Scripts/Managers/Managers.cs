@@ -18,5 +18,12 @@ public class Managers : MonoBehaviour
         DontDestroyOnLoad(this);
 
         Audio.Initialize();
+        Game.Initialize();
+        UI.Initialize();
+    }
+
+    private void Start()
+    {
+        Game.Start();
     }
 }
