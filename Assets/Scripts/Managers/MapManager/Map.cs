@@ -21,8 +21,8 @@ public class Map : MonoBehaviour
     #endregion
 
     // 초기 던전 크기
-    private static readonly int TILE_COLUMNS = 3;
-    private static readonly int TILE_ROWS = 2;
+    private static readonly int TILE_COLUMNS = 5;
+    private static readonly int TILE_ROWS = 3;
 
     private GameObject prefab_Block;
     private GameObject prefab_Tile;

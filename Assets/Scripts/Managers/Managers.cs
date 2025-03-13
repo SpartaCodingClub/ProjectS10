@@ -4,6 +4,7 @@ public class Managers : MonoBehaviour
 {
     public static Managers Instance { get; private set; }
 
+    public static readonly AudioManager Audio = new();
     public static readonly DataManager Data = new();
     public static readonly GameManager Game = new();
     public static readonly ItemManager Item = new();
@@ -15,5 +16,7 @@ public class Managers : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this);
+
+        Audio.Initialize();
     }
 }
