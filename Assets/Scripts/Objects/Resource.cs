@@ -6,15 +6,18 @@ using UnityEngine.UIElements;
 public class Resource : MonoBehaviour
 {
     //public ItemData itemToGive; //드랍되는아이템
+    public GameObject resource;
     public int quantityperhit = 1; // 
     public int capacity; // 총 몇번때릴수있는지 
 
     public float respawnTime;
-    public Vector3 respawnArea;
+    private Vector3 respawnArea;
 
     private void Start()
     {
         Respawn();
+        Debug.Log(resource);
+        Debug.Log(resource.transform.position);
     }
     public void Gather(Vector3 hitPoint , Vector3 hitNormal)
     {
@@ -33,19 +36,26 @@ public class Resource : MonoBehaviour
 
     void DestroyResource()
     {
-        gameObject.SetActive(false);
+        Managers.Resource.Destroy(gameObject);
         StartCoroutine(Respawn());
     }
 
     IEnumerator Respawn()
     {
-        if (capacity <=1)// 다른오브젝트와 겹쳤을경우
-        {
-            yield break;
-        }
+          
         yield return new WaitForSeconds(respawnTime);
+        Vector3 randomPosition;
 
-        
-        gameObject.SetActive(true);
+        randomPosition.x = Random.Range(respawnArea.x - 14, respawnArea.x + 14);
+        randomPosition.y = respawnArea.y;
+        randomPosition.z = Random.Range(respawnArea.z -14, respawnArea.z + 14);
+
+
+        GameObject crystal = Managers.Resource.Instantiate("Crystal_01", transform.position = respawnArea);
+
+        if (crystal != null) 
+        { 
+            crystal.transform.position = randomPosition;
+        }
     }
 }
