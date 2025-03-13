@@ -4,6 +4,7 @@ using VInspector;
 
 public class Map : MonoBehaviour
 {
+    public static float OFFSET_X { get; private set; }
     public static readonly float TILE_SIZE = 4.0f;
 
     #region Inspecor
@@ -20,8 +21,8 @@ public class Map : MonoBehaviour
     #endregion
 
     // 초기 던전 크기
-    private static readonly int TILE_COLUMNS = 3;
-    private static readonly int TILE_ROWS = 2;
+    private static readonly int TILE_COLUMNS = 5;
+    private static readonly int TILE_ROWS = 3;
 
     private GameObject prefab_Block;
     private GameObject prefab_Tile;
@@ -118,8 +119,11 @@ public class Map : MonoBehaviour
             }
         }
 
-        // 초기화
-        transform.Find("Entrance").transform.position = columns / 2 * TILE_SIZE * Vector3.right;
+        // 맵 위치 설정
+        OFFSET_X = columns / 2 * TILE_SIZE;
+        transform.Find("Entrance").transform.position = OFFSET_X * Vector3.right;
+        transform.position = OFFSET_X * Vector3.left;
+
         Managers.Game.CurrentMap = this;
     }
 
