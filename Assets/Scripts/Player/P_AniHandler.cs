@@ -38,29 +38,31 @@ public class P_AniHandler : MonoBehaviour
     public void MeleeAttackAnim()
     {
         if (isAnimationing == false)
+        {
+            isAnimationing = true;
             StartCoroutine(MeleeAttack());
+        }
     }
 
     public void ThrowAnim()
     {
         if (isAnimationing == false)
         {
+            isAnimationing = true;
             StartCoroutine(Throw());
         }
     }
 
     IEnumerator MeleeAttack()
     {
-        isAnimationing = true;
-        animator.CrossFade("MeleeAttack", 0f);
+        animator.CrossFade("MeleeAttack", 0.1f);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         isAnimationing = false;
     }
 
     IEnumerator Throw()
     {
-        isAnimationing = true;
-        animator.CrossFade("Throw", 0f);
+        animator.CrossFade("Throw", 0.1f);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         isAnimationing = false;
     }

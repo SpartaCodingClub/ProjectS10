@@ -20,11 +20,12 @@ public class P_Equipment : MonoBehaviour
     [Header("장착 가능 장비")]
     [SerializeField] GameObject PrimaryWeapon;
     [SerializeField] GameObject SubWeapon;
-    [SerializeField] int Weaponnum = 0;
+    public int Weaponnum;
 
     // Start is called before the first frame update
     void Start()
     {
+        Weaponnum = 0;
         player = GetComponent<PlayerController>();
     }
     // Update is called once per frame
@@ -49,13 +50,13 @@ public class P_Equipment : MonoBehaviour
         {
             DeEquip();
             Equip(PrimaryWeapon);
-            num = 1;
+            Weaponnum = 1;
         }
         else if(num == 2)
         {
             DeEquip();
             Equip(SubWeapon);
-            num = 2;
+            Weaponnum = 2;
         }
     }
     public void Equip(GameObject prefab)
@@ -64,8 +65,12 @@ public class P_Equipment : MonoBehaviour
             return;
         curEquipPrefab = Instantiate(prefab, OneH_Sword);
         curEquipment = curEquipPrefab.GetComponent<Weapon>();
-        if(curEquipment.type == WeaponType.Melee)
+        if (curEquipment.type == WeaponType.Melee)
             player.PStat.Attack += curEquipment.atk;
+        else if (curEquipment.type == WeaponType.Projectile)
+        {
+            player.projectile.Addprefab(curEquipment.projectileObject);
+        }
     }
 
     public void DeEquip()
@@ -74,6 +79,10 @@ public class P_Equipment : MonoBehaviour
             return;
         if (curEquipment.type == WeaponType.Melee)
             player.PStat.Attack -= curEquipment.atk;
+        else if (curEquipment.type == WeaponType.Projectile)
+        {
+            player.projectile.RemovePrefab();
+        }
         Destroy(curEquipPrefab);
         curEquipment = null;
     }
@@ -86,11 +95,12 @@ public class P_Equipment : MonoBehaviour
             foreach (RaycastHit hit in curHits)
             {
                 //데미지 입히는 메서드
+                Debug.Log("적 감지");
             }
         }
         else if (curEquipment.type == WeaponType.Projectile)
         {
-            
+
         }
     }
 }

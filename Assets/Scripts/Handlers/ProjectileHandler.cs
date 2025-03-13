@@ -13,7 +13,7 @@ public class ProjectileHandler : MonoBehaviour
             Debug.Log("잘못된 투사체 접근입니다.");
             return;
         }
-        GameObject prefab = Instantiate(projectileprefab[index]);
+        GameObject prefab = Instantiate(projectileprefab[index], transform.position + transform.forward + new Vector3(0, 0.5f, 0), transform.rotation);
         prefab.GetComponent<Projectile>().Init();
     }
 

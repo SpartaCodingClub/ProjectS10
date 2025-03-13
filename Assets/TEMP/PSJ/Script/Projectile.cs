@@ -8,20 +8,22 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] string tag;
+    Vector3 direction;
+    Rigidbody rigid;
     ParticleSystem particle;
     bool CanAttack = false;
 
     private void OnEnable()
     {
+        rigid = GetComponent<Rigidbody>();
         particle = GetComponentInChildren<ParticleSystem>();
     }
-    public void Init(int atkinput = 0)
+    public void Init()
     {
-        atk += atkinput;
         CanAttack = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ProjectileAction();
     }
@@ -56,8 +58,8 @@ public class Projectile : MonoBehaviour
         yield return null;
     }
 
-    public virtual void ProjectileAction()
+    public void ProjectileAction()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        rigid.velocity = transform.forward * speed;
     }
 }

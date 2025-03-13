@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public P_Stat PStat;
     public PlayerInteraction PInteract;
     public P_AniHandler pAnimationHandler;
+    public ProjectileHandler projectile;
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
     Vector3 direction;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         PStat = GetComponent<P_Stat>();
         PInteract = GetComponent<PlayerInteraction>();
         pAnimationHandler = GetComponent<P_AniHandler>();
+        projectile = GetComponent<ProjectileHandler>();
     }
 
     private void Start()
@@ -127,7 +129,14 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        pAnimationHandler.MeleeAttackAnim();
+        if (PEquip.Weaponnum == 1)
+        {
+            pAnimationHandler.MeleeAttackAnim();
+        }
+        else if(PEquip.Weaponnum == 2)
+        {
+            pAnimationHandler.ThrowAnim();
+        }
     }
 
     public void OnPrimary(InputAction.CallbackContext context)
