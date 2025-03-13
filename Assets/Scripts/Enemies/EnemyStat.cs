@@ -5,14 +5,30 @@ using UnityEngine.AI;
 
 public class EnemyStat : StatHandler
 {
-    private NavMeshAgent agent;
+    public bool isDead = false;
 
-    private void Awake()
+    public void Update()
     {
-        agent = GetComponent<NavMeshAgent>();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10);
+        }
     }
-    private void Start()
+    public void TakeDamage(float Damage)
     {
-        agent.speed = Speed;
+        if (Health > 0)
+        {
+            Health -= Damage;
+            if (Health <= 0)
+            {
+                isDead = true;
+            }
+        }
+    }
+
+    public void IsDie()
+    {
+        // 죽는 애니메이션이 끝나면
+        Destroy(gameObject);
     }
 }

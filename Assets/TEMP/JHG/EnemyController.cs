@@ -10,7 +10,7 @@ public enum State
     Idle,
     Wandering,
     Attack,
-    Stop
+    Die
 }
 
 public class EnemyController : MonoBehaviour
@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     public float attackRange;
     public float attackRate;
     bool isAttacking = false;
-
+    EnemyStat enemyStat;
 
     [Header("Target")]
     [SerializeField] Transform target;
@@ -41,12 +41,13 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
+        enemyStat = GetComponent<EnemyStat>();
         playerTarget = GameObject.Find("Player").transform;
-
     }
 
     private void Start()
     {
+        agent.speed = enemyStat.Speed;
         SetState(State.Wandering);
     }
 
@@ -65,9 +66,17 @@ public class EnemyController : MonoBehaviour
             case State.Attack:
                 if (!isAttacking) Attack();
                 break;
+            case State.Die:
+                break;
         }
 
         Debug.Log(_state);
+
+        if (enemyStat.isDead)
+        {
+            agent.isStopped = true;
+            _animator.SetTrigger("isDie");
+        }
     }
 
     public void SetState(State state)
@@ -82,6 +91,8 @@ public class EnemyController : MonoBehaviour
                 break;
             case State.Wandering:
                 agent.isStopped = false;
+                break;
+            case State.Die:
                 break;
         }
     }
