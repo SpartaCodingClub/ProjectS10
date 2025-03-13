@@ -997,7 +997,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnScroll
         m_Mode: 0
         m_Arguments:
@@ -1048,6 +1048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d959f5167d55ab4dbd0efd4769b8d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curEquipment: {fileID: 0}
+  boxOffset: {x: 0, y: 0, z: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  boxSize: {x: 1, y: 1, z: 1}
 --- !u!114 &632544009530685809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,6 +1100,7 @@ MonoBehaviour:
   stamina: 100
   attack: 5
   defense: 5
+  PlusSpeed: 0
 --- !u!114 &5723906031407483802
 MonoBehaviour:
   m_ObjectHideFlags: 0
