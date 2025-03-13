@@ -4,7 +4,6 @@ public class Managers : MonoBehaviour
 {
     public static Managers Instance { get; private set; }
 
-    public static readonly CameraManager Camera = new();
     public static readonly DataManager Data = new();
     public static readonly GameManager Game = new();
     public static readonly InputManager Input = new();
