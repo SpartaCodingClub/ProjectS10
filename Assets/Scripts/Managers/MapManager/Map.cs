@@ -79,7 +79,7 @@ public class Map : MonoBehaviour
             CreateWall(rows - 1, column).SetActive_Wall(Map_Block.Direction.North);
         }
 
-        // 벽 생성 (세로)
+        // 벽 생성(세로)
         for (int row = 0; row < rows; row++)
         {
             CreateWall(row, 0).SetActive_Wall(Map_Block.Direction.West);
@@ -110,12 +110,7 @@ public class Map : MonoBehaviour
                 }
 
                 Vector3 position = new(column * TILE_SIZE, 0.0f, row * TILE_SIZE);
-                Map_Block block = Instantiate(prefab_Block, position, Quaternion.identity, Walls).GetComponent<Map_Block>();
-                if (row == rows && column >= 0 && column < columns)
-                {
-                    block.Initialize(null);
-                    block.SetActive_Wall(Map_Block.Direction.South);
-                }
+                Instantiate(prefab_Block, position, Quaternion.identity, Walls).GetComponent<Map_Block>().Initialize(null);
             }
         }
 
