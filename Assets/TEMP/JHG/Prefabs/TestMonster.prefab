@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 5602560674167891860}
   - component: {fileID: 2128578908839370178}
   - component: {fileID: 2743952720390790183}
+  - component: {fileID: 4290060071297126224}
   m_Layer: 0
   m_Name: TestMonster
   m_TagString: Untagged
@@ -763,6 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
+  attackRate: 0
   target: {fileID: 0}
   playerTarget: {fileID: 0}
   targetDistance: 0
@@ -781,7 +783,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 582065251259832796}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -844,6 +846,27 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!95 &4290060071297126224
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582065251259832796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+  m_Controller: {fileID: 9100000, guid: cc20711139f1a164e99cefae3df93378, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &642073885962362089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,7 +3252,7 @@ Transform:
   m_Children:
   - {fileID: 1433657189009179706}
   m_Father: {fileID: 6883194888505478281}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.008584261, y: 3.2947226, z: 172.72923}
 --- !u!1 &1972370887035226066
 GameObject:
   m_ObjectHideFlags: 0
@@ -10290,7 +10313,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167798862699847874}
-  - component: {fileID: 681690324704962058}
   m_Layer: 0
   m_Name: TT_Swordman
   m_TagString: Untagged
@@ -10375,27 +10397,6 @@ Transform:
   - {fileID: 2975495458737281469}
   m_Father: {fileID: 6255601713740643436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &681690324704962058
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5171150119425598677}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
-  m_Controller: {fileID: 9100000, guid: cc20711139f1a164e99cefae3df93378, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5234403677848469878
 GameObject:
   m_ObjectHideFlags: 0

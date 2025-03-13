@@ -7815,6 +7815,7 @@ GameObject:
   - component: {fileID: 6959106079621157468}
   - component: {fileID: 3842389471311845900}
   - component: {fileID: 4278436958369541372}
+  - component: {fileID: 5142249644610792290}
   m_Layer: 0
   m_Name: E_King
   m_TagString: Untagged
@@ -7867,7 +7868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce608e95ec4fef41ab4ba26e690c088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
+  attackRange: 2
+  attackRate: 0
   target: {fileID: 0}
   playerTarget: {fileID: 0}
   targetDistance: 0
@@ -7886,7 +7888,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3672002046167252150}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -7949,6 +7951,27 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!95 &5142249644610792290
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672002046167252150}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+  m_Controller: {fileID: 9100000, guid: cc20711139f1a164e99cefae3df93378, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3680814551847186921
 GameObject:
   m_ObjectHideFlags: 0
@@ -19082,7 +19105,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8380869040336478852}
-  - component: {fileID: 7391922892536112151}
   m_Layer: 0
   m_Name: TT_Swordman
   m_TagString: Untagged
@@ -19167,27 +19189,6 @@ Transform:
   - {fileID: 5529335734660670124}
   m_Father: {fileID: 4923765314441134500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7391922892536112151
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8877407478995236929}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
-  m_Controller: {fileID: 9100000, guid: cc20711139f1a164e99cefae3df93378, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8889320706149257858
 GameObject:
   m_ObjectHideFlags: 0

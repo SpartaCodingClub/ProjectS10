@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,6 +20,9 @@ public class EnemyController : MonoBehaviour
 
     [Header("Stat")]
     public float attackRange;
+    public float attackRate;
+    bool isAttacking = false;
+
 
     [Header("Target")]
     [SerializeField] Transform target;
@@ -50,7 +54,7 @@ public class EnemyController : MonoBehaviour
     {
         if (target != null) targetDistance = Vector3.Distance(transform.position, target.position);
 
-        _animator.SetBool("isMove", _state != State.Idle);
+        _animator.SetBool("isMove", _state == State.Wandering);
 
         switch (_state)
         {
@@ -59,7 +63,7 @@ public class EnemyController : MonoBehaviour
                 PassivUpdate();
                 break;
             case State.Attack:
-                Attack();
+                if (!isAttacking) Attack();
                 break;
         }
 
@@ -85,16 +89,11 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < attackRange)
+        if (_state == State.Wandering && agent.remainingDistance < attackRange / 2)
         {
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
-
-        //if (targetDistance < attackRange && target != null) // 공격 범위 안에 들어오면 공격
-        //{
-        //    SetState(State.Attack);
-        //}
 
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
         {
@@ -111,7 +110,6 @@ public class EnemyController : MonoBehaviour
         //if (_state != State.Idle) return;
         SetState(State.Wandering);
         FindNextTarget();
-        //agent.SetDestination(target.position);
 
         Collider targetCollider = target.GetComponent<Collider>();
         if (targetCollider != null)
@@ -175,26 +173,32 @@ public class EnemyController : MonoBehaviour
     {
         FindNextTarget();
         
-        transform.LookAt(target);
+        //transform.LookAt(target);
 
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
         {
             if (hit.transform == target)
             {
+                isAttacking = true;
                 Debug.Log("공격");
                 _animator.SetTrigger("isAttack");
             }
         }
 
-        //if (targetDistance < attackRange && target != null)
-        //{
-        //    Debug.Log("공격");
-        //    _animator.SetTrigger("isAttack");
-        //}
         else
         {
             SetState(State.Wandering);
         }
     }
-
+    // 애니메이션 이벤트가 호출하는 함수
+    public void OnAttackEnd()
+    {
+        StartCoroutine(AttackRateRoutine());
+    }
+    //공격 주기를 코루틴으로 설정
+    private IEnumerator AttackRateRoutine()
+    {
+        yield return new WaitForSeconds(attackRate); 
+        isAttacking = false;
+    }
 }
