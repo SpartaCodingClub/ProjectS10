@@ -13,10 +13,8 @@ public class BuildingAnimation : MonoBehaviour
         float buildingHeight = GetComponent<Renderer>().bounds.size.y;
 
         // 이거 뭔가 잘 안 먹는데 문제가 뭐지
-        startPos = transform.position - new Vector3(0, buildingHeight, 0);
-        finalPos = transform.position;
-
-        transform.position = startPos;
+        startPos = transform.position;
+        finalPos = new Vector3(transform.position.x, 0, transform.position.z);
 
         StartCoroutine(BuildingRise());
     }
@@ -30,7 +28,9 @@ public class BuildingAnimation : MonoBehaviour
             timer += Time.deltaTime;
             float shakeAmount = Mathf.Sin(timer * 30f) * 0.1f;
             float riseProgress = Mathf.SmoothStep(0, 1f, timer / buildTime);
-            transform.localPosition = new Vector3(shakeAmount, riseProgress * 2f, 0);
+
+            transform.position = Vector3.Lerp(startPos, finalPos, riseProgress);
+            transform.position += new Vector3(shakeAmount, 0, 0);
 
             yield return null;
         }

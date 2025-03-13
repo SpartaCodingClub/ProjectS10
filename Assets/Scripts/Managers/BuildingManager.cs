@@ -28,7 +28,9 @@ public class BuildingManager : MonoBehaviour
 
         if (wallComponent != null)
         {
-            wallComponent.Initialize(); 
+            float buildingHeight = wallComponent.GetComponent<Renderer>().bounds.size.y;
+            newWall.transform.position = new Vector3(position.x, -buildingHeight, position.z);
+            wallComponent.Initialize();
         }
     }
 }
