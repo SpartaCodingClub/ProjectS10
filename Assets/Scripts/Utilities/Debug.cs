@@ -7,7 +7,7 @@ public class Debug
     [Conditional(DEBUG)]
     public static void Log(object message)
     {
-        UnityEngine.Debug.Log(message);
+        UnityEngine.Debug.Log(message); 
     }
 
     [Conditional(DEBUG)]
