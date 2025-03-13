@@ -24,7 +24,7 @@ public class ResourceManager
         }
     }
 
-    public GameObject Instantiate(string key, Vector3 position, string pathType)
+    public GameObject Instantiate(string key, Vector3 position, string pathType = Define.PATH_OBJECT)
     {
         GameObject gameObject = Managers.Pool.TryPop(key);
         if (gameObject == null)
@@ -40,7 +40,7 @@ public class ResourceManager
             gameObject = Instantiate(original);
         }
 
-        gameObject.transform.position = position;
+        gameObject.transform.SetPositionAndRotation(position, Quaternion.identity);
         return gameObject;
     }
 
@@ -48,6 +48,7 @@ public class ResourceManager
     {
         GameObject gameObject = Object.Instantiate(original);
         gameObject.name = original.name;
+
         return gameObject;
     }
 
