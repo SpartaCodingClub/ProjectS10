@@ -32,9 +32,12 @@ public class EnemyController : MonoBehaviour
     public float minWanderWaitTime;
     public float maxWanderWaitTime;
 
+    private Animator _animator;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -43,7 +46,7 @@ public class EnemyController : MonoBehaviour
         SetState(State.Idle);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerDistance = Vector3.Distance(transform.position, playerTarget.position);
 
@@ -118,7 +121,8 @@ public class EnemyController : MonoBehaviour
         {
             SetState(State.Attack);
         }
-                
+        
+        _animator.SetBool("isMove", _state == State.Move);
     }
 
     public void Attacking()
@@ -126,6 +130,7 @@ public class EnemyController : MonoBehaviour
         if (targetDistance < attackRange && target != null)
         {
             Debug.Log("공격");
+            _animator.SetTrigger("isAttack");
             if (target != playerTarget) FindPlayerTarget();
         }
         else
@@ -170,8 +175,10 @@ public class EnemyController : MonoBehaviour
         {
             target = closestTarget;
 
-            if (attackRange > targetDistance) SetState(State.Attack);
-            else SetState(State.Move);
+            SetState(State.Move);
+
+            //if (attackRange > targetDistance) SetState(State.Attack);
+            //else SetState(State.Move);
         }
         else
         {

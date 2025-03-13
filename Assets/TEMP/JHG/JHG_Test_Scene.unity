@@ -635,10 +635,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1974994715}
   - component: {fileID: 1974994714}
-  - component: {fileID: 1974994716}
   - component: {fileID: 1974994712}
   - component: {fileID: 1974994711}
   - component: {fileID: 1974994710}
+  - component: {fileID: 1974994716}
   m_Layer: 0
   m_Name: TestMonster
   m_TagString: Untagged
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1974994709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce608e95ec4fef41ab4ba26e690c088, type: 3}
+  m_Script: {fileID: 11500000, guid: a2a5803ef50ce404892174a618cfa835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
@@ -873,7 +873,7 @@ Transform:
   m_GameObject: {fileID: 2134577951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 4, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4980,7 +4980,7 @@ Animator:
   m_GameObject: {fileID: 6619536084186234502}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc20711139f1a164e99cefae3df93378, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
