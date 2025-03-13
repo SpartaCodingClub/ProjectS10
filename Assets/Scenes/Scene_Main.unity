@@ -284,7 +284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 805714134}
   - component: {fileID: 805714133}
-  - component: {fileID: 805714132}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -292,14 +291,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &805714132
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805714131}
-  m_Enabled: 1
 --- !u!20 &805714133
 Camera:
   m_ObjectHideFlags: 0
@@ -377,7 +368,7 @@ GameObject:
   - component: {fileID: 2010908890}
   - component: {fileID: 2010908891}
   m_Layer: 0
-  m_Name: Scene
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,6 +406,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 805714134}
-  - {fileID: 2010908890}
-  - {fileID: 705507995}
   - {fileID: 630481579}
+  - {fileID: 705507995}
+  - {fileID: 2010908890}
