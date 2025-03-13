@@ -104,6 +104,33 @@ MonoBehaviour:
       isFolder: 0
       isAsset: 1
       _id: 1014136578
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-3eb33397a2cdc0a40840b8437b18e8bb-11500000-0
+      _typeString: UnityEditor.MonoScript, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1064942088
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-e6bbaa8ce680e8a44ac3172c6a5a44c0-11500000-0
+      _typeString: UnityEditor.MonoScript, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 11500000, guid: e6bbaa8ce680e8a44ac3172c6a5a44c0, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1053282034
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-2224c5bbe86df344d875b1dad7c6693d-11500000-0
+      _typeString: UnityEditor.MonoScript, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 11500000, guid: 2224c5bbe86df344d875b1dad7c6693d, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1049461713
     name: Page 4
     _id: 1049740005
   - items: []
