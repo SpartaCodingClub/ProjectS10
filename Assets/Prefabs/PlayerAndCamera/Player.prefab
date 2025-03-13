@@ -1033,7 +1033,6 @@ MonoBehaviour:
   PInteract: {fileID: 0}
   pAnimationHandler: {fileID: 0}
   rotateSpeed: 10
-  moveSpeed: 3
   curSpeed: 0
   speedChangeValue: 5
   MoveAngle: 0
@@ -1090,6 +1089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf0c105ccbc4d94f81ddefb30bed869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  speed: 5
+  stamina: 100
+  attack: 5
+  defense: 5
 --- !u!114 &5723906031407483802
 MonoBehaviour:
   m_ObjectHideFlags: 0

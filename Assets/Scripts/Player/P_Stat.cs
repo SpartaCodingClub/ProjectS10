@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Stat : MonoBehaviour
+public class P_Stat : StatHandler
 {
+    public delegate Action damageaction();
+    public damageaction DamageAction;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,11 @@ public class P_Stat : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Damage(float damage)
+    {
+        Health -= damage;
+        DamageAction();
     }
 }
