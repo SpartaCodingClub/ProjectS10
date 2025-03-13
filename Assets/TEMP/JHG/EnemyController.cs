@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         playerTarget = GameObject.Find("Player").transform;
+
     }
 
     private void Start()
@@ -47,7 +48,6 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (target != null) targetDistance = Vector3.Distance(transform.position, target.position);
 
         _animator.SetBool("isMove", _state != State.Idle);
@@ -91,9 +91,17 @@ public class EnemyController : MonoBehaviour
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
 
-        if (targetDistance < attackRange && target != null) // 공격 범위 안에 들어오면 공격
+        //if (targetDistance < attackRange && target != null) // 공격 범위 안에 들어오면 공격
+        //{
+        //    SetState(State.Attack);
+        //}
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
         {
-            SetState(State.Attack);
+            if (hit.transform == target)
+            {
+                SetState(State.Attack);
+            }
         }
     }
 
@@ -103,7 +111,18 @@ public class EnemyController : MonoBehaviour
         //if (_state != State.Idle) return;
         SetState(State.Wandering);
         FindNextTarget();
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
+
+        Collider targetCollider = target.GetComponent<Collider>();
+        if (targetCollider != null)
+        {
+            Vector3 closestPoint = targetCollider.ClosestPoint(transform.position);
+            agent.SetDestination(closestPoint);
+        }
+        else
+        {
+            agent.SetDestination(target.position); // 콜라이더가 없으면 원래 방식 사용
+        }
     }
 
     // 목표 탐색
@@ -155,15 +174,27 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         FindNextTarget();
+        
+        transform.LookAt(target);
 
-        if (targetDistance < attackRange && target != null)
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
         {
-            Debug.Log("공격");
-            _animator.SetTrigger("isAttack");
+            if (hit.transform == target)
+            {
+                Debug.Log("공격");
+                _animator.SetTrigger("isAttack");
+            }
         }
+
+        //if (targetDistance < attackRange && target != null)
+        //{
+        //    Debug.Log("공격");
+        //    _animator.SetTrigger("isAttack");
+        //}
         else
         {
             SetState(State.Wandering);
         }
     }
+
 }
