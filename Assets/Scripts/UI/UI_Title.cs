@@ -1,13 +1,13 @@
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class UI_TitleStart : UI_Scene
+public class UI_Title : UI_Scene
 {
     #region Close
     private Sequence Background_Close()
     {
         return DOTween.Sequence()
-            .Append(canvasGroup.DOFade(0.0f, 0.3f).OnComplete(Destroy));
+            .Append(canvasGroup.DOFade(0.0f, 0.3f).SetDelay(0.2f).OnComplete(Destroy));
     }
 
     private Sequence Button_Start_Close()
@@ -15,7 +15,7 @@ public class UI_TitleStart : UI_Scene
         var child = Get((int)Children.Button_Start);
 
         return DOTween.Sequence()
-            .Append(child.DOScaleY(0.0f, 0.5f).SetEase(Ease.InBack));
+            .Append(child.DOScaleY(0.0f, 0.3f).SetEase(Ease.OutSine));
     }
     #endregion
 
