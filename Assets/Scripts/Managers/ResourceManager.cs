@@ -24,7 +24,19 @@ public class ResourceManager
         }
     }
 
-    public GameObject Instantiate(string key, Vector3 position, string pathType)
+    public T Instantiate<T>(Transform parent) where T : UI_Base
+    {
+        string key = typeof(T).Name;
+        GameObject gameObject = Instantiate(key, Vector3.zero, Define.PATH_UI);
+        gameObject.transform.SetParent(parent);
+
+        UI_Base @base = gameObject.GetComponent<T>();
+        @base.Open();
+
+        return @base as T;
+    }
+
+    public GameObject Instantiate(string key, Vector3 position, string pathType = Define.PATH_OBJECT)
     {
         GameObject gameObject = Managers.Pool.TryPop(key);
         if (gameObject == null)
@@ -40,7 +52,7 @@ public class ResourceManager
             gameObject = Instantiate(original);
         }
 
-        gameObject.transform.position = position;
+        gameObject.transform.SetPositionAndRotation(position, Quaternion.identity);
         return gameObject;
     }
 
@@ -48,6 +60,7 @@ public class ResourceManager
     {
         GameObject gameObject = Object.Instantiate(original);
         gameObject.name = original.name;
+
         return gameObject;
     }
 

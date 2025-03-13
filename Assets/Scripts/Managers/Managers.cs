@@ -4,10 +4,9 @@ public class Managers : MonoBehaviour
 {
     public static Managers Instance { get; private set; }
 
-    public static readonly CameraManager Camera = new();
+    public static readonly AudioManager Audio = new();
     public static readonly DataManager Data = new();
     public static readonly GameManager Game = new();
-    public static readonly InputManager Input = new();
     public static readonly ItemManager Item = new();
     public static readonly PoolManager Pool = new();
     public static readonly ResourceManager Resource = new();
@@ -17,5 +16,14 @@ public class Managers : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this);
+
+        Audio.Initialize();
+        Game.Initialize();
+        UI.Initialize();
+    }
+
+    private void Start()
+    {
+        Game.Start();
     }
 }

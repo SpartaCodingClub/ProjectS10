@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public Camera MainCamera { get; private set; }
+    public Map CurrentMap { get; set; }
+    public PlayerController Player { get; set; }
+
+    public void Initialize()
     {
-        
+        MainCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        Managers.Audio.Play(Clip.Music_Game);
+        Managers.UI.Show<UI_TitleStart>();
     }
 }
