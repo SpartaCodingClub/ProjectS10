@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class P_Equipment : MonoBehaviour
 {
-    [SerializeField] float range;
     [SerializeField] Equipment curEquipment;
     [SerializeField] Vector3 boxOffset;
     [SerializeField] LayerMask enemyLayer;
-    Vector3 boxSize = new Vector3(1, 1, 1);
+    [SerializeField] Vector3 boxSize = new Vector3(1, 1, 1);
     RaycastHit[] hits;
 
     // Start is called before the first frame update
@@ -22,15 +21,15 @@ public class P_Equipment : MonoBehaviour
     {
         if (curEquipment != null)
         {
-            hits = Physics.BoxCastAll(transform.position + transform.forward * range / 2 + boxOffset, boxSize * range, transform.forward, transform.rotation, 0, enemyLayer);
+            hits = Physics.BoxCastAll(transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset), boxSize, transform.forward, transform.rotation, 0, enemyLayer);
         }
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 boxCenter = transform.position + transform.forward * (range / 2) + boxOffset;
-        Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, boxSize * range);
+        Vector3 boxCenter = transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset);
+        Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
     }
 }

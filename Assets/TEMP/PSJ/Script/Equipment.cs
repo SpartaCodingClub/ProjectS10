@@ -9,13 +9,9 @@ public enum WeaponType
 }
 public class Equipment : MonoBehaviour
 {
+    public WeaponType type;
     public float atk;
-    public float dfs;
+    public int projectilenum;
     public float atkDelay;
-    public float range;
-
-    public void MeleeAttack()
-    {
-        
-    }
+    public Vector3 range;
 }

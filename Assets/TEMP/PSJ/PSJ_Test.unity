@@ -588,6 +588,18 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7701644540163987627, guid: fd91227bed2f8554fb6b65e846aa217b, type: 3}
+      propertyPath: boxSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644540163987627, guid: fd91227bed2f8554fb6b65e846aa217b, type: 3}
+      propertyPath: boxSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644540163987627, guid: fd91227bed2f8554fb6b65e846aa217b, type: 3}
+      propertyPath: boxSize.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644540163987627, guid: fd91227bed2f8554fb6b65e846aa217b, type: 3}
       propertyPath: boxOffset.y
       value: 0.75
       objectReference: {fileID: 0}
@@ -682,10 +694,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dd4a2900887984aa1ce32edbffa0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
-  dfs: 0
-  atkDelay: 0
-  range: 0
+  type: 1
+  atk: 5
+  projectilenum: 1
+  atkDelay: 0.3
+  range: {x: 1, y: 1, z: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

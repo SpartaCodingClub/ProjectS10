@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class CameraManager : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header ("타깃 추적")]
     [SerializeField] Transform target;
