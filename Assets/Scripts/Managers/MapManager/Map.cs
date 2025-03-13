@@ -118,10 +118,9 @@ public class Map : MonoBehaviour
             }
         }
 
-        // 입구 위치 변경
+        // 초기화
         transform.Find("Entrance").transform.position = columns / 2 * TILE_SIZE * Vector3.right;
-
-        Debug.Log(GetRandomPosition());
+        Managers.Game.CurrentMap = this;
     }
 
     private void CreateBlock(int row, int column)
