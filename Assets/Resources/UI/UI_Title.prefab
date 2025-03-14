@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5813499962067423188}
   - component: {fileID: 6217315891991714126}
   m_Layer: 5
-  m_Name: UI_TitleStart
+  m_Name: UI_Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
