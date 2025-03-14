@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public enum ItemType
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Weapon,
+    Resources,
+    Consumtion
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[CreateAssetMenu(menuName = "아이템")]
+public class Item : ScriptableObject
+{
+    [Header("아이템 정보")]
+    public int id;
+    public string name;
+    public string description;
+    public ItemType type;
+
+    [Header("스택 가능 여부")]
+    public bool canStacking;
+    public int maxStacking;
+
+    [Header("무기 프리팹")]
+    public GameObject weapon;
 }
