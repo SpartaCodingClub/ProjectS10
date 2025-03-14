@@ -1,5 +1,3 @@
-using System.Linq;
-
 public class UI_Inventory : UI_SubItem
 {
     private enum Children
@@ -25,15 +23,23 @@ public class UI_Inventory : UI_SubItem
     public void AddItem(Item item)
     {
         // 같은 아이템이 있는지 확인
-        var sameItem = content.FirstOrDefault(slot => slot.Item.Data.ID == item.Data.ID);
-        if (sameItem != null)
+        for (int i = 0; i < content.Length; i++)
         {
-            sameItem.UpdateUI(item.amount);
-            return;
+            Item slotItem = content[i].Item;
+            if (slotItem == null)
+            {
+                continue;
+            }
+
+            if (slotItem.Data.ID == item.Data.ID)
+            {
+                content[i].UpdateUI(item.amount);
+                break;
+            }
         }
 
         // 같은 아이템이 없다면, 빈 공간을 찾아 새로 추가
-        for (int i = 2; i < content.Length; i++)
+        for (int i = 0; i < content.Length; i++)
         {
             var slot = content[i];
             if (slot.Item == null)

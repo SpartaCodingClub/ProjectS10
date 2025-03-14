@@ -66,7 +66,7 @@ public class UI_InventorySlot : UI_Base
     public void UpdateUI(Item item)
     {
         Image icon = Get<Image>((int)Children.Icon);
-        icon.sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
+        //icon.sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
         icon.gameObject.SetActive(true);
         this.icon.Restart();
 
@@ -90,6 +90,11 @@ public class UI_InventorySlot : UI_Base
 
     public void Use()
     {
+        if (Item == null)
+        {
+            return;
+        }
+
         Item.Use();
     }
 }

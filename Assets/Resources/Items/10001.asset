@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e76dc4cb221cac41a84abd07e25c6cc, type: 3}
-  m_Name: Example
+  m_Name: 10001
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: 
-  Description: 
+  ID: 10001
+  Name: "\uBAA9\uAC80"
+  Description: "\uAC15\uB825\uD55C \uADFC\uC811 \uBB34\uAE30\uC785\uB2C8\uB2E4."
   Type: 0
   CanStacking: 0
   MaxStacking: 0
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 6830408626145590181, guid: ad56f9ed975d2fe4aa39b5cdd82dfe00, type: 3}

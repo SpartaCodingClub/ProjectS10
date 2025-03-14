@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -19,13 +15,13 @@ public class ItemInspector : Editor
 
     private void OnEnable()
     {
-        id = serializedObject.FindProperty("id");
-        name = serializedObject.FindProperty("name");
-        description = serializedObject.FindProperty("description");
-        type = serializedObject.FindProperty("type");
-        canStacking = serializedObject.FindProperty("canStacking");
-        maxStacking = serializedObject.FindProperty("maxStacking");
-        weapon = serializedObject.FindProperty("weapon");
+        id = serializedObject.FindProperty("ID");
+        name = serializedObject.FindProperty("Name");
+        description = serializedObject.FindProperty("Description");
+        type = serializedObject.FindProperty("Type");
+        canStacking = serializedObject.FindProperty("CanStacking");
+        maxStacking = serializedObject.FindProperty("MaxStacking");
+        weapon = serializedObject.FindProperty("Weapon");
     }
 
     public override void OnInspectorGUI()
@@ -45,7 +41,7 @@ public class ItemInspector : Editor
         }
 
 
-        if(iType == ItemType.Weapon)
+        if (iType == ItemType.Weapon)
         {
             canStacking.boolValue = false;
             EditorGUILayout.PropertyField(weapon, new GUIContent("무기 프리팹"));
