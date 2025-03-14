@@ -14,12 +14,12 @@ public enum Clip
 
 public class AudioManager
 {
-    private static readonly float MASTER_VOLUME = 0.2f;
+    private static readonly float MASTER_VOLUME = 0.4f;
     private static readonly float[] VOLUMES =
     {
-        0.4f * MASTER_VOLUME,   // Music
-        0.4f * MASTER_VOLUME,   // MusicFX
-        0.6f * MASTER_VOLUME,   // SoundFX
+        0.2f * MASTER_VOLUME,   // Music
+        0.2f * MASTER_VOLUME,   // MusicFX
+        1.0f * MASTER_VOLUME,   // SoundFX
     };
 
     public enum Type
@@ -119,13 +119,12 @@ public class AudioManager
             return;
         }
 
-        if (transform == null)
+        if (position == null)
         {
             audioSource.PlayOneShot(clip, volumeScale);
         }
         else
         {
-            position ??= Vector3.zero;
             Managers.Resource.Instantiate("AudioSource3D", position.Value).GetComponent<AudioSourceHandler>().PlayOneShot(clip, volumeScale);
         }
 

@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,27 +36,29 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         charControl = GetComponent<CharacterController>();
+
+        Managers.Game.Player = this;
     }
 
     private void Update()
     {
-        Look();        
+        Look();
     }
 
     private void FixedUpdate()
     {
-        Move();   
+        Move();
     }
 
     void Look()
     {
         //가상의 Plane을 만들어 레이캐스트로 충돌 후에 좌표 구하기.
-        if (pAnimationHandler.isAnimationing) 
+        if (pAnimationHandler.isAnimationing)
             return;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
 
-        if(plane.Raycast(ray,out float distance))
+        if (plane.Raycast(ray, out float distance))
         {
             Vector3 targetPoint = ray.GetPoint(distance);
             targetPoint.y = transform.position.y;
@@ -70,11 +71,11 @@ public class PlayerController : MonoBehaviour
     #region 플레이어 인풋 받기
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed) 
+        if (context.performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
         }
-        else if(context.canceled)
+        else if (context.canceled)
         {
             curMovementInput = Vector2.zero;
         }
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void onInteract(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             PInteract.Interact();
         }
@@ -123,7 +124,7 @@ public class PlayerController : MonoBehaviour
         //입력 값이 들어오면 현재 스피드를 천천히 상승 후에 velocity에 반영.
         float targetSpeed = curMovementInput.magnitude;
         curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
-        if ((targetSpeed == 0 || curSpeed < 0.02f)) 
+        if ((targetSpeed == 0 || curSpeed < 0.02f))
         {
             curSpeed = 0;
         }
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             pAnimationHandler.PlayAnim("MeleeAttack");
         }
-        else if(PEquip.Weaponnum == 2)
+        else if (PEquip.Weaponnum == 2)
         {
             pAnimationHandler.PlayAnim("Throw");
         }
