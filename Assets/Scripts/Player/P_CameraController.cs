@@ -7,7 +7,8 @@ public class P_CameraController : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float followingSpeed = 20f;
     [SerializeField] float rotationSpeed = 5f;
-    [SerializeField] float diffZ = 5.5f;
+    [SerializeField] float minDiffZ;
+    [SerializeField] float maxDiffZ = 5.5f;
     public bool IsFollowing;
     Camera cam;
 
@@ -38,7 +39,7 @@ public class P_CameraController : MonoBehaviour
 
     void TargetFollowing()
     {
-        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (diffZ * curve.Evaluate(curAngle)));
+        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (minDiffZ + (maxDiffZ - minDiffZ) * curve.Evaluate(curAngle)));
         cam.transform.position = Vector3.Lerp(cam.transform.position, targetPos, followingSpeed * Time.smoothDeltaTime);
         Quaternion targetRotation = Quaternion.LookRotation(target.position - cam.transform.position);
         targetRotation.y = 0;

@@ -35,35 +35,21 @@ public class P_AniHandler : MonoBehaviour
         animator.SetFloat("MovementAngle", Mathf.Clamp(value, -180, 180));
     }
 
-    public void MeleeAttackAnim()
+    public void PlayAnim(string input)
     {
-        if (isAnimationing == false)
+        if(isAnimationing == false)
         {
             isAnimationing = true;
-            StartCoroutine(MeleeAttack());
+            StartCoroutine(PlayAni(input));
         }
     }
 
-    public void ThrowAnim()
+    IEnumerator PlayAni(string input)
     {
-        if (isAnimationing == false)
-        {
-            isAnimationing = true;
-            StartCoroutine(Throw());
-        }
-    }
-
-    IEnumerator MeleeAttack()
-    {
-        animator.CrossFade("MeleeAttack", 0.1f);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        isAnimationing = false;
-    }
-
-    IEnumerator Throw()
-    {
-        animator.CrossFade("Throw", 0.1f);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.CrossFade(input, 0.1f);
+        yield return null;
+        AnimatorStateInfo stateInfo = animator.GetNextAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
         isAnimationing = false;
     }
 }

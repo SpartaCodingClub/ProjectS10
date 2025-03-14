@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     void Look()
     {
         //가상의 Plane을 만들어 레이캐스트로 충돌 후에 좌표 구하기.
+        if (pAnimationHandler.isAnimationing) 
+            return;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region 플레이어 인풋 받기
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed) 
@@ -77,6 +80,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnPrimary(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PEquip.ChangeWeapon(1);
+        }
+    }
+
+    public void onSub(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PEquip.ChangeWeapon(2);
+        }
+    }
+
+    public void onInteract(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            PInteract.Interact();
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Attack();
+        }
+    }
+    #endregion
     void Move()
     {
         if (pAnimationHandler.isAnimationing)
@@ -119,39 +154,15 @@ public class PlayerController : MonoBehaviour
         charControl.Move(direction * Time.deltaTime);
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Attack();
-        }
-    }
-
     public void Attack()
     {
         if (PEquip.Weaponnum == 1)
         {
-            pAnimationHandler.MeleeAttackAnim();
+            pAnimationHandler.PlayAnim("MeleeAttack");
         }
         else if(PEquip.Weaponnum == 2)
         {
-            pAnimationHandler.ThrowAnim();
-        }
-    }
-
-    public void OnPrimary(InputAction.CallbackContext context)
-    {
-        if (context.started) 
-        {
-            PEquip.ChangeWeapon(1);
-        }
-    }
-
-    public void onSub(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PEquip.ChangeWeapon(2);
+            pAnimationHandler.PlayAnim("Throw");
         }
     }
 }

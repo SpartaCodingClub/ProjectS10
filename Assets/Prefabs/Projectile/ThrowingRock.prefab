@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atk: 5
-  speed: 5
+  speed: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4294967295
