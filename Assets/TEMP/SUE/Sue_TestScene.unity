@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 940594043}
   - component: {fileID: 940594042}
   m_Layer: 2
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 2093024517814686207, guid: 3095bbf4a1d73c74e9b3a00256883e4c, type: 3}
+  turret: {fileID: 4193577632134339206, guid: 8d726c456c416904b8ba5e4b4ed74992, type: 3}
 --- !u!4 &1453275452
 Transform:
   m_ObjectHideFlags: 0

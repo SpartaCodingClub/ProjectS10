@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingTurret : MonoBehaviour
+public class BuildingTurret : BuildingBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private TurretShooting turretShooting;
+    private TurretRotation turretRotation;
 
-    // Update is called once per frame
-    void Update()
+    public override void Initialize()
     {
-        
+        base.Initialize();
+        turretShooting = GetComponent<TurretShooting>();
+        turretRotation = GetComponent<TurretRotation>();
+
+        StartConstruction(7f);
+
+        if (turretShooting != null)
+            turretShooting.EnableShooting(); 
+
+        if (turretRotation != null)
+            turretRotation.EnableRotation();
     }
 }

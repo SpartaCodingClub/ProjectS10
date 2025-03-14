@@ -10,9 +10,7 @@ public class BuildingAnimation : MonoBehaviour
     public void PlayAnimation(float constructionTime)
     {
         buildTime = constructionTime;
-        float buildingHeight = GetComponent<Renderer>().bounds.size.y;
 
-        // 이거 뭔가 잘 안 먹는데 문제가 뭐지
         startPos = transform.position;
         finalPos = new Vector3(transform.position.x, 0, transform.position.z);
 

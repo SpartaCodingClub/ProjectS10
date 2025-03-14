@@ -6,6 +6,7 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
     public GameObject wall;
+    public GameObject turret;
 
     private void Awake()
     {
@@ -15,22 +16,27 @@ public class BuildingManager : MonoBehaviour
     // 테스트
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.W)) 
         {
-            PlaceWall(new Vector3(0, 0, 0));
+            PlaceBuilding(wall, new Vector3(0, 0, 0));
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            PlaceBuilding(turret, new Vector3(2, 0, 0));
         }
     }
 
-    public void PlaceWall(Vector3 position)
+    public void PlaceBuilding(GameObject building, Vector3 position)
     {
-        GameObject newWall = Instantiate(wall, position, Quaternion.identity);
-        BuildingWall wallComponent = newWall.GetComponent<BuildingWall>();
+        GameObject newBuilding = Instantiate(building, position, Quaternion.identity);
+        BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
 
-        if (wallComponent != null)
+        if (buildingComponent != null)
         {
-            float buildingHeight = wallComponent.GetComponent<Renderer>().bounds.size.y;
-            newWall.transform.position = new Vector3(position.x, -buildingHeight, position.z);
-            wallComponent.Initialize();
+            float buildingHeight = buildingComponent.GetComponent<Renderer>().bounds.size.y;
+            newBuilding.transform.position = new Vector3(position.x, -buildingHeight, position.z);
+            buildingComponent.Initialize();
         }
     }
 }
