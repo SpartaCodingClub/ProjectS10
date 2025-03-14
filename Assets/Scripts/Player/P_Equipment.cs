@@ -40,7 +40,7 @@ public class P_Equipment : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 boxCenter = transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset);
+        Vector3 boxCenter = transform.position + transform.forward * (boxSize.z / 2) + transform.TransformDirection(boxOffset);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
     }
@@ -126,7 +126,7 @@ public class P_Equipment : MonoBehaviour
     {
         if (curEquipment.type == WeaponType.Melee)
         {
-            RaycastHit[] curHits = hits = Physics.BoxCastAll(transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset), boxSize, transform.forward, transform.rotation, 0, enemyLayer);
+            RaycastHit[] curHits = hits = Physics.BoxCastAll(transform.position + transform.forward * (boxSize.z / 2) + transform.TransformDirection(boxOffset), boxSize / 2, transform.forward, transform.rotation, 0, enemyLayer);
             foreach (RaycastHit hit in curHits)
             {
                 //데미지 입히는 메서드
