@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Linq;
 using UnityEngine;
 using VInspector;
@@ -24,6 +25,8 @@ public class Map : MonoBehaviour
     private static readonly int TILE_COLUMNS = 5;
     private static readonly int TILE_ROWS = 3;
 
+    private Transform Portcullis;
+
     private GameObject prefab_Block;
     private GameObject prefab_Tile;
     private GameObject prefab_Wall;
@@ -34,6 +37,8 @@ public class Map : MonoBehaviour
     {
         if (isInitialized) return;
         isInitialized = true;
+
+        Portcullis = gameObject.FindComponent<Transform>(nameof(Portcullis));
 
         prefab_Block = Resources.Load<GameObject>($"{Define.PATH_MAP}/Block");
         prefab_Tile = Resources.Load<GameObject>($"{Define.PATH_MAP}/Tile");
@@ -120,6 +125,18 @@ public class Map : MonoBehaviour
         transform.position = OFFSET_X * Vector3.left;
 
         Managers.Game.CurrentMap = this;
+    }
+
+    public void Open()
+    {
+        Portcullis.DOLocalMoveY(2.4f, 0.5f);
+        Portcullis.DOScaleY(0.5f, 0.5f);
+    }
+
+    public void Close()
+    {
+        Portcullis.DOLocalMoveY(0.0f, 0.5f);
+        Portcullis.DOScaleY(1.0f, 0.5f);
     }
 
     private void CreateBlock(int row, int column)

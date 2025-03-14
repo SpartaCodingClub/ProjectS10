@@ -5,6 +5,7 @@ using Object = UnityEngine.Object;
 
 public enum SpriteType
 {
+    Item,
     Count
 }
 
@@ -12,7 +13,7 @@ public class ResourceManager
 {
     private readonly SpriteAtlas[] atlas = new SpriteAtlas[(int)SpriteType.Count];
 
-    public Sprite GetSprite(SpriteType type, string name) => atlas[(int)type].GetSprite(name);
+    public Sprite GetSprite(SpriteType type, int id) => atlas[(int)type].GetSprite(id.ToString());
 
     public void Initialize()
     {

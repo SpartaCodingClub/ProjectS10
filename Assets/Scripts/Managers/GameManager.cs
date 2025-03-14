@@ -20,8 +20,5 @@ public class GameManager
         Managers.UI.Show<UI_Title>();
 
         stageUI = Managers.UI.Show<UI_Stage>();
-
-        // 추후 플레이어 컨디션 스크립트와 연결
-        Managers.UI.Show<UI_PlayerCondition>();
     }
 }
