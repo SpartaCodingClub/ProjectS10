@@ -20,7 +20,7 @@ public class P_Stat : StatHandler
     public void Damage(float damage)
     {
         Health -= damage;
-        statusBar.UpdateUI(Health, 100);
+        statusBar.UpdateUI(UI_StatusBar.Type.Health, Health, 100);
 
         DamageAction();
     }
