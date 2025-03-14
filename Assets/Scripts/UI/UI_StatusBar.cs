@@ -6,6 +6,13 @@ public class UI_StatusBar : UI_SubItem
 {
     private readonly int FILL_LEVEL = Shader.PropertyToID("_FillLevel");
 
+    public enum Type
+    {
+        Health,
+        Water,
+        Food
+    }
+
     private enum Children
     {
         Slider_Top,
@@ -19,14 +26,19 @@ public class UI_StatusBar : UI_SubItem
         BindChildren(typeof(Children));
     }
 
-    public void UpdateUI(float water, float maxWater, float food, float maxFood)
+    public void UpdateUI(Type type, float value, float maxValue)
     {
-        Get<Slider>((int)Children.Slider_Top).DOValue(water / maxWater, 0.2f);
-        Get<Slider>((int)Children.Slider_Bottom).DOValue(food / maxFood, 0.2f);
-    }
-
-    public void UpdateUI(float hp, float maxHP)
-    {
-        Get<Image>((int)Children.Fill_Health).material.DOFloat(hp / maxHP, FILL_LEVEL, 0.2f);
+        switch (type)
+        {
+            case Type.Health:
+                Get<Image>((int)Children.Fill_Health).material.DOFloat(value / maxValue, FILL_LEVEL, 0.2f);
+                break;
+            case Type.Water:
+                Get<Slider>((int)Children.Slider_Top).DOValue(value / maxValue, 0.2f);
+                break;
+            case Type.Food:
+                Get<Slider>((int)Children.Slider_Bottom).DOValue(value / maxValue, 0.2f);
+                break;
+        }
     }
 }
