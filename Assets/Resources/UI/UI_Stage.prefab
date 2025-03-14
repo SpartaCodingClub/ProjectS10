@@ -911,7 +911,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.681
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1040,7 +1040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -76.640625}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 422, y: 116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8796449739648038879
@@ -1237,10 +1237,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uBAA8\uD5D8\uAC00 \uCC98\uCE58 0/100"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d70f485aa27dc43f79a8fd168f58435c, type: 2}
-  m_sharedMaterial: {fileID: 5416806443266638455, guid: d70f485aa27dc43f79a8fd168f58435c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cb4c3b17ac5496945bfdd53082ed60d3, type: 2}
+  m_sharedMaterial: {fileID: -2155114018690579391, guid: cb4c3b17ac5496945bfdd53082ed60d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

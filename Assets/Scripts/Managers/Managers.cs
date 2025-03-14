@@ -25,5 +25,6 @@ public class Managers : MonoBehaviour
     private void Start()
     {
         Game.Start();
+        Item.Start();
     }
 }
