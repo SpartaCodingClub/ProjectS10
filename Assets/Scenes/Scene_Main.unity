@@ -786,6 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45727ea945c745f43a4aaf334ffcc6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Miningtag: 
+  Gatheringtag: 
 --- !u!4 &677681265721571208
 Transform:
   m_ObjectHideFlags: 0
@@ -2390,6 +2392,7 @@ MonoBehaviour:
   PStat: {fileID: 0}
   PInteract: {fileID: 0}
   pAnimationHandler: {fileID: 0}
+  projectile: {fileID: 0}
   rotateSpeed: 10
   curSpeed: 0
   speedChangeValue: 5
@@ -4372,7 +4375,8 @@ MonoBehaviour:
   target: {fileID: 4907690735497256649}
   followingSpeed: 5
   rotationSpeed: 5
-  diffZ: 5
+  minDiffZ: 0
+  maxDiffZ: 5.5
   IsFollowing: 1
   scrollSpeed: 0.02
   moveSpeed: 5
@@ -4673,6 +4677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curEquipPrefab: {fileID: 0}
+  curPickAxe: {fileID: 0}
   curEquipment: {fileID: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   enemyLayer:
@@ -4680,8 +4685,9 @@ MonoBehaviour:
     m_Bits: 0
   boxSize: {x: 1, y: 1, z: 1}
   OneH_Sword: {fileID: 0}
-  PrimaryWeapon: {fileID: 0}
-  SubWeapon: {fileID: 0}
+  equipmentPrefab: []
+  Pickaxe: {fileID: 0}
+  equipment: []
   Weaponnum: 0
 --- !u!1 &7964182924600362824
 GameObject:
