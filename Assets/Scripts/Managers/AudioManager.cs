@@ -8,16 +8,18 @@ public enum Clip
     Music_Game,
     Music_Battle,
     Music_Boss,
+
+    SoundFX_FootStep,
 }
 
 public class AudioManager
 {
-    private static readonly float MASTER_VOLUME = 0.2f;
+    private static readonly float MASTER_VOLUME = 0.4f;
     private static readonly float[] VOLUMES =
     {
-        0.4f * MASTER_VOLUME,   // Music
-        0.4f * MASTER_VOLUME,   // MusicFX
-        0.6f * MASTER_VOLUME,   // SoundFX
+        0.2f * MASTER_VOLUME,   // Music
+        0.2f * MASTER_VOLUME,   // MusicFX
+        1.0f * MASTER_VOLUME,   // SoundFX
     };
 
     public enum Type
@@ -52,7 +54,7 @@ public class AudioManager
         }
     }
 
-    public void Play(Clip key, float volumeScale = 1.0f, Transform transform = null)
+    public void Play(Clip key, float volumeScale = 1.0f, Vector3? position = null)
     {
         Type type;
         try
@@ -83,7 +85,7 @@ public class AudioManager
                 Debug.LogWarning($"Failed to Play({key})");
                 break;
             case Type.SoundFX:
-                Play_SoundFX(audioSource, clip, volumeScale, transform);
+                Play_SoundFX(audioSource, clip, volumeScale, position);
                 break;
         }
     }
@@ -110,20 +112,20 @@ public class AudioManager
         audioSource.Play();
     }
 
-    private void Play_SoundFX(AudioSource audioSource, AudioClip clip, float volumeScale, Transform transform = null)
+    private void Play_SoundFX(AudioSource audioSource, AudioClip clip, float volumeScale, Vector3? position = null)
     {
         if (soundClips.Add(clip) == false)
         {
             return;
         }
 
-        if (transform == null)
+        if (position == null)
         {
             audioSource.PlayOneShot(clip, volumeScale);
         }
         else
         {
-            Managers.Resource.Instantiate("AudioSource3D", transform.position).GetComponent<AudioSourceHandler>().PlayOneShot(clip, volumeScale);
+            Managers.Resource.Instantiate("AudioSource3D", position.Value).GetComponent<AudioSourceHandler>().PlayOneShot(clip, volumeScale);
         }
 
         DOVirtual.DelayedCall(0.1f, () => soundClips.Remove(clip));

@@ -30,8 +30,18 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void InteractFuction(GameObject obj)
+    public void InteractFuction()
     {
-        //가져와서 상호작용하는 함수.
+        if (finder.CanInteract())
+        {
+            if (finder.curInteract.TryGetComponent<InteractableObject>(out InteractableObject interScript))
+            {
+                interScript.OnInteraction();
+            }
+        }
+        else
+        {
+            Debug.Log("상호 작용 불가");
+        }
     }
 }

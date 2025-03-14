@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using VFavorites.Libs;
 
 public class P_Equipment : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class P_Equipment : MonoBehaviour
     [SerializeField] GameObject curEquipPrefab;
     [SerializeField] GameObject curPickAxe;
     [SerializeField] Weapon curEquipment;
+    public WeaponType? curEquipmentType { get { if (curEquipment == null) return null;
+                return curEquipment.type; } }
     [SerializeField] Vector3 boxOffset;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Vector3 boxSize = new Vector3(1, 1, 1);
@@ -22,12 +25,10 @@ public class P_Equipment : MonoBehaviour
     [SerializeField] List<GameObject> equipmentPrefab;
     [SerializeField] GameObject Pickaxe;
     public List<GameObject> equipment;
-    public int Weaponnum;
 
     // Start is called before the first frame update
     void Start()
     {
-        Weaponnum = 0;
         player = GetComponent<PlayerController>();
         Init();
     }
@@ -47,43 +48,34 @@ public class P_Equipment : MonoBehaviour
 
     private void Init()
     {
-        if (equipmentPrefab.Count == 0)
-            return;
-        foreach (var equipment in equipmentPrefab)
-            Add(equipment);
         curPickAxe = Instantiate(Pickaxe, OneH_Sword);
         curPickAxe.SetActive(false);
     }
-
-    public void AddEquip(GameObject obj)
+    //void Add(Item inputitem)
+    //{
+    //    var obj = inputitem.Data.Weapon;
+    //    GameObject item = Instantiate(obj, OneH_Sword);
+    //    equipment.Add(item);
+    //    item.SetActive(false);
+    //}
+    //public void ChangeWeapon(int num)
+    //{
+    //    if (num == Weaponnum) 
+    //        return;
+    //    Weaponnum = num;
+    //    DeEquip();
+    //    for (int i = 0; i < equipment.Count; i++)  
+    //    {
+    //        if (i == num - 1)
+    //            Equip(equipment[i]);
+    //    }
+    //}
+    public void Equip(Item iteminput)
     {
-        equipmentPrefab.Add(obj);
-        Add(obj);
-    }
-
-    void Add(GameObject obj)
-    {
-        GameObject item = Instantiate(obj, OneH_Sword);
-        equipment.Add(item);
-        item.SetActive(false);
-    }
-    public void ChangeWeapon(int num)
-    {
-        if (num == Weaponnum) 
-            return;
-        Weaponnum = num;
         DeEquip();
-        for (int i = 0; i < equipment.Count; i++)  
-        {
-            if (i == num - 1)
-                Equip(equipment[i]);
-        }
-    }
-    public void Equip(GameObject prefab)
-    {
-        if (prefab == null)
+        if (iteminput == null)
             return;
-        curEquipPrefab = prefab;
+        curEquipPrefab = Instantiate(iteminput.Data.Weapon, OneH_Sword);
         curEquipment = curEquipPrefab.GetComponent<Weapon>();
         if (curEquipment.type == WeaponType.Melee)
             player.PStat.Attack += curEquipment.atk;
@@ -104,8 +96,9 @@ public class P_Equipment : MonoBehaviour
         {
             player.projectile.RemovePrefab();
         }
-        curEquipPrefab.SetActive(false);
+        Destroy(curEquipPrefab);
         curEquipPrefab = null;
+        curEquipment = null;
     }
 
     public void EquipPickaxe()

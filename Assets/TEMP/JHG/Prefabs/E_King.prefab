@@ -19544,6 +19544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_HealthBar_Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 8466927824647186688, guid: 22bcf1972eb03bf4eba71351e1335d83, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

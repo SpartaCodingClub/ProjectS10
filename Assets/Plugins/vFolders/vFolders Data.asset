@@ -25,6 +25,7 @@ MonoBehaviour:
     - 6224359f7482b104ba58efbd9fc9de84
     - c95e78c481985f946be1d637e3ba10b7
     - 90e446ce2156adb43978455a0cef2a92
+    - ce40533f40a4b1e4e89a13a8ec7bc534
     values:
     - iconNameOrGuid: 
       colorIndex: 8
@@ -70,4 +71,8 @@ MonoBehaviour:
       colorIndex: 5
       isIconRecursive: 0
       isColorRecursive: 1
+    - iconNameOrGuid: Shader Icon
+      colorIndex: 0
+      isIconRecursive: 0
+      isColorRecursive: 0
   bookmarks: []
