@@ -30,10 +30,20 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float targetDistance;
     private float playerDistance;
     public LayerMask layerMask;
+
     [Header("Wanderign")]
     public float playerWanderDistance;
     public float targetWanderDistance;
     public float wanderWaitTime;
+
+    [Header("Raycast")]
+    [SerializeField] Vector3 boxOffset;
+    [SerializeField] Vector3 boxSize;
+    RaycastHit[] hits;
+    bool attackRaycast;
+    private float lastRaycastTime = 0f;
+    [SerializeField] private float raycastInterval = 0.2f; // 0.2초마다 실행
+
 
     private Animator _animator;
 
@@ -43,11 +53,13 @@ public class EnemyController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         enemyStat = GetComponent<EnemyStat>();
         playerTarget = GameObject.Find("Player").transform;
+        boxSize = new Vector3(1, 1, attackRange);
     }
 
     private void Start()
     {
         agent.speed = enemyStat.Speed;
+        //agent.stoppingDistance = attackRange / 3;
         SetState(State.Wandering);
     }
 
@@ -100,19 +112,21 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < attackRange / 2)
+        if (_state == State.Wandering && agent.remainingDistance < 0.1f)
         {
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
-        {
-            if (hit.transform == target)
-            {
-                SetState(State.Attack);
-            }
-        }
+        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
+        //{
+        //    if (hit.transform == target)
+        //    {
+        //        SetState(State.Attack);
+        //    }
+        //}
+
+        if (RayCastRange()) SetState(State.Attack);
     }
 
     // 이동
@@ -184,17 +198,31 @@ public class EnemyController : MonoBehaviour
     {
         FindNextTarget();
         
-        //transform.LookAt(target);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
+        if (RayCastRange())
         {
-            if (hit.transform == target)
-            {
-                isAttacking = true;
-                Debug.Log("공격");
-                _animator.SetTrigger("isAttack");
-            }
+            agent.velocity = Vector3.zero;
+            agent.isStopped = true;
+            isAttacking = true;
+            Debug.Log("공격");
+            _animator.SetTrigger("isAttack");
         }
+
+        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
+        //{
+        //    if (hit.transform == target)
+        //    {
+        //        agent.velocity = Vector3.zero;
+        //        agent.isStopped = true;
+        //        isAttacking = true;
+        //        Debug.Log("공격");
+        //        _animator.SetTrigger("isAttack");
+        //    }
+        //    else
+        //    {
+        //        transform.LookAt(target);
+        //    }
+        //}
 
         else
         {
@@ -211,5 +239,37 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(attackRate); 
         isAttacking = false;
+    }
+
+    bool RayCastRange()
+    {
+        if (Time.time - lastRaycastTime < raycastInterval) return attackRaycast;
+        lastRaycastTime = Time.time;
+
+
+        RaycastHit[] curHits = hits = Physics.BoxCastAll(transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset),
+            boxSize, transform.forward, transform.rotation, 0, layerMask);
+        foreach (RaycastHit hit in curHits)
+        {
+            if (hit.transform.gameObject == target.gameObject)
+            {
+                attackRaycast = true;
+            }
+            else
+            {
+                attackRaycast = false;
+            }
+                
+        }
+
+        return attackRaycast;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 boxCenter = transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset);
+        Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, boxSize);
     }
 }

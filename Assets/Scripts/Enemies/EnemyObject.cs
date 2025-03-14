@@ -66,12 +66,12 @@ public class EnemyObject : MonoBehaviour
         // Rect 영역 내부의 랜덤 위치 계산
         Vector3 randomPosition = new Vector3(
             Random.Range(randomArea.xMin, randomArea.xMax),
-            0.2f,
+            0,
             Random.Range(randomArea.yMin, randomArea.yMax)
             );
 
         // 적 생성 및 리스트에 추가
-        GameObject spawnedEnemy = Instantiate(randomPrefab, new Vector3(randomPosition.x, randomPosition.y), Quaternion.identity);
+        GameObject spawnedEnemy = Instantiate(randomPrefab, new Vector3(randomPosition.x, randomPosition.y, randomPosition.z), Quaternion.identity);
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
 
         activeEnemies.Add(enemyController);

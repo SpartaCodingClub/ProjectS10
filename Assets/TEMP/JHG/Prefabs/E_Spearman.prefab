@@ -6802,6 +6802,8 @@ MonoBehaviour:
   playerWanderDistance: 5
   targetWanderDistance: 100
   wanderWaitTime: 1
+  boxOffset: {x: 0, y: 1, z: 0}
+  boxSize: {x: 1, y: 1, z: 1}
 --- !u!195 &8101807591700939487
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6811,11 +6813,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 3086623734052899188}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.35
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 180
+  m_AngularSpeed: 270
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -6823,7 +6825,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!54 &6275402658870167438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6849,7 +6851,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &5414205614893817811
 CapsuleCollider:
