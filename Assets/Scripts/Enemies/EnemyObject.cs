@@ -35,6 +35,7 @@ public class EnemyObject : MonoBehaviour
         StopAllCoroutines();
     }
 
+    // 적 프리팹 소환 코루틴
     private IEnumerator SpawnWave(int waveCount)
     {
         enemySpawnComplite = false;
@@ -76,6 +77,7 @@ public class EnemyObject : MonoBehaviour
         activeEnemies.Add(enemyController);
     }
 
+    // 적 프리팹 소환 범위 설정
     private void OnDrawGizmosSelected()
     {
         if (spawnAreas == null) return;
@@ -92,6 +94,7 @@ public class EnemyObject : MonoBehaviour
 
     private void Update()
     {
+        // 테스트용 웨이브 시작
         if (Input.GetKeyDown(KeyCode.A))
         {
             StartWave(5);
