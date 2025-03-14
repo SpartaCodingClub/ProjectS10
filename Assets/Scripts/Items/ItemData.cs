@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public enum ItemType
@@ -9,7 +8,6 @@ public enum ItemType
 }
 
 [CreateAssetMenu(menuName = "아이템")]
-[Serializable]
 public class ItemData : ScriptableObject
 {
     [Header("아이템 정보")]
