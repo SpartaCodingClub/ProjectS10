@@ -6,7 +6,8 @@ public class UI_PlayerCondition : UI_SubItem
     private enum Children
     {
         Slider_Top,
-        Slider_Bottom
+        Slider_Bottom,
+        Fill_Health
     }
 
     protected override void Initialize()
@@ -19,5 +20,10 @@ public class UI_PlayerCondition : UI_SubItem
     {
         Get<Slider>((int)Children.Slider_Top).DOValue(water / maxWater, 0.2f);
         Get<Slider>((int)Children.Slider_Bottom).DOValue(food / maxFood, 0.2f);
+    }
+
+    public void UpdateUI(float hp, float maxHP)
+    {
+        Get<Image>((int)Children.Fill_Health).DOFillAmount(hp / maxHP, 0.2f);
     }
 }
