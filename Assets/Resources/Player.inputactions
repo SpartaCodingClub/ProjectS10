@@ -49,24 +49,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Primary",
-                    "type": "Button",
-                    "id": "e02c939c-e819-410f-adc0-4ea98c25fa2e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Sub",
-                    "type": "Button",
-                    "id": "ce5a884f-c606-4cb0-b077-9a3dc2b505ec",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -177,28 +159,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "CamMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "126edf1a-edd9-4887-a3a7-10117019d0c6",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Primary",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "823c2dee-2461-4e17-b591-1020733d9cdd",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Sub",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

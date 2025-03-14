@@ -219,38 +219,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: baf2e343-d330-4ccd-b793-dacd2f79e866
     m_ActionName: Player/CamMove[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7416941870249712170}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnPrimary
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e02c939c-e819-410f-adc0-4ea98c25fa2e
-    m_ActionName: Player/Primary[/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7416941870249712170}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: onSub
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ce5a884f-c606-4cb0-b077-9a3dc2b505ec
-    m_ActionName: Player/Sub[/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -304,7 +272,6 @@ MonoBehaviour:
   - {fileID: 5311602148735430773, guid: 66408b06121c1094aaebc2bfb695ae37, type: 3}
   Pickaxe: {fileID: 4989792440067862166, guid: da9b896de01152c4b9990dec268a8c62, type: 3}
   equipment: []
-  Weaponnum: 0
 --- !u!114 &1806371498458839436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +320,8 @@ MonoBehaviour:
   stamina: 100
   attack: 5
   defense: 5
+  water: 0
+  hunger: 0
   PlusSpeed: 0
 --- !u!114 &1091871546241678152
 MonoBehaviour:

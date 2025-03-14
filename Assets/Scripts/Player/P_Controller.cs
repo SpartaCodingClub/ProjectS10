@@ -81,22 +81,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPrimary(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PEquip.ChangeWeapon(1);
-        }
-    }
-
-    public void onSub(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PEquip.ChangeWeapon(2);
-        }
-    }
-
     public void onInteract(InputAction.CallbackContext context)
     {
         if (context.started)
