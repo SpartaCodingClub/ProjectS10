@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public P_AniHandler pAnimationHandler;
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
+    Vector3 direction;
     Camera cam;
 
     [Header("이동")]
@@ -56,14 +58,14 @@ public class PlayerController : MonoBehaviour
             Vector3 targetPoint = ray.GetPoint(distance);
             targetPoint.y = transform.position.y;
 
-            Vector3 direction = targetPoint - transform.position;
+            direction = targetPoint - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), rotateSpeed * Time.deltaTime);
         }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed) 
         {
             curMovementInput = context.ReadValue<Vector2>();
         }
@@ -75,6 +77,12 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (pAnimationHandler.isAnimationing)
+        {
+            curSpeed = 0; // 속도 0으로 설정
+            pAnimationHandler.ChangeMoveValue(curSpeed); // 애니메이션 속도 업데이트
+            return;
+        }
         //입력 값이 들어오면 현재 스피드를 천천히 상승 후에 velocity에 반영.
         float targetSpeed = curMovementInput.magnitude;
         curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
@@ -107,5 +115,34 @@ public class PlayerController : MonoBehaviour
         pAnimationHandler.ChangeMoveValue(curSpeed);
         pAnimationHandler.ChangeMoveAngle(MoveAngle);
         charControl.Move(direction * Time.deltaTime);
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Attack();
+        }
+    }
+
+    public void Attack()
+    {
+        pAnimationHandler.MeleeAttackAnim();
+    }
+
+    public void OnPrimary(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            PEquip.ChangeWeapon(1);
+        }
+    }
+
+    public void onSub(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PEquip.ChangeWeapon(2);
+        }
     }
 }
