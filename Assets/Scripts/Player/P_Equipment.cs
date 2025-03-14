@@ -11,7 +11,8 @@ public class P_Equipment : MonoBehaviour
     [SerializeField] GameObject curEquipPrefab;
     [SerializeField] GameObject curPickAxe;
     [SerializeField] Weapon curEquipment;
-    public WeaponType curEquipmentType { get { return curEquipment.type; } }
+    public WeaponType? curEquipmentType { get { if (curEquipment == null) return null;
+                return curEquipment.type; } }
     [SerializeField] Vector3 boxOffset;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Vector3 boxSize = new Vector3(1, 1, 1);
