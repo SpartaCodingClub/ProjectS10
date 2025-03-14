@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 404688449402397083}
   - component: {fileID: 3766441819378151477}
   - component: {fileID: 9164861997826035369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crystal Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1441416179708648319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5582838, y: 0, z: -0.45531106}
+  m_LocalPosition: {x: -3.0292916, y: 0, z: 6.261728}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 2973138140624037477}
   - component: {fileID: 4779373233299300659}
   - component: {fileID: 1658987737001252997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crystal_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
