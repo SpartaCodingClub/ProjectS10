@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager
@@ -11,6 +12,8 @@ public class GameManager
 
     public void Initialize()
     {
+        DOTween.SetTweensCapacity(200, 125);
+
         MainCamera = Camera.main;
     }
 
