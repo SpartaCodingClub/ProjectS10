@@ -9,7 +9,7 @@ BlendTree:
   m_Name: BlendTree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b3adfebf64a68594ea61c579510fb4e7, type: 2}
+    m_Motion: {fileID: -203655887218126122, guid: 3beb2e4fbdea67f42a69fb0de85e5272, type: 3}
     m_Threshold: -180
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -17,7 +17,7 @@ BlendTree:
     m_DirectBlendParameter: MovementValue
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ec146549f46560740ae2a6560fd9772c, type: 2}
+    m_Motion: {fileID: -203655887218126122, guid: 88ca153b18af13c46b17bea44c4368df, type: 3}
     m_Threshold: -45
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -25,7 +25,7 @@ BlendTree:
     m_DirectBlendParameter: MovementValue
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 2a3947b118adba4469422dc434d2304c, type: 2}
+    m_Motion: {fileID: -203655887218126122, guid: 0f3c00a386b0d714e8b955f84a2e3c95, type: 3}
     m_Threshold: 0
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -33,7 +33,7 @@ BlendTree:
     m_DirectBlendParameter: MovementValue
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 4066668e6c4bd71429aef21d785d06dc, type: 2}
+    m_Motion: {fileID: -203655887218126122, guid: 9f67325a588f8c24aa86984328d0c1c4, type: 3}
     m_Threshold: 45
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -41,7 +41,7 @@ BlendTree:
     m_DirectBlendParameter: MovementValue
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b3adfebf64a68594ea61c579510fb4e7, type: 2}
+    m_Motion: {fileID: -203655887218126122, guid: 3beb2e4fbdea67f42a69fb0de85e5272, type: 3}
     m_Threshold: 180
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -196,7 +196,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: Player2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: MovementValue
@@ -204,19 +204,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MovementAngle
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FootStep
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
