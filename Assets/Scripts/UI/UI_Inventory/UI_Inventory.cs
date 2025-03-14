@@ -30,7 +30,7 @@ public class UI_Inventory : UI_SubItem
         slot.OnUse += onUse;
     }
 
-    public void RemoveItem(int index, Item item, Action onUse = null)
+    public void RemoveItem(int index, ItemData item, Action onUse = null)
     {
         content[index].OnUse -= onUse;
     }

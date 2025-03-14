@@ -6,7 +6,7 @@ using UnityEditor.TerrainTools;
 using UnityEngine;
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(Item))]
+[CustomEditor(typeof(ItemData))]
 public class ItemInspector : Editor
 {
     SerializedProperty id;
