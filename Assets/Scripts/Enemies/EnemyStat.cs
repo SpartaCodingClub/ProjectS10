@@ -16,6 +16,7 @@ public class EnemyStat : StatHandler
     {
         maxHealth = Health;
         healthBar = gameObject.FindComponent<UI_HealthBar> ("UI_HealthBar_Monster");
+        if (healthBar == null ) healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Boss");
     }
     public void Update()
     {
