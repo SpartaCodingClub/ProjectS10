@@ -530,7 +530,8 @@ GameObject:
   - component: {fileID: 1039868722086700187}
   - component: {fileID: 4161748829303696190}
   - component: {fileID: 2172274110331854836}
-  - component: {fileID: 8401853360051023038}
+  - component: {fileID: 4161748829303696192}
+  - component: {fileID: 4161748829303696191}
   m_Layer: 0
   m_Name: Wall_Archway (0)
   m_TagString: Untagged
@@ -1891,7 +1892,8 @@ GameObject:
   - component: {fileID: 2872290946855965964}
   - component: {fileID: 1185492271737641641}
   - component: {fileID: 4005742657584524899}
-  - component: {fileID: 8882925382119148344}
+  - component: {fileID: 4005742657584524901}
+  - component: {fileID: 4005742657584524900}
   m_Layer: 0
   m_Name: Wall_Archway (1)
   m_TagString: Untagged
@@ -2294,6 +2296,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4005742657584524900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213245532023279542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4.0567827, z: 0.50031114}
+  m_Center: {x: 1.5, y: 1.9976822, z: 0.25015414}
+--- !u!65 &4005742657584524901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213245532023279542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4.0567827, z: 0.50031114}
+  m_Center: {x: -1.5, y: 1.9976822, z: 0.25015414}
 --- !u!33 &4108239096008875827
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2310,6 +2354,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370856181678489121}
   m_Mesh: {fileID: -5858089864321609036, guid: cff559d6fffc5914c981f7017b332d4a, type: 3}
+--- !u!65 &4161748829303696191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370856181678489121}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4.0567827, z: 0.50031114}
+  m_Center: {x: 1.5, y: 1.9976822, z: 0.25015414}
+--- !u!65 &4161748829303696192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370856181678489121}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4.0567827, z: 0.50031114}
+  m_Center: {x: -1.5, y: 1.9976822, z: 0.25015414}
 --- !u!4 &4296070988500441026
 Transform:
   m_ObjectHideFlags: 0
@@ -3242,27 +3328,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6971168577623853589}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &8401853360051023038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370856181678489121}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.037758, y: 4.0567827, z: 0.50031114}
-  m_Center: {x: 0.00020182133, y: 1.9976822, z: 0.25015414}
 --- !u!1 &8464055955852130116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,6 +3355,7 @@ GameObject:
   - component: {fileID: 9131585156837480574}
   - component: {fileID: 5266453734980327387}
   - component: {fileID: 7994668398566499089}
+  - component: {fileID: 9131585156837480575}
   m_Layer: 0
   m_Name: Portcullis
   m_TagString: Untagged
@@ -3462,27 +3528,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5068868019834298161}
   m_Mesh: {fileID: 5460942029635702466, guid: a4355094c300fc746a49911dc2bea7d1, type: 3}
---- !u!65 &8882925382119148344
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213245532023279542}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.037758, y: 4.0567827, z: 0.50031114}
-  m_Center: {x: 0.00020182133, y: 1.9976822, z: 0.25015414}
 --- !u!33 &8901132865532176546
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3525,6 +3570,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3476933956394407313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9131585156837480575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8498918107140014788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.354304, y: 3.296113, z: 0.18652341}
+  m_Center: {x: 0.00020062923, y: 1.997592, z: 0.018312756}
 --- !u!1 &9181062690634432492
 GameObject:
   m_ObjectHideFlags: 0
