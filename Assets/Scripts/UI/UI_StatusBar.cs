@@ -1,8 +1,11 @@
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_PlayerCondition : UI_SubItem
+public class UI_StatusBar : UI_SubItem
 {
+    private readonly int FILL_LEVEL = Shader.PropertyToID("_FillLevel");
+
     private enum Children
     {
         Slider_Top,
@@ -24,6 +27,6 @@ public class UI_PlayerCondition : UI_SubItem
 
     public void UpdateUI(float hp, float maxHP)
     {
-        Get<Image>((int)Children.Fill_Health).DOFillAmount(hp / maxHP, 0.2f);
+        Get<Image>((int)Children.Fill_Health).material.DOFloat(hp / maxHP, FILL_LEVEL, 0.2f);
     }
 }
