@@ -27,11 +27,8 @@ public class ResourceObject : InteractableObject
         for (int i = 0; i < resourceumber; i++)
         {
             StartCoroutine(RespawnResource(0.1f));
-
         }
     }
-
-
 
     public void Gather(Vector3 hitPoint, Vector3 hitNormal)
     {
