@@ -72,6 +72,7 @@ public class P_Equipment : MonoBehaviour
     //}
     public void Equip(Item iteminput)
     {
+        DeEquip();
         if (iteminput == null)
             return;
         curEquipPrefab = Instantiate(iteminput.Data.Weapon, OneH_Sword);
