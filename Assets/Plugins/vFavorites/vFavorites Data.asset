@@ -116,6 +116,33 @@ MonoBehaviour:
       isFolder: 1
       isAsset: 0
       _id: 1064742478
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-90e446ce2156adb43978455a0cef2a92-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 90e446ce2156adb43978455a0cef2a92, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1060775063
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-ce8ea86f5f0004746aca899b6b6357fb-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: ce8ea86f5f0004746aca899b6b6357fb, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1047782610
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-1f435dddc14182b41b2a9bed75227541-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 1f435dddc14182b41b2a9bed75227541, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1057894355
     name: Page 2
     _id: 1052984330
   - items: []
