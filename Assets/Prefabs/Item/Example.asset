@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e76dc4cb221cac41a84abd07e25c6cc, type: 3}
   m_Name: Example
   m_EditorClassIdentifier: 
-  id: 1
-  name: "\uAC80"
-  description: "\uAC80\uAC80"
-  type: 0
-  canStacking: 0
-  maxStacking: 0
-  weapon: {fileID: 0}
+  ID: 0
+  Name: 
+  Description: 
+  Type: 0
+  CanStacking: 0
+  MaxStacking: 0
+  Weapon: {fileID: 0}
