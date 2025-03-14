@@ -9,6 +9,7 @@ public class UIManager
 
     public enum Type
     {
+        Menu,
         Popup,
         Scene,
         SubItem,
@@ -123,6 +124,7 @@ public class UIManager
     {
         return type switch
         {
+            var t when t.IsSubclassOf(typeof(UI_Menu)) => Type.Menu,
             var t when t.IsSubclassOf(typeof(UI_Popup)) => Type.Popup,
             var t when t.IsSubclassOf(typeof(UI_Scene)) => Type.Scene,
             var t when t.IsSubclassOf(typeof(UI_SubItem)) => Type.SubItem,

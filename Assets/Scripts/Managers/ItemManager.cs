@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ItemManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private UI_Inventory inventoryUI;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        inventoryUI = Managers.UI.Show<UI_Inventory>();
     }
 }
