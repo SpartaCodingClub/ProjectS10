@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3125776097615929875}
   - component: {fileID: 6475461083447910641}
   - component: {fileID: 3417522768854833245}
+  - component: {fileID: 2798170068959595426}
   m_Layer: 9
   m_Name: Mine
   m_TagString: mining
@@ -105,3 +106,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2798170068959595426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747511362599230615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f094ed8cbc74745848fe28b4a0de8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
