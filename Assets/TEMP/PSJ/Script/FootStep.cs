@@ -19,6 +19,7 @@ public class FootStep : MonoBehaviour
 
         if (_lastFootstep > 0 && footstep < 0 || _lastFootstep < 0 && footstep > 0)
         {
+            Managers.Audio.Play(Clip.SoundFX_FootStep);
             Debug.Log("발자국!");
         }
 
