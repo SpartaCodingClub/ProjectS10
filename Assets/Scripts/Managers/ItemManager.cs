@@ -16,4 +16,9 @@ public class ItemManager
     {
         inventoryUI.RemoveItem(item);
     }
+
+    public void Use(int keyNum)
+    {
+        inventoryUI.Use(keyNum);
+    }
 }
