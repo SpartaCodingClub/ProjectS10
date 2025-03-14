@@ -14,6 +14,9 @@ public class GameManager
     public void Start()
     {
         Managers.Audio.Play(Clip.Music_Game);
-        Managers.UI.Show<UI_TitleStart>();
+        Managers.UI.Show<UI_Title>();
+
+        // 추후 플레이어 컨디션 스크립트와 연결
+        Managers.UI.Show<UI_PlayerCondition>();
     }
 }
