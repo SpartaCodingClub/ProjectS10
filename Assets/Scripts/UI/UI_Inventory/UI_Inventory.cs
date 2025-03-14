@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 
 public class UI_Inventory : UI_SubItem
 {
@@ -19,19 +19,42 @@ public class UI_Inventory : UI_SubItem
 
     public void Use(int numKey)
     {
-        int index = numKey - 1;
-        content[index].Use();
+        content[numKey - 1].Use();
     }
 
-    public void AddItem(int index, int id, Action onUse = null)
+    public void AddItem(Item item)
     {
-        UI_InventorySlot slot = content[index];
-        slot.UpdateUI(id);
-        slot.OnUse += onUse;
+        // 같은 아이템이 있는지 확인
+        var sameItem = content.FirstOrDefault(slot => slot.Item.Data.ID == item.Data.ID);
+        if (sameItem != null)
+        {
+            sameItem.UpdateUI(item.amount);
+            return;
+        }
+
+        // 같은 아이템이 없다면, 빈 공간을 찾아 새로 추가
+        for (int i = 2; i < content.Length; i++)
+        {
+            var slot = content[i];
+            if (slot.Item == null)
+            {
+                slot.UpdateUI(item);
+                break;
+            }
+        }
     }
 
-    public void RemoveItem(int index, ItemData item, Action onUse = null)
+    public void RemoveItem(Item item)
     {
-        content[index].OnUse -= onUse;
+        for (int i = 0; i < content.Length; i++)
+        {
+            var slot = content[i];
+            if (slot.Item != item)
+            {
+                continue;
+            }
+
+            slot.RemoveItem();
+        }
     }
 }

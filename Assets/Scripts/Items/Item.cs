@@ -3,13 +3,13 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public ItemData Data;
-    public float amount;
+    public int amount;
     public float hpValue;
     public float hungerValue;
 
     public void Use()
     {
-        switch(Data.Type)
+        switch (Data.Type)
         {
             case ItemType.Weapon:
                 break;

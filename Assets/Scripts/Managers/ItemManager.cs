@@ -6,4 +6,14 @@ public class ItemManager
     {
         inventoryUI = Managers.UI.Show<UI_Inventory>();
     }
+
+    public void AddItem(Item item)
+    {
+        inventoryUI.AddItem(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        inventoryUI.RemoveItem(item);
+    }
 }
