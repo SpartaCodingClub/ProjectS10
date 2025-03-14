@@ -1,7 +1,13 @@
 using System;
+using UnityEngine;
 
 public class P_Stat : StatHandler
 {
+    [SerializeField] private float water;
+    public float Water { get { return water; } set { water = Mathf.Clamp(value, 0, 100); } }
+
+    [SerializeField] private float hunger;
+    public float Hunger { get { return hunger; } set { hunger = Mathf.Clamp(value, 0, 100); } }
     public float PlusSpeed = 0;
     public float curSpeed { get { return Speed + PlusSpeed; } }
 
