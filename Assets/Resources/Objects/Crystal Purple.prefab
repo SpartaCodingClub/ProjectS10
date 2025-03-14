@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3905766938053283696}
   m_Layer: 9
   m_Name: Crystal Purple
-  m_TagString: Untagged
+  m_TagString: mining
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

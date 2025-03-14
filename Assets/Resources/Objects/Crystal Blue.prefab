@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7463829529795447322}
   m_Layer: 9
   m_Name: Crystal Blue
-  m_TagString: Untagged
+  m_TagString: mining
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
