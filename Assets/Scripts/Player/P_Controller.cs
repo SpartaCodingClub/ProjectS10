@@ -161,11 +161,11 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        if (PEquip.Weaponnum == 1)
+        if (PEquip.curEquipmentType == WeaponType.Melee)
         {
             pAnimationHandler.PlayAnim("MeleeAttack");
         }
-        else if (PEquip.Weaponnum == 2)
+        else if (PEquip.curEquipmentType == WeaponType.Projectile) 
         {
             pAnimationHandler.PlayAnim("Throw");
         }

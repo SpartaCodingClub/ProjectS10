@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
         switch (Data.Type)
         {
             case ItemType.Weapon:
+                Managers.Game.Player.PEquip.Equip(this);
                 break;
             case ItemType.Resources:
 
