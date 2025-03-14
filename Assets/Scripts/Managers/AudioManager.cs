@@ -8,6 +8,8 @@ public enum Clip
     Music_Game,
     Music_Battle,
     Music_Boss,
+
+    SoundFX_FootStep,
 }
 
 public class AudioManager

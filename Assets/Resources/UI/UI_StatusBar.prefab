@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 5839828502441584974}
   - component: {fileID: 7824427079509447323}
   m_Layer: 5
-  m_Name: UI_PlayerCondition
+  m_Name: UI_StatusBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

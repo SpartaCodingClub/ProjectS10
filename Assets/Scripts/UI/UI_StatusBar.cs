@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_PlayerCondition : UI_SubItem
+public class UI_StatusBar : UI_SubItem
 {
     private readonly int FILL_LEVEL = Shader.PropertyToID("_FillLevel");
 
