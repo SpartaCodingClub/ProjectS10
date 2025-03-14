@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,8 +10,10 @@ public class PlayerController : MonoBehaviour
     public P_Stat PStat;
     public PlayerInteraction PInteract;
     public P_AniHandler pAnimationHandler;
+    public ProjectileHandler projectile;
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
+    Vector3 direction;
     Camera cam;
 
     [Header("이동")]
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         PStat = GetComponent<P_Stat>();
         PInteract = GetComponent<PlayerInteraction>();
         pAnimationHandler = GetComponent<P_AniHandler>();
+        projectile = GetComponent<ProjectileHandler>();
     }
 
     private void Start()
@@ -48,6 +52,8 @@ public class PlayerController : MonoBehaviour
     void Look()
     {
         //가상의 Plane을 만들어 레이캐스트로 충돌 후에 좌표 구하기.
+        if (pAnimationHandler.isAnimationing) 
+            return;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -56,14 +62,15 @@ public class PlayerController : MonoBehaviour
             Vector3 targetPoint = ray.GetPoint(distance);
             targetPoint.y = transform.position.y;
 
-            Vector3 direction = targetPoint - transform.position;
+            direction = targetPoint - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), rotateSpeed * Time.deltaTime);
         }
     }
 
+    #region 플레이어 인풋 받기
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed) 
         {
             curMovementInput = context.ReadValue<Vector2>();
         }
@@ -73,8 +80,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnPrimary(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PEquip.ChangeWeapon(1);
+        }
+    }
+
+    public void onSub(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PEquip.ChangeWeapon(2);
+        }
+    }
+
+    public void onInteract(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            PInteract.Interact();
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Attack();
+        }
+    }
+    #endregion
     void Move()
     {
+        if (pAnimationHandler.isAnimationing)
+        {
+            curSpeed = 0; // 속도 0으로 설정
+            pAnimationHandler.ChangeMoveValue(curSpeed); // 애니메이션 속도 업데이트
+            return;
+        }
         //입력 값이 들어오면 현재 스피드를 천천히 상승 후에 velocity에 반영.
         float targetSpeed = curMovementInput.magnitude;
         curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
@@ -107,5 +152,17 @@ public class PlayerController : MonoBehaviour
         pAnimationHandler.ChangeMoveValue(curSpeed);
         pAnimationHandler.ChangeMoveAngle(MoveAngle);
         charControl.Move(direction * Time.deltaTime);
+    }
+
+    public void Attack()
+    {
+        if (PEquip.Weaponnum == 1)
+        {
+            pAnimationHandler.PlayAnim("MeleeAttack");
+        }
+        else if(PEquip.Weaponnum == 2)
+        {
+            pAnimationHandler.PlayAnim("Throw");
+        }
     }
 }

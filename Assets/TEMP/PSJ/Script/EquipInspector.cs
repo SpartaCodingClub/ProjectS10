@@ -5,7 +5,7 @@ using UnityEditor.TerrainTools;
 using UnityEngine;
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(Equipment))]
+[CustomEditor(typeof(Weapon))]
 public class EquipInspector : Editor
 {
     SerializedProperty type;
@@ -13,6 +13,7 @@ public class EquipInspector : Editor
     SerializedProperty projectilenum;
     SerializedProperty atkDelay;
     SerializedProperty range;
+    SerializedProperty projectileObject;
 
     private void OnEnable()
     {
@@ -21,6 +22,7 @@ public class EquipInspector : Editor
         projectilenum = serializedObject.FindProperty("projectilenum");
         atkDelay = serializedObject.FindProperty("atkDelay");
         range = serializedObject.FindProperty("range");
+        projectileObject = serializedObject.FindProperty("projectileObject");
     }
 
     public override void OnInspectorGUI()
@@ -48,6 +50,7 @@ public class EquipInspector : Editor
             EditorGUILayout.PropertyField(atk, new GUIContent("공격력"));
             EditorGUILayout.PropertyField(projectilenum, new GUIContent("투사체 개수"));
             EditorGUILayout.PropertyField(atkDelay, new GUIContent("공격 간의 지연시간"));
+            EditorGUILayout.PropertyField(projectileObject, new GUIContent("투사체 오브젝트"));
         }
         serializedObject.ApplyModifiedProperties();
     }

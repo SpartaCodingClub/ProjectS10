@@ -20,6 +20,13 @@ public class P_InteractionFinder : MonoBehaviour
         FindInteract();
     }
 
+    public bool CanInteract()
+    {
+        if (curInteract != null)
+            return true;
+        else
+            return false;
+    }
     void FindInteract()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, layerMask))

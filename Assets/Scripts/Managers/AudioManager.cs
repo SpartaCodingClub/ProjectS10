@@ -50,8 +50,6 @@ public class AudioManager
             audioSource.volume = VOLUMES[i];
             audioSources[i] = audioSource;
         }
-
-        Play(Clip.Music_Game);
     }
 
     public void Play(Clip key, float volumeScale = 1.0f, Transform transform = null)
