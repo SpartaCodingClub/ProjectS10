@@ -123,6 +123,10 @@ public class PlayerController : MonoBehaviour
         //입력 값이 들어오면 현재 스피드를 천천히 상승 후에 velocity에 반영.
         float targetSpeed = curMovementInput.magnitude;
         curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
+        if ((targetSpeed == 0 || curSpeed < 0.02f)) 
+        {
+            curSpeed = 0;
+        }
         Vector3 direction = Vector3.forward * curMovementInput.y + Vector3.right * curMovementInput.x;
         direction *= PStat.curSpeed;
         direction.y = 0;
