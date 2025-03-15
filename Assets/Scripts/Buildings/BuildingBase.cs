@@ -8,14 +8,37 @@ public class BuildingBase : Poolable
     public float health = 100f;
     public float maxHealth = 100f;
     protected bool isConstructed = false;
+
     private BuildingAnimation buildingAnimation;
+    private float buildingHeight;
 
     public virtual void Initialize()
     {
         health = maxHealth;
         isConstructed = false;
         buildingAnimation = GetComponent<BuildingAnimation>();
+
+        // 빌딩 높이만큼 지하로 내려가 있는 상태
+        buildingHeight = GetComponent<Renderer>().bounds.size.y;
+        transform.position = new Vector3(transform.position.x, -buildingHeight, transform.position.z);
+
+        if (buildingAnimation != null)
+        {
+            buildingAnimation.PlayAnimation(1.5f, buildingHeight);
+        }
     }
+
+    //protected virtual void OnConstructionComplete()
+    //{
+        
+    //}
+
+    //private IEnumerator Construct(float buildTime)
+    //{
+    //    yield return new WaitForSeconds(buildTime);
+    //    isConstructed = true;
+    //    OnConstructionComplete();
+    //}
 
     public virtual void TakeDamage(float damage)
     {
@@ -28,22 +51,21 @@ public class BuildingBase : Poolable
 
     public virtual void DestroyBuilding()
     {
-        Managers.Resource.Destroy(gameObject);
+
     }
 
-    public virtual void StartConstruction(float buildTime)
+    public virtual void StartRemoving(float removeTime)
     {
         if (buildingAnimation != null)
         {
-            buildingAnimation.PlayAnimation(buildTime); 
+            buildingAnimation.RemoveAnimation(removeTime, buildingHeight);
         }
-
-        StartCoroutine(Construct(buildTime));
+        StartCoroutine(RemoveRoutine(removeTime));
     }
 
-    private IEnumerator Construct(float buildTime)
+    private IEnumerator RemoveRoutine(float removeTime)
     {
-        yield return new WaitForSeconds(buildTime);
-        isConstructed = true; 
+        yield return new WaitForSeconds(removeTime);
+        Managers.Resource.Destroy(gameObject);
     }
 }
