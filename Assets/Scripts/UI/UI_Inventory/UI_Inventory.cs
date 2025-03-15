@@ -1,4 +1,6 @@
-public class UI_Inventory : UI_SubItem
+using UnityEngine.EventSystems;
+
+public class UI_Inventory : UI_SubItem, IPointerExitHandler
 {
     private enum Children
     {
@@ -34,7 +36,7 @@ public class UI_Inventory : UI_SubItem
             if (slotItem.Data.ID == item.Data.ID)
             {
                 content[i].UpdateUI(item.amount);
-                break;
+                return;
             }
         }
 
@@ -62,5 +64,16 @@ public class UI_Inventory : UI_SubItem
 
             slot.RemoveItem();
         }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (Managers.Item.ItemPopup == null)
+        {
+            return;
+        }
+
+        Managers.Item.ItemPopup.Close();
+        Managers.Item.ItemPopup = null;
     }
 }

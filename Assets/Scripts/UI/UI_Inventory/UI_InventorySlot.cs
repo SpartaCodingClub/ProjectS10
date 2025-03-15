@@ -1,9 +1,10 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_InventorySlot : UI_Base
+public class UI_InventorySlot : UI_Base, IPointerEnterHandler
 {
     #region Open
     private Sequence Icon_Open()
@@ -66,7 +67,7 @@ public class UI_InventorySlot : UI_Base
     public void UpdateUI(Item item)
     {
         Image icon = Get<Image>((int)Children.Icon);
-        //icon.sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
+        icon.sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
         icon.gameObject.SetActive(true);
         this.icon.Restart();
 
@@ -96,5 +97,20 @@ public class UI_InventorySlot : UI_Base
         }
 
         Item.Use();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Item == null)
+        {
+            return;
+        }
+
+        if (Managers.Item.ItemPopup == null)
+        {
+            Managers.Item.ItemPopup = Managers.UI.Show<UI_ItemPopup>();
+        }
+
+        Managers.Item.ItemPopup.UpdateUI(Item);
     }
 }

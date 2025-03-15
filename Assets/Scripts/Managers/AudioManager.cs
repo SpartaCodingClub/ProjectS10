@@ -14,7 +14,7 @@ public enum Clip
 
 public class AudioManager
 {
-    private static readonly float MASTER_VOLUME = 0.4f;
+    private static readonly float MASTER_VOLUME = 0.2f;
     private static readonly float[] VOLUMES =
     {
         0.2f * MASTER_VOLUME,   // Music
