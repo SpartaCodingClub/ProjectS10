@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingBase : Poolable
 {
-    [Header("벽 기본 설정")]
+    [Header("건물 기본 설정")]
     public float health = 100f;
     public float maxHealth = 100f;
     protected bool isConstructed = false;
