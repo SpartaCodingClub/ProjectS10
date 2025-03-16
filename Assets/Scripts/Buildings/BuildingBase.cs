@@ -51,7 +51,14 @@ public class BuildingBase : Poolable
 
     public virtual void DestroyBuilding()
     {
+        BuildingDestruction destruction = GetComponent<BuildingDestruction>();
 
+        if (destruction != null)
+        {
+            destruction.StartDestruction();
+            return;
+        }
+        Destroy(gameObject);
     }
 
     public virtual void StartRemoving(float removeTime)
