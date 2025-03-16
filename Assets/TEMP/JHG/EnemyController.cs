@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     public float attackRate;
     bool isAttacking = false;
     EnemyStat enemyStat;
+    ProjectileHandler projectileHandler;
 
     [Header("Target")]
     [SerializeField] Transform target;
@@ -55,6 +56,7 @@ public class EnemyController : MonoBehaviour
         enemyStat = GetComponent<EnemyStat>();
         playerTarget = GameObject.Find("Player").transform;
         boxSize = new Vector3(1, 1, attackRange);
+        projectileHandler = GetComponent<ProjectileHandler>();
     }
 
     private void Start()
@@ -207,6 +209,7 @@ public class EnemyController : MonoBehaviour
             isAttacking = true;
             Debug.Log("공격");
             _animator.SetTrigger("isAttack");
+            Attacking();
         }
 
         //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
@@ -274,5 +277,22 @@ public class EnemyController : MonoBehaviour
         Vector3 boxCenter = transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
+    }
+
+    public void Attacking()
+    {
+        switch (enemyStat.eclass)
+        {
+            case E_Class.Melee:
+                break;
+            case E_Class.Ranged:
+                projectileHandler.Shoot();
+                break;
+            case E_Class.MiniBoss:
+                break;
+            case E_Class.FinalBoss:
+                projectileHandler.Shoot();
+                break;
+        }
     }
 }
