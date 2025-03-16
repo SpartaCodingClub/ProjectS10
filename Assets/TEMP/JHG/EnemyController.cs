@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -112,7 +113,7 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < 0.1f)
+        if (_state == State.Wandering && agent.remainingDistance < 0.3f)
         {
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
@@ -246,18 +247,20 @@ public class EnemyController : MonoBehaviour
         if (Time.time - lastRaycastTime < raycastInterval) return attackRaycast;
         lastRaycastTime = Time.time;
 
+        attackRaycast = false;
 
         RaycastHit[] curHits = hits = Physics.BoxCastAll(transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset),
-            boxSize, transform.forward, transform.rotation, 0, layerMask);
+            boxSize / 2, transform.forward, transform.rotation, 0, layerMask);
         foreach (RaycastHit hit in curHits)
         {
             if (hit.transform.gameObject == target.gameObject)
             {
+                Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
+                
+
+                transform.DOLookAt(targetPoint, 1.0f);
                 attackRaycast = true;
-            }
-            else
-            {
-                attackRaycast = false;
+                break;
             }
                 
         }

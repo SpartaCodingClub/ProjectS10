@@ -20,6 +20,7 @@ public class Managers : MonoBehaviour
         Audio.Initialize();
         Game.Initialize();
         Pool.Initialize();
+        Resource.Initialize();
         UI.Initialize();
     }
 

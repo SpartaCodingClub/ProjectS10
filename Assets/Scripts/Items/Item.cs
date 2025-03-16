@@ -1,17 +1,24 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
     public ItemData Data;
-    public float amount;
+    public int amount;
     public float hpValue;
     public float hungerValue;
 
+    public Item(ItemData Data, int amount)
+    {
+        this.Data = Data;
+        this.amount = amount;
+    }
+
     public void Use()
     {
-        switch(Data.Type)
+        switch (Data.Type)
         {
             case ItemType.Weapon:
+                Managers.Game.Player.PEquip.Equip(this);
                 break;
             case ItemType.Resources:
 
