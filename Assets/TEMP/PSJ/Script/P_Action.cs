@@ -14,72 +14,92 @@ public class P_Action : MonoBehaviour
     [Header("Nav Mesh 관련")]
     [SerializeField] Vector3 offset;
     [SerializeField] bool isChasing;
-    [SerializeField] NavMeshAgent navMesh;
+    [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] bool forceMod;
-    float navMeshDistance;
+    float navMeshAgentDistance;
     public bool IsChasing { get { return isChasing; } }
-    Coroutine curCoroutine;
+    Coroutine curBuildCoroutine;
     Coroutine curMoveToCoroutine;
 
     private void Start()
     {
         player = GetComponent<PlayerController>();
-        navMesh = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         isChasing = false;
-        navMeshDistance = navMesh.radius / 2 + 0.2f;
-        navMesh.updatePosition = false;
-        navMesh.updateRotation = false;
+        navMeshAgentDistance = navMeshAgent.radius / 2 + 0.2f;
+        navMeshAgent.updatePosition = false;
         forceMod = false;
     }
 
     private void Update()
     {
-        navMesh.velocity = player.CharacterController.velocity;
+        navMeshAgent.velocity = player.CharacterController.velocity;
+        if (actionQueue.Count > 0 && curBuildCoroutine == null)
+            StartBuilding();
     }
 
+
+    #region 취소 관련
+    public void CancelcurBuildCoroutine()
+    {
+        if(curBuildCoroutine != null)
+            StopCoroutine(curBuildCoroutine);
+        curBuildCoroutine = null;
+    }
+
+    public void CancelCurMoveCoroutine()
+    {
+        if(curMoveToCoroutine != null)
+            StopCoroutine(curMoveToCoroutine);
+        curMoveToCoroutine = null;
+    }
     public void CancelBuilding()
     {
-        if (curCoroutine != null && forceMod != true) 
+        if (curBuildCoroutine != null && forceMod != true) 
         {
             CancelFunction();
         }
     }
 
+    public void navMeshAgentReset()
+    {
+        navMeshAgent.ResetPath();
+        navMeshAgent.velocity = Vector3.zero;
+    }
+
     void CancelFunction()
     {
-        if (curCoroutine != null)
-            StopCoroutine(curCoroutine);
-        if (curMoveToCoroutine != null)
-            StopCoroutine(curMoveToCoroutine);
+        CancelcurBuildCoroutine();
+        CancelCurMoveCoroutine();
         forceMod = false;
-        curCoroutine = null;
-        curMoveToCoroutine = null;
-        navMesh.ResetPath();
-        navMesh.velocity = Vector3.zero;
+        navMeshAgentReset();
         isChasing = false;
         player.pAnimationHandler.ChangeIsWorking(false);
         player.pAnimationHandler.isAnimationing = false;
         AllListDelete();
     }
+    #endregion
+    #region 큐 조작 관련
     public void AddAction(BuildingBase build)
     {
         Managers.Game.surface.BuildNavMesh();
         actionQueue.Enqueue(build);
         Debug.Log("큐 추가");
-        if(curCoroutine == null)
-            curCoroutine = StartCoroutine(Building());
     }
     public void AllListDelete()
     {
         actionQueue.Clear();
     }
 
+    #endregion
+
+    private void StartBuilding()
+    {
+        curBuildCoroutine = StartCoroutine(Building());
+    }
     public void ForceMove(Vector3 targetPos)
     {
-        if (curCoroutine != null || curMoveToCoroutine != null)
-        {
-            CancelFunction();
-        }
+        CancelFunction();
         StartCoroutine(ForceMoveTo(targetPos));
     }
     IEnumerator Building()
@@ -95,12 +115,8 @@ public class P_Action : MonoBehaviour
         isChasing = true;
         player.pAnimationHandler.PlayBuilding(3);
         yield return new WaitForSeconds(3);
-        if (actionQueue.Count > 0)
-        {
-            curCoroutine = StartCoroutine(Building());
-        }
         isChasing = false;
-        curCoroutine = null;
+        curBuildCoroutine = null;
         yield return new WaitForFixedUpdate();
     }
 
@@ -116,22 +132,22 @@ public class P_Action : MonoBehaviour
     IEnumerator MoveTo(Vector3 targetPos)
     {
         //경로 지정
-        navMesh.Warp(transform.position);
-        navMesh.SetDestination(targetPos);
+        navMeshAgent.Warp(transform.position);
+        navMeshAgent.SetDestination(targetPos);
         isChasing = true;
 
         player.pAnimationHandler.isAnimationing = true;
         while (true)
         {
-            Vector3 direction = navMesh.desiredVelocity.normalized;
+            Vector3 direction = navMeshAgent.desiredVelocity.normalized;
             player.CharacterController.Move(direction * player.PStat.curSpeed * Time.fixedDeltaTime);
-            navMesh.velocity = player.CharacterController.velocity;
+            navMeshAgent.velocity = player.CharacterController.velocity;
             player.pAnimationHandler.ChangeMoveAngle(0);
             player.pAnimationHandler.ChangeMoveValue(1);
 
-            if (!navMesh.pathPending && navMesh.remainingDistance <= navMesh.stoppingDistance)
+            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                Debug.Log("NavMeshAgent 이동 종료!");
+                Debug.Log("navMeshAgentAgent 이동 종료!");
                 break;
             }
             yield return new WaitForFixedUpdate();
@@ -140,8 +156,7 @@ public class P_Action : MonoBehaviour
         player.pAnimationHandler.ChangeMoveValue(0);
         isChasing = false;
         curMoveToCoroutine = null;
-        navMesh.ResetPath();
-        navMesh.velocity = Vector3.zero;
+        navMeshAgentReset();
         yield return new WaitForFixedUpdate();
     }
 }
