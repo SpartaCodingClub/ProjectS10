@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class P_AniHandler : MonoBehaviour
 {
     PlayerController player;
-    Animator animator;
+    public Animator animator;
     public bool isAnimationing = false;
 
     void Start()
