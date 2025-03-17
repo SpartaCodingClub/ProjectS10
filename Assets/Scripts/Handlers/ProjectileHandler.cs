@@ -6,6 +6,7 @@ public class ProjectileHandler : MonoBehaviour
 {
     [SerializeField] List<GameObject> projectileprefab;
     [SerializeField] Vector3 offset;
+    Vector3 offsetPos;
 
     public void Shoot(int index = 0)
     {
@@ -14,7 +15,8 @@ public class ProjectileHandler : MonoBehaviour
             Debug.Log("잘못된 투사체 접근입니다.");
             return;
         }
-        GameObject prefab = Instantiate(projectileprefab[index], transform.position+ offset, transform.rotation);
+        offsetPos = transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y;
+        GameObject prefab = Instantiate(projectileprefab[index], transform.position + offsetPos, transform.rotation);
         prefab.GetComponent<Projectile>().Init();
     }
 
@@ -31,6 +33,6 @@ public class ProjectileHandler : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + offset, 0.2f);
+        Gizmos.DrawWireSphere(transform.position + offsetPos, 0.2f);
     }
 }
