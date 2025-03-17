@@ -38,7 +38,7 @@ public abstract class UI_Base : MonoBehaviour
 
     protected CanvasGroup canvasGroup;
 
-    private UIState state;
+    protected UIState state;
 
     private readonly SequenceHandler sequenceHandler = new();
     private readonly List<RectTransform> children = new();

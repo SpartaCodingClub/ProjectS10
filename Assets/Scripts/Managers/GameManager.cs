@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GameManager
 {
-
     public Camera MainCamera { get; private set; }
     public Map CurrentMap { get; set; }
     public PlayerController Player { get; set; }
@@ -21,7 +20,9 @@ public class GameManager
     {
         Managers.Audio.Play(Clip.Music_Game);
         Managers.UI.Show<UI_Title>();
+        Managers.UI.Show<UI_Build>();
 
         stageUI = Managers.UI.Show<UI_Stage>();
+        stageUI.SetTimer(60.0f, () => Debug.Log("TEST"));
     }
 }

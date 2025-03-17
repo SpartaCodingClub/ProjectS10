@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1241147071155183438}
   - component: {fileID: 393711384426096877}
   - component: {fileID: 6221755723998313143}
-  - component: {fileID: 877953508695754434}
+  - component: {fileID: -230945307506663677}
   m_Layer: 5
   m_Name: UI_ItemPopup
   m_TagString: Untagged
@@ -135,7 +135,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdccf973466e44240b6e5117cc28a2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &877953508695754434
+--- !u!114 &-230945307506663677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

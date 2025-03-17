@@ -21,7 +21,7 @@ public class UI_InventorySlot : UI_Base, IPointerEnterHandler
         var child = Get((int)Children.Text_Amount);
 
         return DOTween.Sequence()
-            .Append(child.DOPunchScale(0.2f * Vector3.one, 0.2f));
+            .Append(child.DOPunchScale(Vector3.one, 0.2f));
     }
     #endregion
 
