@@ -14317,6 +14317,7 @@ GameObject:
   - component: {fileID: 4473914617892363140}
   - component: {fileID: 8245654240223206614}
   - component: {fileID: -1205484248607115185}
+  - component: {fileID: 2215127697936671001}
   m_Layer: 0
   m_Name: E_Mage
   m_TagString: Untagged
@@ -14359,7 +14360,7 @@ MonoBehaviour:
   attack: 5
   defense: 5
   isDead: 0
-  eclass: 0
+  eclass: 1
   healthBar: {fileID: 0}
 --- !u!114 &3610467774061110610
 MonoBehaviour:
@@ -14373,15 +14374,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce608e95ec4fef41ab4ba26e690c088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 5
-  attackRate: 0
+  attackRange: 8
+  attackRate: 1
   target: {fileID: 0}
   playerTarget: {fileID: 0}
   targetDistance: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 448
-  playerWanderDistance: 8
+  playerWanderDistance: 12
   targetWanderDistance: 100
   wanderWaitTime: 1
   boxOffset: {x: 0, y: 1, z: 0}
@@ -14494,6 +14495,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileprefab:
   - {fileID: 3232898208003125483, guid: 5c8a0f4b1bc3ef94dbd41d2ea72227c6, type: 3}
+--- !u!114 &2215127697936671001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985561641870403978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d1e29a6d0c8e643b0b8288cd434ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileprefab: []
 --- !u!1 &7004460467188433503
 GameObject:
   m_ObjectHideFlags: 0

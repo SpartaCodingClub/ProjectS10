@@ -56,13 +56,14 @@ public class EnemyController : MonoBehaviour
         enemyStat = GetComponent<EnemyStat>();
         playerTarget = GameObject.Find("Player").transform;
         boxSize = new Vector3(1, 1, attackRange);
-        projectileHandler = GetComponent<ProjectileHandler>();
+
+        if (enemyStat.eclass == E_Class.Ranged || enemyStat.eclass == E_Class.FinalBoss)
+            projectileHandler = GetComponent<ProjectileHandler>();
     }
 
     private void Start()
     {
         agent.speed = enemyStat.Speed;
-        //agent.stoppingDistance = attackRange / 3;
         SetState(State.Wandering);
     }
 
@@ -115,19 +116,11 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < attackRange - 0.1f)
+        if (_state == State.Wandering && agent.remainingDistance < 0.5f)
         {
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
-
-        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
-        //{
-        //    if (hit.transform == target)
-        //    {
-        //        SetState(State.Attack);
-        //    }
-        //}
 
         if (RayCastRange()) SetState(State.Attack);
     }
@@ -135,7 +128,6 @@ public class EnemyController : MonoBehaviour
     // 이동
     void WanderToNewLocation()
     {
-        //if (_state != State.Idle) return;
         SetState(State.Wandering);
         FindNextTarget();
 
@@ -212,22 +204,6 @@ public class EnemyController : MonoBehaviour
             Attacking();
         }
 
-        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
-        //{
-        //    if (hit.transform == target)
-        //    {
-        //        agent.velocity = Vector3.zero;
-        //        agent.isStopped = true;
-        //        isAttacking = true;
-        //        Debug.Log("공격");
-        //        _animator.SetTrigger("isAttack");
-        //    }
-        //    else
-        //    {
-        //        transform.LookAt(target);
-        //    }
-        //}
-
         else
         {
             SetState(State.Wandering);
@@ -260,7 +236,6 @@ public class EnemyController : MonoBehaviour
             {
                 Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
                 
-
                 transform.DOLookAt(targetPoint, 1.0f);
                 attackRaycast = true;
                 break;
@@ -284,15 +259,19 @@ public class EnemyController : MonoBehaviour
         switch (enemyStat.eclass)
         {
             case E_Class.Melee:
+                //target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
                 break;
             case E_Class.Ranged:
                 projectileHandler.Shoot();
                 break;
             case E_Class.MiniBoss:
+
                 break;
             case E_Class.FinalBoss:
                 projectileHandler.Shoot();
                 break;
         }
+
+        
     }
 }

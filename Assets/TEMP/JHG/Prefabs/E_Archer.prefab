@@ -6952,6 +6952,7 @@ GameObject:
   - component: {fileID: 2886693124338334494}
   - component: {fileID: 568786647404080012}
   - component: {fileID: 7141277645486672408}
+  - component: {fileID: 6586544936363966701}
   m_Layer: 0
   m_Name: E_Archer
   m_TagString: Untagged
@@ -6994,6 +6995,7 @@ MonoBehaviour:
   attack: 5
   defense: 5
   isDead: 0
+  eclass: 1
   healthBar: {fileID: 0}
 --- !u!114 &2730922549551502736
 MonoBehaviour:
@@ -7007,15 +7009,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce608e95ec4fef41ab4ba26e690c088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 5
-  attackRate: 0
+  attackRange: 8
+  attackRate: 1
   target: {fileID: 0}
   playerTarget: {fileID: 0}
   targetDistance: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 448
-  playerWanderDistance: 8
+  playerWanderDistance: 12
   targetWanderDistance: 100
   wanderWaitTime: 1
   boxOffset: {x: 0, y: 1, z: 0}
@@ -7114,6 +7116,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6586544936363966701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777657058177572560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d1e29a6d0c8e643b0b8288cd434ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileprefab:
+  - {fileID: 1902629748244406177, guid: 60482b0eafd177a43a42e126ed912058, type: 3}
 --- !u!1 &3782851362030692322
 GameObject:
   m_ObjectHideFlags: 0
