@@ -108,7 +108,7 @@ public class EnemyObject : MonoBehaviour
     {
         
         // 테스트용 웨이브 시작
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             
             StartWave(i);
