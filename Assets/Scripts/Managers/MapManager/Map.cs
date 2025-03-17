@@ -124,7 +124,9 @@ public class Map : MonoBehaviour
         transform.Find("Entrance").transform.position = OFFSET_X * Vector3.right;
         transform.position = OFFSET_X * Vector3.left;
 
+        // 맵 초기화
         Managers.Game.CurrentMap = this;
+        Managers.Game.NavMeshSurface.BuildNavMesh();
     }
 
     public void Open()

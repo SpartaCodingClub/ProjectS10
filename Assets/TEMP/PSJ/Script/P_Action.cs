@@ -82,7 +82,7 @@ public class P_Action : MonoBehaviour
     #region 큐 조작 관련
     public void AddAction(BuildingBase build)
     {
-        Managers.Game.surface.BuildNavMesh();
+        Managers.Game.NavMeshSurface.BuildNavMesh();
         actionQueue.Enqueue(build);
         Debug.Log("큐 추가");
     }

@@ -8,21 +8,19 @@ public class GameManager
     public Map CurrentMap { get; set; }
     public PlayerController Player { get; set; }
 
-    private GameObject NavMeshSurface { get; set; }
-
-    public NavMeshSurface surface;
+    public NavMeshSurface NavMeshSurface { get; private set; }
+    private GameObject navMeshObject;
 
     private UI_Stage stageUI;
-    ResourceObject resourceObject;
+
     public void Initialize()
     {
         DOTween.SetTweensCapacity(200, 125);
 
         MainCamera = Camera.main;
 
-        NavMeshSurface = Resources.Load<GameObject>($"{Define.PATH_PLAYER}/PlayerSurface");
-
-        surface = Managers.Resource.Instantiate(NavMeshSurface).GetComponent<NavMeshSurface>();
+        navMeshObject = Resources.Load<GameObject>($"{Define.PATH_PLAYER}/PlayerSurface");
+        NavMeshSurface = Managers.Resource.Instantiate(navMeshObject).GetComponent<NavMeshSurface>();
     }
 
     public void Start()
@@ -33,6 +31,6 @@ public class GameManager
 
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(60.0f, () => Debug.Log("TEST"));
-        resourceObject = new ResourceObject();
+        ResourceObject.Instance.Spawn();
     }
 }
