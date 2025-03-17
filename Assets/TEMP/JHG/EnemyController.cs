@@ -16,6 +16,7 @@ public enum State
 
 public class EnemyController : MonoBehaviour
 {
+    private GameManager gameManager;
     private NavMeshAgent agent;
     private State _state;
 
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour
     public float attackRate;
     bool isAttacking = false;
     EnemyStat enemyStat;
+    ProjectileHandler projectileHandler;
 
     [Header("Target")]
     [SerializeField] Transform target;
@@ -50,17 +52,20 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         enemyStat = GetComponent<EnemyStat>();
-        playerTarget = GameObject.Find("Player").transform;
         boxSize = new Vector3(1, 1, attackRange);
+
+        if (enemyStat.eclass == E_Class.Ranged || enemyStat.eclass == E_Class.FinalBoss)
+            projectileHandler = GetComponent<ProjectileHandler>();
     }
 
     private void Start()
     {
+        playerTarget = gameManager.Player.transform;
         agent.speed = enemyStat.Speed;
-        //agent.stoppingDistance = attackRange / 3;
         SetState(State.Wandering);
     }
 
@@ -99,6 +104,8 @@ public class EnemyController : MonoBehaviour
         switch (_state)
         {
             case State.Idle:
+                agent.isStopped = true;
+                break;
             case State.Attack:
                 agent.isStopped = true;
                 break;
@@ -113,27 +120,21 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < 0.3f)
+        if (RayCastRange()) SetState(State.Attack);
+
+        else if (_state == State.Wandering && agent.remainingDistance < 0.5f)
         {
+            
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
 
-        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
-        //{
-        //    if (hit.transform == target)
-        //    {
-        //        SetState(State.Attack);
-        //    }
-        //}
-
-        if (RayCastRange()) SetState(State.Attack);
+        
     }
 
     // 이동
     void WanderToNewLocation()
     {
-        //if (_state != State.Idle) return;
         SetState(State.Wandering);
         FindNextTarget();
 
@@ -198,7 +199,7 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         FindNextTarget();
-        
+        agent.ResetPath();
 
         if (RayCastRange())
         {
@@ -207,23 +208,8 @@ public class EnemyController : MonoBehaviour
             isAttacking = true;
             Debug.Log("공격");
             _animator.SetTrigger("isAttack");
+            //Attacking();
         }
-
-        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, layerMask))
-        //{
-        //    if (hit.transform == target)
-        //    {
-        //        agent.velocity = Vector3.zero;
-        //        agent.isStopped = true;
-        //        isAttacking = true;
-        //        Debug.Log("공격");
-        //        _animator.SetTrigger("isAttack");
-        //    }
-        //    else
-        //    {
-        //        transform.LookAt(target);
-        //    }
-        //}
 
         else
         {
@@ -257,7 +243,6 @@ public class EnemyController : MonoBehaviour
             {
                 Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
                 
-
                 transform.DOLookAt(targetPoint, 1.0f);
                 attackRaycast = true;
                 break;
@@ -274,5 +259,26 @@ public class EnemyController : MonoBehaviour
         Vector3 boxCenter = transform.position + transform.forward * boxSize.z / 2 + transform.TransformDirection(boxOffset);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
+    }
+
+    public void Attacking()
+    {
+        switch (enemyStat.eclass)
+        {
+            case E_Class.Melee:
+                //target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
+                break;
+            case E_Class.Ranged:
+                projectileHandler.Shoot();
+                break;
+            case E_Class.MiniBoss:
+
+                break;
+            case E_Class.FinalBoss:
+                projectileHandler.Shoot();
+                break;
+        }
+
+        
     }
 }

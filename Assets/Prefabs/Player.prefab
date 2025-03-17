@@ -529,6 +529,7 @@ MonoBehaviour:
   isChasing: 0
   navMesh: {fileID: 0}
   navMeshSurface: {fileID: 0}
+  navMeshSurfaceObject: {fileID: 8796566755306458319, guid: 4b7f43f675ee19348b6d4c442b290177, type: 3}
 --- !u!195 &1970164690559815663
 NavMeshAgent:
   m_ObjectHideFlags: 0

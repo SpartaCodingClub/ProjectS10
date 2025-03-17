@@ -4,10 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum E_Class
+{
+    Melee,       // 근접
+    Ranged,      // 원거리
+    MiniBoss,    // 중간보스
+    FinalBoss    // 최종보스
+}
+
 public class EnemyStat : StatHandler
 {
     public bool isDead = false;
-
+    public E_Class eclass;
     [SerializeField] private UI_HealthBar healthBar;
 
     private float maxHealth;
