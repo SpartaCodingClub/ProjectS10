@@ -111,6 +111,6 @@ public class UI_InventorySlot : UI_Base, IPointerEnterHandler
             Managers.Item.ItemPopup = Managers.UI.Show<UI_ItemPopup>();
         }
 
-        Managers.Item.ItemPopup.UpdateUI(Item);
+        Managers.Item.ItemPopup.UpdateUI(Item.Data);
     }
 }

@@ -58,9 +58,9 @@ public class UI_ItemPopup : UI_SubItem
         BindSequences(UIState.Close, ScreenDimmed_Close, Popup_Close);
     }
 
-    public void UpdateUI(Item item)
+    public void UpdateUI(ItemData data)
     {
-        switch (item.Data.Type)
+        switch (data.Type)
         {
             case ItemType.Weapon:
                 Get<TMP_Text>((int)Children.Text_Type).text = "장비 아이템";
@@ -71,13 +71,16 @@ public class UI_ItemPopup : UI_SubItem
             case ItemType.Consumtion:
                 Get<TMP_Text>((int)Children.Text_Type).text = "소비 아이템";
                 break;
+            case ItemType.Building:
+                Get<TMP_Text>((int)Children.Text_Type).text = "건물";
+                break;
             default:
-                Get<TMP_Text>((int)Children.Text_Type).text = item.Data.Type.ToString();
+                Get<TMP_Text>((int)Children.Text_Type).text = data.Type.ToString();
                 break;
         }
 
-        Get<Image>((int)Children.Icon).sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
-        Get<TMP_Text>((int)Children.Text_ItemName).text = item.Data.Name;
-        Get<TMP_Text>((int)Children.Text_Info).text = item.Data.Description;
+        Get<Image>((int)Children.Icon).sprite = Managers.Resource.GetSprite(SpriteType.Item, data.ID);
+        Get<TMP_Text>((int)Children.Text_ItemName).text = data.Name;
+        Get<TMP_Text>((int)Children.Text_Info).text = data.Description;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,14 +12,14 @@ public class MiningResource : InteractableObject
 
     private UI_Inventory inventoryUI;
     ResourceObject resourceObject;
-    
+
     public override void OnInteraction()
     {
         base.OnInteraction();
 
         if (capacity > 0)
         {
-            Gather(transform.position , transform.up);
+            Gather(transform.position, transform.up);
         }
     }
 
@@ -28,23 +29,24 @@ public class MiningResource : InteractableObject
 
     }
 
-    public void Gather(Vector3 hitPoint, Vector3 hitNormal)
-    {
-        int amount = Random.Range(0, 10);
-        Item item = new Item(itemToGive , amount);
 
-            capacity--;
-            Managers.Item.AddItem(item);
-            if (capacity <= 0)
-            {
-                DestroyResource();
-                Debug.Log($"Destroy" );
-            }
+    private void Gather(Vector3 hitPoint, Vector3 hitNormal)
+    {
+        int amount = Random.Range(1, 3);
+        Item item = new Item(itemToGive, amount);
+
+        capacity--;
+        Managers.Item.AddItem(item);
+        if (capacity <= 0)
+        {
+            DestroyResource();
+            resourceObject.ReSpawn();
+        }
     }
 
     private void DestroyResource()
     {
-        Destroy(gameObject);
+        Managers.Resource.Destroy(gameObject);
         resourceObject.spawnCount--;
     }
 }

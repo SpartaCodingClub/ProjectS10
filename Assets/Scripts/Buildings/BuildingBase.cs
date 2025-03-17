@@ -14,7 +14,7 @@ public class BuildingBase : Poolable
     public string Name => buildingData.Name;  
     public float MaxHealth => buildingData.MaxHealth;
     public float CurrentHealth => currentHealth;
-    public int ResourceCost => buildingData.ResourceAmount;
+    public Vector3Int ResourceCost => buildingData.ResourceAmount;
     public float BuildTime => buildingData.BuildTime;
 
     public virtual void Initialize()
