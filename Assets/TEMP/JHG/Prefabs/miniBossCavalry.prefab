@@ -12786,7 +12786,7 @@ GameObject:
   - component: {fileID: 305659492486150390}
   - component: {fileID: 8652304382729608068}
   m_Layer: 0
-  m_Name: E_Cavalry
+  m_Name: miniBossCavalry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

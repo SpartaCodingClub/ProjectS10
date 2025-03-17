@@ -264,13 +264,13 @@ public class EnemyController : MonoBehaviour
         switch (enemyStat.eclass)
         {
             case E_Class.Melee:
-                //target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
+                target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
                 break;
             case E_Class.Ranged:
                 projectileHandler.Shoot();
                 break;
             case E_Class.MiniBoss:
-                //target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
+                target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
                 break;
             case E_Class.FinalBoss:
                 projectileHandler.Shoot();
