@@ -115,7 +115,7 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < 0.3f)
+        if (_state == State.Wandering && agent.remainingDistance < attackRange - 0.1f)
         {
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);

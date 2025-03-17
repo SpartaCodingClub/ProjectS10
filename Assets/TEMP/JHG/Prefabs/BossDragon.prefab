@@ -10838,6 +10838,7 @@ MonoBehaviour:
   attack: 10
   defense: 10
   isDead: 0
+  eclass: 3
   healthBar: {fileID: 0}
 --- !u!114 &1228970671698183985
 MonoBehaviour:
