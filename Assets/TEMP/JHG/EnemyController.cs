@@ -237,7 +237,7 @@ public class EnemyController : MonoBehaviour
             boxSize / 2, transform.forward, transform.rotation, 0, layerMask);
         foreach (RaycastHit hit in curHits)
         {
-            if (hit.transform.gameObject == target.gameObject)
+            if (hit.transform.gameObject == target.gameObject && target.gameObject != null)
             {
                 Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
                 
