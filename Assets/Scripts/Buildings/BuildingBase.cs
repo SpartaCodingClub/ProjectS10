@@ -5,17 +5,29 @@ using UnityEngine;
 public class BuildingBase : Poolable
 {
     [Header("건물 기본 설정")]
-    public float health = 100f;
-    public float maxHealth = 100f;
-    protected bool isConstructed = false;
+    [SerializeField] private ItemData buildingData;
+    private float currentHealth;
 
     private BuildingAnimation buildingAnimation;
     private float buildingHeight;
 
+    public string Name => buildingData.Name;  
+    public float MaxHealth => buildingData.MaxHealth;
+    public float CurrentHealth => currentHealth;
+    public int ResourceCost => buildingData.ResourceAmount;
+    public float BuildTime => buildingData.BuildTime;
+
     public virtual void Initialize()
     {
-        health = maxHealth;
-        isConstructed = false;
+        if (buildingData != null)
+        {
+            currentHealth = buildingData.MaxHealth; 
+        }
+        else
+        {
+            currentHealth = 100; 
+        }
+
         buildingAnimation = GetComponent<BuildingAnimation>();
 
         // 빌딩 높이만큼 지하로 내려가 있는 상태
@@ -28,24 +40,12 @@ public class BuildingBase : Poolable
         }
     }
 
-    //protected virtual void OnConstructionComplete()
-    //{
-        
-    //}
-
-    //private IEnumerator Construct(float buildTime)
-    //{
-    //    yield return new WaitForSeconds(buildTime);
-    //    isConstructed = true;
-    //    OnConstructionComplete();
-    //}
-
     public virtual void TakeDamage(float damage)
     {
-        health -= damage;
-        Debug.Log(gameObject.name + " 남은 체력: " + health);
+        currentHealth -= damage;
+        Debug.Log($"남은 체력: {currentHealth}");
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             DestroyBuilding();
         }
