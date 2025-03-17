@@ -17,17 +17,6 @@ public class P_AniHandler : MonoBehaviour
         player.PStat.DamageAction = PlayDamage;
     }
 
-    public void Init(PlayerController pcon)
-    {
-        player = pcon;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ChangeMoveValue(float value)
     {
         animator.SetFloat("MovementValue", Mathf.Clamp01(value));
@@ -63,6 +52,12 @@ public class P_AniHandler : MonoBehaviour
         player.PStat.CanDamage = false;
         StartCoroutine(PlayDead());
     }
+    
+    public void PlayBuilding(float waitingTime = 0f)
+    {
+        isAnimationing = true;
+        StartCoroutine(PlayBuild(waitingTime));
+    }
 
     IEnumerator PlayAni(string input)
     {
@@ -84,6 +79,16 @@ public class P_AniHandler : MonoBehaviour
     IEnumerator PlayDead()
     {
         animator.CrossFade("Die", 0.1f);
+        yield return null;
+    }
+
+    IEnumerator PlayBuild(float waitingTime)
+    {
+        animator.SetBool("IsWorking", true);
+        animator.CrossFade("Work", 0.1f);
+        yield return new WaitForSeconds(waitingTime);
+        animator.SetBool("IsWorking", false);
+        isAnimationing = false;
         yield return null;
     }
 }

@@ -28,6 +28,17 @@ public class P_Action : MonoBehaviour
         navMeshDistance = navMesh.radius / 2 + 0.2f;
         navMesh.updatePosition = false;
     }
+
+    public void CancelBuilding()
+    {
+        if (curCoroutine != null)
+        {
+            StopCoroutine(curCoroutine);
+            isChasing = false;
+            
+            player.pAnimationHandler.isAnimationing = false;
+        }
+    }
     public void AddAction(BuildingBase build)
     {
         navMeshSurface.BuildNavMesh();
@@ -70,6 +81,7 @@ public class P_Action : MonoBehaviour
         player.pAnimationHandler.ChangeMoveValue(0);
         Debug.Log("도착!");
         //도착 후 건물 건설 시작 and 그만큼 대기.
+        player.pAnimationHandler.PlayBuilding(3);
         yield return new WaitForFixedUpdate();
     }
 }

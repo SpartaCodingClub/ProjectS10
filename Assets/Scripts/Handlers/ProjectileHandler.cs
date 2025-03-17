@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileHandler : MonoBehaviour
 {
     [SerializeField] List<GameObject> projectileprefab;
+    [SerializeField] Vector3 offset;
 
     public void Shoot(int index = 0)
     {
@@ -13,7 +14,7 @@ public class ProjectileHandler : MonoBehaviour
             Debug.Log("잘못된 투사체 접근입니다.");
             return;
         }
-        GameObject prefab = Instantiate(projectileprefab[index], transform.position + transform.forward + new Vector3(0, 0.5f, 0), transform.rotation);
+        GameObject prefab = Instantiate(projectileprefab[index], transform.position+ offset, transform.rotation);
         prefab.GetComponent<Projectile>().Init();
     }
 
@@ -25,5 +26,11 @@ public class ProjectileHandler : MonoBehaviour
     public void RemovePrefab(int index = 0)
     {
         projectileprefab.RemoveAt(index);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + offset, 0.2f);
     }
 }
