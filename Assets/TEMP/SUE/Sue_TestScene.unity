@@ -509,10 +509,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76cde485dfb00a4f97ee53c16f2c668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 2180495705654571420, guid: 70268d8ab46c85e409d55ca2e3181c6d, type: 3}
-  turret1: {fileID: 6587566697480749759, guid: aec312bb06d5859418c41d28d92585b9, type: 3}
-  turret2: {fileID: 1755040365303540300, guid: fa12374c406c46945a9b1a8e34893269, type: 3}
-  turret3: {fileID: 3408456160409054033, guid: 8ac325a37043bd14087af9c41b7d7659, type: 3}
+  wallData: {fileID: 11400000, guid: 7ab3cab9e1dc93943a512bcd8ff7391d, type: 2}
+  turret1Data: {fileID: 11400000, guid: b6bcb4e523dd61349918a07a5e671c26, type: 2}
+  turret2Data: {fileID: 11400000, guid: 61d38637e3b87564d98bda6ad2cca656, type: 2}
+  tentData: {fileID: 11400000, guid: 549081c85d638204bbc2217a1bcf8cb2, type: 2}
+  wellData: {fileID: 11400000, guid: ed2f535368e131b4bac75035c71cc407, type: 2}
 --- !u!4 &1453275452
 Transform:
   m_ObjectHideFlags: 0

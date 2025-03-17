@@ -6,38 +6,39 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
 
-    public GameObject wall;
-    public GameObject turret1;
-    public GameObject turret2;
-    public GameObject turret3;
+    public ItemData wallData;
+    public ItemData turret1Data;
+    public ItemData turret2Data;
+    public ItemData tentData;
+    public ItemData wellData;
 
     private List<GameObject> placedBuildings = new List<GameObject>();
 
-    private GameObject selectedBuilding; // 배치할 건물
-    private GameObject previewBuilding; // 미리보기용 프리팹
+    private GameObject previewBuilding;
+    private ItemData selectedItemData;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    // 테스트 (UI랑
+    // 테스트
     private void Update()
     {
-        // 마우스 위치로 미리보기 건물 이동
-        Vector3 buildPosition = GetMouseWorldPosition();
-        previewBuilding.transform.position = buildPosition;
-
-        // 배치 확정
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+        if (selectedItemData != null)
         {
-            PlaceBuilding(buildPosition);
-        }
+            Vector3 buildPosition = GetMouseWorldPosition();
+            previewBuilding.transform.position = buildPosition;
 
-        // 취소 
-        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            CancelBuilding();
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(PlaceBuilding(buildPosition, selectedItemData));
+            }
+
+            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                CancelBuilding();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,33 +52,37 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    public void StartBuilding(GameObject buildingPrefab)
+    public void StartBuilding(ItemData itemData)
     {
-        if (selectedBuilding != null)
+        if (selectedItemData != null)
         {
-            CancelBuilding(); // 기존 건설 취소
+            CancelBuilding();
         }
 
-        selectedBuilding = buildingPrefab;
-        previewBuilding = Instantiate(buildingPrefab);
-        previewBuilding.GetComponent<Collider>().enabled = false; 
-        previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f); // 반투명 표시
+        selectedItemData = itemData;
+
+        if (!HasEnoughResources(selectedItemData.ResourceAmount))
+        {
+            Debug.Log("자원이 부족합니다");
+            selectedItemData = null;
+            return;
+        }
+
+        previewBuilding = Instantiate(selectedItemData.Building);
+        previewBuilding.GetComponent<Collider>().enabled = false;
+        previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
     }
 
-    public void PlaceBuilding(Vector3 position)
+    private IEnumerator PlaceBuilding(Vector3 position, ItemData data)
     {
-        if (selectedBuilding != null)
+        yield return new WaitForSeconds(data.BuildTime);
+
+        GameObject newBuilding = Instantiate(data.Building, position, Quaternion.identity);
+        BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
+
+        if (buildingComponent != null)
         {
-            GameObject newBuilding = Instantiate(selectedBuilding, position, Quaternion.identity);
-            BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
-
-            if (buildingComponent != null)
-            {
-                buildingComponent.Initialize();
-                placedBuildings.Add(newBuilding);
-            }
-
-            CancelBuilding(); // 건설 후 선택 취소
+            buildingComponent.Initialize();
         }
     }
 
@@ -88,7 +93,7 @@ public class BuildingManager : MonoBehaviour
             Destroy(previewBuilding);
         }
 
-        selectedBuilding = null;
+        selectedItemData = null;
         previewBuilding = null;
     }
 
@@ -144,5 +149,11 @@ public class BuildingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         placedBuildings.Remove(obj);
+    }
+
+    private bool HasEnoughResources(int cost)
+    {
+        int playerResources = 100; 
+        return playerResources >= cost;
     }
 }

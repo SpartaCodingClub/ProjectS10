@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e76dc4cb221cac41a84abd07e25c6cc, type: 3}
-  m_Name: WallData
+  m_Name: 30001
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: 
-  Description: 
+  ID: 30001
+  Name: "\uBC29\uC5B4 \uBCBD"
+  Description: "\uC801\uC758 \uACF5\uACA9\uC744 \uBC29\uC5B4\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   Type: 3
   CanStacking: 0
   MaxStacking: 0
   Weapon: {fileID: 0}
-  Building: {fileID: 0}
-  MaxHealth: 0
-  ResourceAmount: 0
-  BuildTime: 0
+  Building: {fileID: 2180495705654571420, guid: 70268d8ab46c85e409d55ca2e3181c6d, type: 3}
+  MaxHealth: 100
+  ResourceAmount: 10
+  BuildTime: 2
