@@ -9,7 +9,7 @@ public class MiningResource : InteractableObject
     public GameObject resource;
     public int quantityperhit = 1; // 
     public int capacity; // 총 몇번때릴수있는지 
-    public int resourceumber;
+    public int resourceNumber;
 
     public Transform parentTransform;
 
@@ -25,9 +25,10 @@ public class MiningResource : InteractableObject
 
         if (capacity > 0)
         {
-            Gather(transform.position, transform.up);
+            Gather();
         }
     }
+
     private void Start()
     {
         map = FindAnyObjectByType<Map>();
@@ -36,50 +37,64 @@ public class MiningResource : InteractableObject
             Debug.Log("맵이 없습니다 ");
             return;
         }
-        Transform parentObject = GameObject.Find("Resource")?.transform; // 부모 오브젝트 찾기
-        parentTransform = parentObject; // 부모 Transform 할당
-        for (int i = 0; i < resourceumber; i++)
+        parentTransform = GameObject.Find("Resource")?.transform; // 부모 오브젝트 찾기
+        for (int i = 0; i < resourceNumber; i++)
         {
-            SpawnResource();
+            StartCoroutine(RespawnResource(100f));
         }
     }
 
-    public void Gather(Vector3 hitPoint, Vector3 hitNormal)
+    public void Gather()
     {
         for (int i = 0; i < quantityperhit; i++)
         {
+            capacity--;
             if (capacity <= 0)
             {
-                DestroyResource(currentInteractResource);
-                Debug.Log("Destroy");
+                DestroyResource(resource);
+                Debug.Log($"Destroy" );
                 break;
             }
-            capacity -= 1;
+
             //Instantiate(itemToGive.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
         }
     }
 
-    void DestroyResource(GameObject resourceToDestroy)
+    private void DestroyResource(GameObject resourceToDestroy)
     {
-        if (resourceToDestroy != null)
-        {
-            Destroy(resourceToDestroy);
-            activeResources.Remove(resourceToDestroy);  // 리스트에서 해당 리소스 제거
-        }
-        StartCoroutine(RespawnResource(10f, parentTransform));
-    }
-    IEnumerator RespawnResource(float respwanTime , Transform parnetRransform)
-    {
-        yield return new WaitForSeconds(respwanTime);
-        SpawnResource();
+        activeResources.Remove(resourceToDestroy);  // 리스트에서 해당 리소스 제거
+        Destroy(resourceToDestroy);
+        Debug.Log("재생성 시작");
+        StartCoroutine(RespawnResource(3f));
     }
 
-    void SpawnResource()
+
+    IEnumerator RespawnResource(float respwanTime)
     {
+        Debug.Log("ResopwanREsource");
+        yield return new WaitForSeconds(respwanTime);
+
+        Debug.Log(" 생성");
         Vector3 randomPos = map.GetRandomPosition();
         GameObject newResource = Instantiate(resource, randomPos, Quaternion.identity, parentTransform);
+        newResource.GetComponent<MiningResource>().parentTransform = parentTransform;
         activeResources.Add(newResource);
 
         currentInteractResource = newResource;
+
+        //Spawn();
     }
+
+
+
+    //public void Spawn()
+    //{
+    //    Vector3 randomPos = map.GetRandomPosition();
+    //    GameObject newResource = Instantiate(resource, randomPos, Quaternion.identity,parentTransform);
+    //    newResource.GetComponent<MiningResource>().parentTransform = parentTransform;
+    //    activeResources.Add(newResource);
+
+    //    currentInteractResource = newResource;
+    //}
 }
+
