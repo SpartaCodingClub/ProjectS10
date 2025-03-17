@@ -38,15 +38,16 @@ public class EnemyObject : MonoBehaviour
     // 적 프리팹 소환 코루틴
     private IEnumerator SpawnWave(int waveCount)
     {
+        int spawnWaveCount = waveCount * 2;
         enemySpawnComplite = false;
         yield return new WaitForSeconds(timeBetweenWaves);
-        for (int i = 0; i < waveCount; i++)
+        for (int i = 0; i < spawnWaveCount; i++)
         {
             yield return new WaitForSeconds(timeBetweenSpawns);
             SpawnRandomEnemy();
         }
 
-        if (waveCount == 10)
+        if (waveCount % 3 == 0)
         {
             BossSpawnRandomEnemy();
         }
@@ -96,14 +97,16 @@ public class EnemyObject : MonoBehaviour
         }
 
     }
-
+    int i = 1;
     private void Update()
     {
-        int i = 1;
+        
         // 테스트용 웨이브 시작
         if (Input.GetKeyDown(KeyCode.A))
         {
-            StartWave(10);
+            
+            StartWave(i);
+            i++;
         }
     }
 

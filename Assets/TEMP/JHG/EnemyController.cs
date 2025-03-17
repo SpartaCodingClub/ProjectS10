@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        playerTarget = Managers.Game.Player.gameObject.transform;
+        playerTarget = Managers.Game.Player.gameObject.transform; 
         agent.speed = enemyStat.Speed;
         SetState(State.Wandering);
     }
