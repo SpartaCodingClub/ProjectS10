@@ -43,6 +43,8 @@ public class BuildingBase : Poolable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+        Debug.Log(gameObject.name + " 남은 체력: " + health);
+
         if (health <= 0)
         {
             DestroyBuilding();
@@ -58,7 +60,8 @@ public class BuildingBase : Poolable
             destruction.StartDestruction();
             return;
         }
-        Destroy(gameObject);
+
+        Managers.Resource.Destroy(gameObject);
     }
 
     public virtual void StartRemoving(float removeTime)

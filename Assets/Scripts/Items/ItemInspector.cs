@@ -12,6 +12,10 @@ public class ItemInspector : Editor
     SerializedProperty canStacking;
     SerializedProperty maxStacking;
     SerializedProperty weapon;
+    SerializedProperty building;
+    SerializedProperty maxHealth;
+    SerializedProperty resourceAmount;
+    SerializedProperty buildTime;
 
     private void OnEnable()
     {
@@ -22,6 +26,11 @@ public class ItemInspector : Editor
         canStacking = serializedObject.FindProperty("CanStacking");
         maxStacking = serializedObject.FindProperty("MaxStacking");
         weapon = serializedObject.FindProperty("Weapon");
+
+        building = serializedObject.FindProperty("Building");
+        maxHealth = serializedObject.FindProperty("MaxHealth");
+        resourceAmount = serializedObject.FindProperty("ResourceAmount");
+        buildTime = serializedObject.FindProperty("BuildTime");
     }
 
     public override void OnInspectorGUI()
@@ -46,12 +55,23 @@ public class ItemInspector : Editor
             canStacking.boolValue = false;
             EditorGUILayout.PropertyField(weapon, new GUIContent("무기 프리팹"));
         }
+
+        else if (iType == ItemType.Building) 
+        {
+            EditorGUILayout.PropertyField(building, new GUIContent("건물 프리팹"));
+            EditorGUILayout.PropertyField(maxHealth, new GUIContent("최대 체력"));
+            EditorGUILayout.PropertyField(resourceAmount, new GUIContent("건설 비용"));
+            EditorGUILayout.PropertyField(buildTime, new GUIContent("건설 시간")); 
+        }
+
         else
         {
             EditorGUILayout.PropertyField(canStacking, new GUIContent("스택 가능 여부"));
             EditorGUILayout.PropertyField(maxStacking, new GUIContent("최대 스택 수"));
         }
         serializedObject.ApplyModifiedProperties();
+
+
     }
 }
 #endif
