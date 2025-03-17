@@ -206,7 +206,7 @@ public class EnemyController : MonoBehaviour
             isAttacking = true;
             Debug.Log("공격");
             _animator.SetTrigger("isAttack");
-            Attacking();
+            //Attacking();
         }
 
         else
