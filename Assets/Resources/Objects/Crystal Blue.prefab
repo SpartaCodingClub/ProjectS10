@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a92b62880d6ab47851c7af7c27a301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToGive: {fileID: 11400000, guid: fe3388c412d00f24d97bad56b8a54079, type: 2}
-  capacity: 4
+  itemToGive: {fileID: 11400000, guid: 70ac85da13665d84d9cafb806e682133, type: 2}
+  capacity: 1
   curentCapacity: 0
 --- !u!1 &8037584114675080630
 GameObject:
