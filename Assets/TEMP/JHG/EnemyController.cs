@@ -102,6 +102,8 @@ public class EnemyController : MonoBehaviour
         switch (_state)
         {
             case State.Idle:
+                agent.isStopped = true;
+                break;
             case State.Attack:
                 agent.isStopped = true;
                 break;
@@ -116,13 +118,16 @@ public class EnemyController : MonoBehaviour
     void PassivUpdate()
     {
         //목표로 이동 or 목표 공격
-        if (_state == State.Wandering && agent.remainingDistance < 0.5f)
+        if (RayCastRange()) SetState(State.Attack);
+
+        else if (_state == State.Wandering && agent.remainingDistance < 0.5f)
         {
+            
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
 
-        if (RayCastRange()) SetState(State.Attack);
+        
     }
 
     // 이동
@@ -192,7 +197,7 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         FindNextTarget();
-        
+        agent.ResetPath();
 
         if (RayCastRange())
         {
