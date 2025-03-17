@@ -1,6 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
@@ -99,9 +102,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started) 
         {
-            Attack();
+            StartCoroutine(Attack());
         }
     }
 
@@ -227,17 +230,25 @@ public class PlayerController : MonoBehaviour
         charControl.Move(direction * Time.fixedDeltaTime);
     }
 
-    public void Attack()
+    IEnumerator Attack()
     {
+        yield return new WaitForEndOfFrame();
+        if (IsPointerOverUI())
+            yield break;
         if (PEquip.curEquipmentType == WeaponType.Melee)
         {
-            pAnimationHandler.PlayAnim("MeleeAttack");
+             pAnimationHandler.PlayAnim("MeleeAttack");
         }
         else if (PEquip.curEquipmentType == WeaponType.Projectile)
         {
             pAnimationHandler.PlayAnim("Throw");
         }
         else
-            return;
+            yield break;
+    }
+
+    private bool IsPointerOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }
