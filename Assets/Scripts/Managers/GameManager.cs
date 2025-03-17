@@ -106,5 +106,9 @@ public class GameManager
     private void WaveStart()
     {
         CurrentMap.Open();
+        DOVirtual.DelayedCall(1.0f, () =>
+        {
+
+        });
     }
 }
