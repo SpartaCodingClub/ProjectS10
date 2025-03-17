@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BuildItem : UI_Base, IPointerClickHandler
+public class UI_BuildItem : UI_Base, IPointerClickHandler, IPointerEnterHandler
 {
     #region Inspector
     [SerializeField]
@@ -77,5 +77,15 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler
         Debug.Log("재료 충분");
 
         (Managers.UI.CurrentSceneUI as UI_Build).Close();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Managers.Item.ItemPopup == null)
+        {
+            Managers.Item.ItemPopup = Managers.UI.Show<UI_ItemPopup>();
+        }
+
+        Managers.Item.ItemPopup.UpdateUI(buildingData);
     }
 }

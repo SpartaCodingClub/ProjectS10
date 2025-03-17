@@ -1,8 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Build : UI_Scene
+public class UI_Build : UI_Scene, IPointerExitHandler
 {
     #region Open
     private Sequence Deco_Open()
@@ -85,5 +86,16 @@ public class UI_Build : UI_Scene
         state = UIState.Close;
 
         isInitialized = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (Managers.Item.ItemPopup == null)
+        {
+            return;
+        }
+
+        Managers.Item.ItemPopup.Close();
+        Managers.Item.ItemPopup = null;
     }
 }
