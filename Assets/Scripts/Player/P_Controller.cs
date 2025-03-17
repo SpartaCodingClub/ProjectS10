@@ -15,15 +15,23 @@ public class PlayerController : MonoBehaviour
     public P_AniHandler pAnimationHandler;
     public ProjectileHandler projectile;
     public P_Action PlayerAction;
+
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
     Vector3 direction;
     Camera cam;
 
+    [Header("겹침 방지용")]
+    [SerializeField] private float offsetY;
+    [SerializeField] private Vector3 lastPosition;
+    [SerializeField] private float checkRadius = 0.5f;
+    [SerializeField] private LayerMask collisionLayerMask;
+
     [Header("이동")]
     [SerializeField] float curSpeed;
     [SerializeField] float speedChangeValue;
     [SerializeField] float MoveAngle;
+    float StartYPos;
     public float CurSpeed { get { return curSpeed; } }
     public float SpeedChangeValue { get { return speedChangeValue; } }
     Vector2 curMovementInput;
@@ -47,6 +55,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         charControl = GetComponent<CharacterController>();
 
+        StartYPos = transform.position.y;
         Managers.Game.Player = this;
     }
 
@@ -57,7 +66,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        lastPosition = transform.position;
         Move();
+        transform.position = new Vector3(transform.position.x, StartYPos, transform.position.z);
+        if (CheckForOverlap())
+        {
+            Debug.Log("겹침 감지");
+            transform.position = lastPosition;
+        }
     }
 
     void Look()
@@ -255,5 +271,17 @@ public class PlayerController : MonoBehaviour
     public void ForceMovePlayer(Vector3 pos, bool DoorClose = false)
     {
         PlayerAction.ForceMove(pos, DoorClose);
+    }
+
+    bool CheckForOverlap()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position + transform.up * offsetY, checkRadius, collisionLayerMask);
+        return colliders.Length > 0;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + transform.up * offsetY, checkRadius);
     }
 }

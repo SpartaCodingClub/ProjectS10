@@ -35,7 +35,7 @@ public class P_Equipment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void OnDrawGizmos()

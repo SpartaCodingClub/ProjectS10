@@ -28,6 +28,7 @@ public class P_Action : MonoBehaviour
         isChasing = false;
         navMeshAgentDistance = navMeshAgent.radius / 2 + 0.2f;
         navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = false;
         forceMod = false;
     }
 
