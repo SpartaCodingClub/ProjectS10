@@ -11,36 +11,29 @@ public class P_Action : MonoBehaviour
     PlayerController player;
     [SerializeField] private Queue<BuildingBase> actionQueue = new Queue<BuildingBase>();
     [Header("Nav Mesh 관련")]
+    [SerializeField] Vector3 offset;
     [SerializeField] bool isChasing;
     [SerializeField] NavMeshAgent navMesh;
     [SerializeField] NavMeshSurface navMeshSurface;
     float navMeshDistance;
-
+    public bool IsChasing { get { return isChasing; } }
     Coroutine curCoroutine;
 
     private void Start()
     {
         player = GetComponent<PlayerController>();
         navMesh = GetComponent<NavMeshAgent>();
-        navMesh.updatePosition = false;
-        navMesh.updateRotation = false;
         navMeshSurface = FindObjectOfType<NavMeshSurface>();
         isChasing = false;
         navMeshDistance = navMesh.radius / 2 + 0.2f;
+        navMesh.updatePosition = false;
     }
     public void AddAction(BuildingBase build)
     {
         navMeshSurface.BuildNavMesh();
         actionQueue.Enqueue(build);
+        Debug.Log("큐 추가");
         curCoroutine = StartCoroutine(Building());
-    }
-
-    private void Update()
-    {
-        if (isChasing)
-            navMesh.speed = Mathf.Lerp(navMesh.speed, player.PStat.curSpeed, player.SpeedChangeValue * Time.deltaTime);
-        else
-            navMesh.speed = 0;
     }
     public void AllListDelete()
     {
@@ -54,19 +47,29 @@ public class P_Action : MonoBehaviour
         if (ac == null)
             yield break;
         //경로 지정
-        navMesh.SetDestination(ac.transform.position);
+        Vector3 targetPos = new Vector3(ac.transform.position.x, transform.position.y, ac.transform.position.z);
+        navMesh.SetDestination(targetPos);
         isChasing = true;
+
+        player.pAnimationHandler.isAnimationing = true;
         while (true)
         {
-            float distance = Vector3.Distance(transform.position, ac.transform.position);
-            if (distance < navMeshDistance)
+            Vector3 direction = navMesh.nextPosition - transform.position;
+            player.CharacterController.Move(direction * player.PStat.curSpeed * Time.fixedDeltaTime);
+            player.pAnimationHandler.ChangeMoveAngle(0);
+            player.pAnimationHandler.ChangeMoveValue(navMesh.speed / player.PStat.curSpeed);
+
+            if (!navMesh.pathPending && navMesh.remainingDistance <= navMesh.stoppingDistance)
+            {
+                Debug.Log("NavMeshAgent 이동 종료!");
                 break;
-            Vector3 direction = (navMesh.nextPosition - transform.position).normalized;
-            player.CharacterController.Move(direction * navMesh.speed * Time.deltaTime);
-            yield return null;
+            }
+            yield return new WaitForFixedUpdate();
         }
+        player.pAnimationHandler.isAnimationing = true;
+        player.pAnimationHandler.ChangeMoveValue(0);
         Debug.Log("도착!");
         //도착 후 건물 건설 시작 and 그만큼 대기.
-        yield return null;
+        yield return new WaitForFixedUpdate();
     }
 }
