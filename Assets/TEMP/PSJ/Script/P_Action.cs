@@ -35,8 +35,9 @@ public class P_Action : MonoBehaviour
         {
             StopCoroutine(curCoroutine);
             isChasing = false;
-            
+            player.pAnimationHandler.ChangeIsWorking(false);
             player.pAnimationHandler.isAnimationing = false;
+            AllListDelete();
         }
     }
     public void AddAction(BuildingBase build)
@@ -44,7 +45,8 @@ public class P_Action : MonoBehaviour
         navMeshSurface.BuildNavMesh();
         actionQueue.Enqueue(build);
         Debug.Log("큐 추가");
-        curCoroutine = StartCoroutine(Building());
+        if(curCoroutine == null)
+            curCoroutine = StartCoroutine(Building());
     }
     public void AllListDelete()
     {
@@ -82,6 +84,10 @@ public class P_Action : MonoBehaviour
         Debug.Log("도착!");
         //도착 후 건물 건설 시작 and 그만큼 대기.
         player.pAnimationHandler.PlayBuilding(3);
+        if (actionQueue.Count > 0)
+        {
+            curCoroutine = StartCoroutine(Building());
+        }
         yield return new WaitForFixedUpdate();
     }
 }
