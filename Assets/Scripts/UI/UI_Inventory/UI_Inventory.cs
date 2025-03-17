@@ -22,7 +22,7 @@ public class UI_Inventory : UI_SubItem, IPointerExitHandler
         content[numKey - 1].Use();
     }
 
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
         // 같은 아이템이 있는지 확인
         for (int i = 0; i < content.Length; i++)
@@ -36,7 +36,7 @@ public class UI_Inventory : UI_SubItem, IPointerExitHandler
             if (slotItem.Data.ID == item.Data.ID)
             {
                 content[i].UpdateUI(item.amount);
-                return;
+                return true;
             }
         }
 
@@ -47,9 +47,11 @@ public class UI_Inventory : UI_SubItem, IPointerExitHandler
             if (slot.Item == null)
             {
                 slot.UpdateUI(item);
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void RemoveItem(Item item)

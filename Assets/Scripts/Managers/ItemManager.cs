@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemID
@@ -16,6 +17,8 @@ public class ItemManager
 
     private UI_Inventory inventoryUI;
 
+    private readonly Dictionary<int, Item> inventory = new();
+
     public void Start()
     {
         inventoryUI = Managers.UI.Show<UI_Inventory>();
@@ -25,7 +28,34 @@ public class ItemManager
 
     public void AddItem(Item item)
     {
-        inventoryUI.AddItem(item);
+        if (inventoryUI.AddItem(item) == false)
+        {
+            return;
+        }
+
+        int id = item.Data.ID;
+        if (inventory.ContainsKey(id))
+        {
+            inventory[id].amount += item.amount;
+            return;
+        }
+
+        inventory.Add(id, item);
+    }
+
+    public bool ContainsItem(int id, int amount)
+    {
+        if (inventory.TryGetValue(id, out var item) == false)
+        {
+            return false;
+        }
+
+        if (item.amount < amount)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public Item CreateItem(ItemID type, int amount = 1)
@@ -34,9 +64,18 @@ public class ItemManager
         return new(data, amount);
     }
 
-    public void RemoveItem(Item item)
+    public void RemoveItem(int id, int amount)
     {
-        inventoryUI.RemoveItem(item);
+        if (inventory.TryGetValue(id, out var inventoryItem) == false)
+        {
+            return;
+        }
+
+        inventoryItem.amount -= amount;
+        if (inventoryItem.amount <= 0)
+        {
+            inventoryUI.RemoveItem(inventoryItem);
+        }
     }
 
     public void Use(int keyNum)
