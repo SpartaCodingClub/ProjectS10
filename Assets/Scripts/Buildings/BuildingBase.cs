@@ -30,13 +30,25 @@ public class BuildingBase : Poolable
 
         buildingAnimation = GetComponent<BuildingAnimation>();
 
-        // 빌딩 높이만큼 지하로 내려가 있는 상태
+        //// 빌딩 높이만큼 지하로 내려가 있는 상태
+        //buildingHeight = GetComponent<Renderer>().bounds.size.y;
+        //transform.position = new Vector3(transform.position.x, -buildingHeight, transform.position.z);
+
+        //if (buildingAnimation != null)
+        //{
+        //    buildingAnimation.PlayAnimation(1.5f, buildingHeight);
+        //}
+    }
+
+    // 이렇게 수정하면 될까요
+    public void StartBuilding()
+    {
         buildingHeight = GetComponent<Renderer>().bounds.size.y;
         transform.position = new Vector3(transform.position.x, -buildingHeight, transform.position.z);
 
         if (buildingAnimation != null)
         {
-            buildingAnimation.PlayAnimation(1.5f, buildingHeight);
+            buildingAnimation.PlayAnimation(BuildTime, buildingHeight);
         }
     }
 
