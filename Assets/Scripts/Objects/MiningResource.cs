@@ -27,6 +27,7 @@ public class MiningResource : InteractableObject
     {
         resourceObject = FindAnyObjectByType<ResourceObject>();
         curentCapacity = capacity;
+     
     }
 
 
@@ -41,7 +42,6 @@ public class MiningResource : InteractableObject
         {
             DestroyResource();
             resourceObject.ReSpawn();
-            curentCapacity = capacity;
         }
     }
 
