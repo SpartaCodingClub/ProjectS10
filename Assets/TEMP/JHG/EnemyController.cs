@@ -16,6 +16,7 @@ public enum State
 
 public class EnemyController : MonoBehaviour
 {
+    private GameManager gameManager;
     private NavMeshAgent agent;
     private State _state;
 
@@ -51,10 +52,10 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         enemyStat = GetComponent<EnemyStat>();
-        playerTarget = GameObject.Find("Player").transform;
         boxSize = new Vector3(1, 1, attackRange);
 
         if (enemyStat.eclass == E_Class.Ranged || enemyStat.eclass == E_Class.FinalBoss)
@@ -63,6 +64,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        playerTarget = gameManager.Player.transform;
         agent.speed = enemyStat.Speed;
         SetState(State.Wandering);
     }
