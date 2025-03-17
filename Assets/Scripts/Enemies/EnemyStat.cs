@@ -23,8 +23,22 @@ public class EnemyStat : StatHandler
     void Start()
     {
         maxHealth = Health;
-        healthBar = gameObject.FindComponent<UI_HealthBar> ("UI_HealthBar_Monster");
-        if (healthBar == null ) healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Boss");
+
+        switch (eclass)
+        {
+            case E_Class.Melee:
+            case E_Class.Ranged:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Monster");
+                break;
+            case E_Class.MiniBoss:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Miniboss");
+                break;
+            case E_Class.FinalBoss:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Boss");
+                break;
+
+        }
+
     }
     public void Update()
     {
