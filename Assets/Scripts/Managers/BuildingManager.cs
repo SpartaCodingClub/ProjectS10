@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour
+public class BuildingManager
 {
-    public static BuildingManager Instance { get; private set; }
-
     public ItemData wallData;
     public ItemData turret1Data;
     public ItemData turret2Data;
@@ -17,13 +15,8 @@ public class BuildingManager : MonoBehaviour
     private GameObject previewBuilding;
     private ItemData selectedItemData;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     // 테스트
-    private void Update()
+    public void Update()
     {
         if (selectedItemData != null)
         {
@@ -32,7 +25,7 @@ public class BuildingManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(PlaceBuilding(buildPosition, selectedItemData));
+                Managers.Instance.StartCoroutine(PlaceBuilding(buildPosition, selectedItemData));
             }
 
             if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
@@ -69,7 +62,7 @@ public class BuildingManager : MonoBehaviour
         //    return;
         //}
 
-        previewBuilding = Instantiate(selectedItemData.Building);
+        previewBuilding = Managers.Resource.Instantiate(selectedItemData.Building);
         previewBuilding.GetComponent<Collider>().enabled = false;
         previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
     }
@@ -78,7 +71,8 @@ public class BuildingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(data.BuildTime);
 
-        GameObject newBuilding = Instantiate(data.Building, position, Quaternion.identity);
+        GameObject newBuilding = Managers.Resource.Instantiate(data.Building);
+        newBuilding.transform.position = position;
         BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
 
         if (buildingComponent != null)
@@ -92,7 +86,7 @@ public class BuildingManager : MonoBehaviour
     {
         if (previewBuilding != null)
         {
-            Destroy(previewBuilding);
+            Managers.Resource.Destroy(previewBuilding);
         }
 
         selectedItemData = null;
@@ -119,7 +113,7 @@ public class BuildingManager : MonoBehaviour
 
             if (buildingComponent != null)
             {
-                StartCoroutine(RemoveBuildingWithDelay(buildingComponent, lastBuilding, 1.5f));
+                Managers.Instance.StartCoroutine(RemoveBuildingWithDelay(buildingComponent, lastBuilding, 1.5f));
             }
         }
     }
@@ -142,7 +136,7 @@ public class BuildingManager : MonoBehaviour
             if (buildingComponent != null)
             {
                 buildingComponent.DestroyBuilding();
-                StartCoroutine(WaitAndRemove(lastBuilding, 2f));
+                Managers.Instance.StartCoroutine(WaitAndRemove(lastBuilding, 2f));
             }
         }
     }
@@ -155,7 +149,7 @@ public class BuildingManager : MonoBehaviour
 
     private bool HasEnoughResources(int cost)
     {
-        int playerResources = 100; 
+        int playerResources = 100;
         return playerResources >= cost;
     }
 }

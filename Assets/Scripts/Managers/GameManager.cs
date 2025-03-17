@@ -103,7 +103,7 @@ public class GameManager
     {
         Managers.Game.Player.enabled = true;
         stageUI = Managers.UI.Show<UI_Stage>();
-        stageUI.SetTimer(6.0f, WaveStart);
+        stageUI.SetTimer(60.0f, WaveStart);
     }
 
     private void WaveStart()

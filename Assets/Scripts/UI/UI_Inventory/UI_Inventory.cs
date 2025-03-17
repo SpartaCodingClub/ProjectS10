@@ -17,6 +17,17 @@ public class UI_Inventory : UI_SubItem, IPointerExitHandler
         content = Get((int)Children.Content).GetComponentsInChildren<UI_InventorySlot>();
     }
 
+    public void UpdateUI()
+    {
+        for (int i = 0; i <content.Length; i++)
+        {
+            if (content[i].Item != null)
+            {
+                content[i].UpdateUI(content[i].Item);
+            }
+        }
+    }
+
     public void Use(int numKey)
     {
         content[numKey - 1].Use();

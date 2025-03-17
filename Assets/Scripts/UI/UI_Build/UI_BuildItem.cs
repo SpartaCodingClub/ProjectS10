@@ -74,7 +74,7 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler, IPointerEnterHandler
         Managers.Item.RemoveItem((int)ItemID.RedStone, resources.z);
 
         // 건물 생성
-        Debug.Log("재료 충분");
+        Managers.Building.StartBuilding(buildingData);
 
         (Managers.UI.CurrentSceneUI as UI_Build).Close();
     }

@@ -76,6 +76,8 @@ public class ItemManager
         {
             inventoryUI.RemoveItem(inventoryItem);
         }
+
+        inventoryUI.UpdateUI();
     }
 
     public void Use(int keyNum)
