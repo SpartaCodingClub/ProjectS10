@@ -252,8 +252,8 @@ public class PlayerController : MonoBehaviour
         return EventSystem.current.IsPointerOverGameObject();
     }
 
-    public void ForceMovePlayer(Vector3 pos)
+    public void ForceMovePlayer(Vector3 pos, bool DoorClose = false)
     {
-        PlayerAction.ForceMove(pos);
+        PlayerAction.ForceMove(pos, DoorClose);
     }
 }

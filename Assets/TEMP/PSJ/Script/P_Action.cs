@@ -97,10 +97,10 @@ public class P_Action : MonoBehaviour
     {
         curBuildCoroutine = StartCoroutine(Building());
     }
-    public void ForceMove(Vector3 targetPos)
+    public void ForceMove(Vector3 targetPos, bool DoorClose)
     {
         CancelFunction();
-        StartCoroutine(ForceMoveTo(targetPos));
+        StartCoroutine(ForceMoveTo(targetPos, DoorClose));
     }
     IEnumerator Building()
     {
@@ -120,12 +120,14 @@ public class P_Action : MonoBehaviour
         yield return new WaitForFixedUpdate();
     }
 
-    IEnumerator ForceMoveTo(Vector3 targetPos)
+    IEnumerator ForceMoveTo(Vector3 targetPos,bool DoorClose)
     {
         forceMod = true;
         curMoveToCoroutine = StartCoroutine(MoveTo(targetPos));
         yield return curMoveToCoroutine;
         CancelFunction();
+        if (DoorClose == true)
+            Managers.Game.CurrentMap.Close();
         yield return null;
     }
 
