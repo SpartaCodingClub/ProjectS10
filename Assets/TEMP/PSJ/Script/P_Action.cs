@@ -63,7 +63,7 @@ public class P_Action : MonoBehaviour
     }
     public void AddAction(BuildingBase build)
     {
-        Managers.Game.surface.BuildNavMesh();
+        Managers.Game.NavMeshSurface.BuildNavMesh();
         actionQueue.Enqueue(build);
         Debug.Log("큐 추가");
         if(curCoroutine == null)
