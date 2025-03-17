@@ -16,7 +16,6 @@ public enum State
 
 public class EnemyController : MonoBehaviour
 {
-    private GameManager gameManager;
     private NavMeshAgent agent;
     private State _state;
 
@@ -52,7 +51,6 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GetComponent<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         enemyStat = GetComponent<EnemyStat>();
@@ -64,7 +62,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        playerTarget = gameManager.Player.transform;
+        playerTarget = Managers.Game.Player.gameObject.transform;
         agent.speed = enemyStat.Speed;
         SetState(State.Wandering);
     }
