@@ -12,7 +12,6 @@ public class GameManager
     private GameObject navMeshObject;
 
     private UI_Stage stageUI;
-    ResourceObject resourceObject;
 
     public void Initialize()
     {
@@ -32,6 +31,6 @@ public class GameManager
 
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(60.0f, () => Debug.Log("TEST"));
-        resourceObject = new ResourceObject();
+        ResourceObject.Instance.Spawn();
     }
 }

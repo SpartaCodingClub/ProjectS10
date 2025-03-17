@@ -23,7 +23,7 @@ public class ResourceObject : MonoBehaviour
     private void Start()
     {
         map = FindAnyObjectByType<Map>();
-        StartCoroutine(Spawn(0.1f));
+       
     }
 
     public void ReSpawn()
@@ -36,10 +36,9 @@ public class ResourceObject : MonoBehaviour
 
     }
 
-    public IEnumerator Spawn(float respwanTime)
+    public void Spawn()
     {
         spawnCount = 0;
-        yield return new WaitForSeconds(respwanTime);
         for (int i = 0; i < maxSpawnCount; i++)
         {
             StartCoroutine(SpawnValue(0));
