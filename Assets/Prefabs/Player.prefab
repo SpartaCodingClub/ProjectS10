@@ -203,7 +203,19 @@ MonoBehaviour:
     m_ActionId: b4ee7f01-c802-4dbd-9578-d45f81626184
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnBuild
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b878c3d8-d8b2-4fc5-80a6-46610831c21e
     m_ActionName: Player/Build[/Keyboard/b]
   - m_PersistentCalls:
@@ -529,7 +541,7 @@ MonoBehaviour:
   isChasing: 0
   navMesh: {fileID: 0}
   navMeshSurface: {fileID: 0}
-  navMeshSurfaceObject: {fileID: 8796566755306458319, guid: 4b7f43f675ee19348b6d4c442b290177, type: 3}
+  navMeshSurfaceObject: {fileID: 0}
 --- !u!195 &1970164690559815663
 NavMeshAgent:
   m_ObjectHideFlags: 0
