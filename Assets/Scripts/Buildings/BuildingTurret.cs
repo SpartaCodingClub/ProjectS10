@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BuildingTurret : BuildingBase
 {
     private TurretShooting turretShooting;
@@ -13,10 +9,8 @@ public class BuildingTurret : BuildingBase
         turretShooting = GetComponent<TurretShooting>();
         turretRotation = GetComponent<TurretRotation>();
 
-        StartConstruction(7f);
-
         if (turretShooting != null)
-            turretShooting.EnableShooting(); 
+            turretShooting.EnableShooting();
 
         if (turretRotation != null)
             turretRotation.EnableRotation();
