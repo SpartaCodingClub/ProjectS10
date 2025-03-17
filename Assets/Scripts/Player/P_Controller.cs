@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started) 
         {
-            
+            (Managers.UI.CurrentSceneUI as UI_Build).Button_Spin();
         }
     }
 
