@@ -1,6 +1,6 @@
-using System;
+using UnityEngine.EventSystems;
 
-public class UI_Inventory : UI_SubItem
+public class UI_Inventory : UI_SubItem, IPointerExitHandler
 {
     private enum Children
     {
@@ -19,19 +19,61 @@ public class UI_Inventory : UI_SubItem
 
     public void Use(int numKey)
     {
-        int index = numKey - 1;
-        content[index].Use();
+        content[numKey - 1].Use();
     }
 
-    public void AddItem(int index, int id, Action onUse = null)
+    public void AddItem(Item item)
     {
-        UI_InventorySlot slot = content[index];
-        slot.UpdateUI(id);
-        slot.OnUse += onUse;
+        // 같은 아이템이 있는지 확인
+        for (int i = 0; i < content.Length; i++)
+        {
+            Item slotItem = content[i].Item;
+            if (slotItem == null)
+            {
+                continue;
+            }
+
+            if (slotItem.Data.ID == item.Data.ID)
+            {
+                content[i].UpdateUI(item.amount);
+                return;
+            }
+        }
+
+        // 같은 아이템이 없다면, 빈 공간을 찾아 새로 추가
+        for (int i = 0; i < content.Length; i++)
+        {
+            var slot = content[i];
+            if (slot.Item == null)
+            {
+                slot.UpdateUI(item);
+                break;
+            }
+        }
     }
 
-    public void RemoveItem(int index, ItemData item, Action onUse = null)
+    public void RemoveItem(Item item)
     {
-        content[index].OnUse -= onUse;
+        for (int i = 0; i < content.Length; i++)
+        {
+            var slot = content[i];
+            if (slot.Item != item)
+            {
+                continue;
+            }
+
+            slot.RemoveItem();
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (Managers.Item.ItemPopup == null)
+        {
+            return;
+        }
+
+        Managers.Item.ItemPopup.Close();
+        Managers.Item.ItemPopup = null;
     }
 }

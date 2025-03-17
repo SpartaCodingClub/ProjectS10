@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction PInteract;
     public P_AniHandler pAnimationHandler;
     public ProjectileHandler projectile;
+    public P_Action PlayerAction;
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
     Vector3 direction;
@@ -19,8 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float curSpeed;
     [SerializeField] float speedChangeValue;
     [SerializeField] float MoveAngle;
+    public float CurSpeed { get { return curSpeed; } }
+    public float SpeedChangeValue { get { return speedChangeValue; } }
     Vector2 curMovementInput;
     CharacterController charControl;
+    public CharacterController CharacterController { get { return charControl; } }
 
     private void Awake()
     {
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
         PInteract = GetComponent<PlayerInteraction>();
         pAnimationHandler = GetComponent<P_AniHandler>();
         projectile = GetComponent<ProjectileHandler>();
+        PlayerAction = GetComponent<P_Action>();
     }
 
     private void Start()
@@ -81,22 +87,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPrimary(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PEquip.ChangeWeapon(1);
-        }
-    }
-
-    public void onSub(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PEquip.ChangeWeapon(2);
-        }
-    }
-
     public void onInteract(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -110,6 +100,74 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             Attack();
+        }
+    }
+
+    public void OnPressedOne(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            Managers.Item.Use(1);
+        }
+    }
+
+    public void OnPressedTwo(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(2);
+        }
+    }
+
+    public void OnPressedThree(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            Managers.Item.Use(3);
+        }
+    }
+    public void OnPressedFour(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(4);
+        }
+    }
+    public void OnPressedFive(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(5);
+        }
+    }
+    public void OnPressedSix(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(6);
+        }
+    }
+    public void OnPressedSeven(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(7);
+        }
+    }
+
+    public void OnPressedEight(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(8);
+        }
+    }
+
+    public void OnPressedNine(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Managers.Item.Use(9);
         }
     }
     #endregion
@@ -161,13 +219,15 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        if (PEquip.Weaponnum == 1)
+        if (PEquip.curEquipmentType == WeaponType.Melee)
         {
             pAnimationHandler.PlayAnim("MeleeAttack");
         }
-        else if (PEquip.Weaponnum == 2)
+        else if (PEquip.curEquipmentType == WeaponType.Projectile)
         {
             pAnimationHandler.PlayAnim("Throw");
         }
+        else
+            return;
     }
 }

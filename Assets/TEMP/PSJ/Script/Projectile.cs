@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float atk = 0;
     [SerializeField] float speed = 5f;
     [SerializeField] LayerMask enemyLayer;
-    [SerializeField] string tag;
+    [SerializeField] List<string> tag;
     Vector3 direction;
     Rigidbody rigid;
     ParticleSystem particle;
@@ -32,9 +32,14 @@ public class Projectile : MonoBehaviour
     {
         if (enemyLayer.value == (enemyLayer.value | (1 << other.gameObject.layer)))
         {
-            if (other.tag.Equals(tag))
+            foreach (string t in tag)
             {
-                //데미지 주는 함수
+                if (other.tag.Equals(tag))
+                {
+                    //데미지 주는 함수
+                    other.GetComponent<StatHandler>().Damage(atk);
+                    break;
+                }
             }
             StartCoroutine(destroyWithParticle());
         }
