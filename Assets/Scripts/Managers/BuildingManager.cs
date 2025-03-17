@@ -84,6 +84,7 @@ public class BuildingManager : MonoBehaviour
         if (buildingComponent != null)
         {
             buildingComponent.Initialize();
+            buildingComponent.StartBuilding();
         }
     }
 
