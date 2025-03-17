@@ -88,27 +88,24 @@ public class GameManager
     public void Start()
     {
         Managers.Audio.Play(Clip.Music_Game);
-        Managers.UI.Show<UI_Title>();
+        Managers.UI.Show<UI_Title>().OnClosed += GameStart;
         Managers.UI.Show<UI_Build>();
+    }
 
+    private void GameStart()
+    {
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(6.0f, WaveStart);
 
-        DOVirtual.DelayedCall(1.0f, () =>
+        for (int i = 0; i < maxSpawnCount; i++)
         {
-            for (int i = 0; i < maxSpawnCount; i++)
-            {
-                Spawn();
-            }
-        });
+            Spawn();
+        }
     }
 
     private void WaveStart()
     {
         CurrentMap.Open();
-        DOVirtual.DelayedCall(1.0f, () =>
-        {
-            Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f));
-        });
+        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
     }
 }
