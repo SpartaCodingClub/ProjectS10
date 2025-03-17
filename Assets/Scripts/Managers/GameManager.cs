@@ -90,10 +90,12 @@ public class GameManager
         Managers.Audio.Play(Clip.Music_Game);
         Managers.UI.Show<UI_Title>().OnClosed += GameStart;
         Managers.UI.Show<UI_Build>();
+        Managers.Game.Player.enabled = false;
     }
 
     private void GameStart()
     {
+        Managers.Game.Player.enabled = true;
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(6.0f, WaveStart);
 
