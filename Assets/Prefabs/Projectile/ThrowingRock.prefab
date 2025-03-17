@@ -150,5 +150,6 @@ MonoBehaviour:
   speed: 10
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
-  tag: Wall
+    m_Bits: 896
+  tag: []
+  particle: {fileID: 0}
