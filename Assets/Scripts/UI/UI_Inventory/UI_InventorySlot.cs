@@ -1,9 +1,10 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_InventorySlot : UI_Base
+public class UI_InventorySlot : UI_Base, IPointerEnterHandler
 {
     #region Open
     private Sequence Icon_Open()
@@ -90,6 +91,26 @@ public class UI_InventorySlot : UI_Base
 
     public void Use()
     {
+        if (Item == null)
+        {
+            return;
+        }
+
         Item.Use();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Item == null)
+        {
+            return;
+        }
+
+        if (Managers.Item.ItemPopup == null)
+        {
+            Managers.Item.ItemPopup = Managers.UI.Show<UI_ItemPopup>();
+        }
+
+        Managers.Item.ItemPopup.UpdateUI(Item);
     }
 }

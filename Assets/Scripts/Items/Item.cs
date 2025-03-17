@@ -1,11 +1,17 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
     public ItemData Data;
     public int amount;
     public float hpValue;
     public float hungerValue;
+
+    public Item(ItemData Data, int amount)
+    {
+        this.Data = Data;
+        this.amount = amount;
+    }
 
     public void Use()
     {
