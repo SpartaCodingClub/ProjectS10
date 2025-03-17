@@ -25,7 +25,8 @@ public class P_Stat : StatHandler
     {
         player = GetComponent<PlayerController>();
         statusBar = Managers.UI.Show<UI_StatusBar>();
-        
+        statusBar.UpdateUI(UI_StatusBar.Type.Health, Health, 100);
+
         PlusSpeed = 0;
         CanDamage = true;
 }
