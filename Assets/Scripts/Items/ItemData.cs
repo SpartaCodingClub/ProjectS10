@@ -27,6 +27,6 @@ public class ItemData : ScriptableObject
     [Header("건물 데이터")]
     public GameObject Building;
     public float MaxHealth; 
-    public int ResourceAmount;  // 건설 시 필요한 자원량
+    public Vector3Int ResourceAmount;  // 건설 시 필요한 자원량
     public float BuildTime;
 }

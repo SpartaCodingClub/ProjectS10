@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -107,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnBuild(InputAction.CallbackContext context)
     {
-        if (context.started) 
+        if (context.started)
         {
             (Managers.UI.CurrentSceneUI as UI_Build).Button_Spin();
         }
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPressedOne(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             Managers.Item.Use(1);
         }
@@ -131,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPressedThree(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             Managers.Item.Use(3);
         }

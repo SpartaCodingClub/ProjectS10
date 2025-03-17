@@ -61,12 +61,13 @@ public class BuildingManager : MonoBehaviour
 
         selectedItemData = itemData;
 
-        if (!HasEnoughResources(selectedItemData.ResourceAmount))
-        {
-            Debug.Log("자원이 부족합니다");
-            selectedItemData = null;
-            return;
-        }
+        // ItemManager에서 보유한 아이템이 충분한지 검사하고 있습니다!
+        //if (!HasEnoughResources(selectedItemData.ResourceAmount))
+        //{
+        //    Debug.Log("자원이 부족합니다");
+        //    selectedItemData = null;
+        //    return;
+        //}
 
         previewBuilding = Instantiate(selectedItemData.Building);
         previewBuilding.GetComponent<Collider>().enabled = false;

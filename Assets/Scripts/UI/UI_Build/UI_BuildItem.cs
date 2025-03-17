@@ -4,6 +4,11 @@ using UnityEngine.EventSystems;
 
 public class UI_BuildItem : UI_Base, IPointerClickHandler
 {
+    #region Inspector
+    [SerializeField]
+    private ItemData buildingData;
+    #endregion
+
     private enum Children
     {
         Text_Value_BlueStone,
@@ -17,6 +22,8 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler
     {
         base.Initialize();
         BindChildren(typeof(Children));
+
+        UpdateUI(buildingData.ResourceAmount.x, buildingData.ResourceAmount.y, buildingData.ResourceAmount.z);
     }
 
     public void UpdateUI(int blueStone, int purpleStone, int redStone = 0)
@@ -68,5 +75,7 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler
 
         // 건물 생성
         Debug.Log("재료 충분");
+
+        (Managers.UI.CurrentSceneUI as UI_Build).Close();
     }
 }
