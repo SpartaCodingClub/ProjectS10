@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a92b62880d6ab47851c7af7c27a301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resource: {fileID: 7192243773194298430}
+  itemToGive: {fileID: 11400000, guid: fe3388c412d00f24d97bad56b8a54079, type: 2}
   quantityperhit: 1
   capacity: 1
   resourceNumber: 1
