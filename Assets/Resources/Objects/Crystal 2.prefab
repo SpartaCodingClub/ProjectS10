@@ -192,4 +192,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToGive: {fileID: 11400000, guid: 70ac85da13665d84d9cafb806e682133, type: 2}
-  capacity: 1
+  capacity: 3
+  curentCapacity: 0
