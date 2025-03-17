@@ -17,6 +17,7 @@ public class P_AniHandler : MonoBehaviour
         player.PStat.DamageAction = PlayDamage;
     }
 
+    #region 값 조절
     public void ChangeMoveValue(float value)
     {
         animator.SetFloat("MovementValue", Mathf.Clamp01(value));
@@ -40,6 +41,7 @@ public class P_AniHandler : MonoBehaviour
             StartCoroutine(PlayAni(input));
         }
     }
+    #endregion
 
     public void PlayDamage()
     {
@@ -64,11 +66,12 @@ public class P_AniHandler : MonoBehaviour
         StartCoroutine(PlayBuild(waitingTime));
     }
 
+    #region 코루틴
     IEnumerator PlayAni(string input)
     {
         animator.CrossFade(input, 0.1f);
         yield return null;
-        AnimatorStateInfo stateInfo = animator.GetNextAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
         isAnimationing = false;
     }
@@ -96,4 +99,5 @@ public class P_AniHandler : MonoBehaviour
         isAnimationing = false;
         yield return null;
     }
+    #endregion
 }

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class GameManager
@@ -7,13 +8,20 @@ public class GameManager
     public Map CurrentMap { get; set; }
     public PlayerController Player { get; set; }
 
+    public NavMeshSurface NavMeshSurface { get; private set; }
+    private GameObject navMeshObject;
+
     private UI_Stage stageUI;
     ResourceObject resourceObject;
+
     public void Initialize()
     {
         DOTween.SetTweensCapacity(200, 125);
 
         MainCamera = Camera.main;
+
+        navMeshObject = Resources.Load<GameObject>($"{Define.PATH_PLAYER}/PlayerSurface");
+        NavMeshSurface = Managers.Resource.Instantiate(navMeshObject).GetComponent<NavMeshSurface>();
     }
 
     public void Start()
