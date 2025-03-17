@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
+
     public GameObject wall;
     public GameObject turret1;
     public GameObject turret2;
@@ -12,32 +13,31 @@ public class BuildingManager : MonoBehaviour
 
     private List<GameObject> placedBuildings = new List<GameObject>();
 
+    private GameObject selectedBuilding; // 배치할 건물
+    private GameObject previewBuilding; // 미리보기용 프리팹
+
     private void Awake()
     {
         Instance = this;
     }
 
-    // 테스트
+    // 테스트 (UI랑
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        // 마우스 위치로 미리보기 건물 이동
+        Vector3 buildPosition = GetMouseWorldPosition();
+        previewBuilding.transform.position = buildPosition;
+
+        // 배치 확정
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
-            PlaceBuilding(wall, new Vector3(0, 0, 0));
+            PlaceBuilding(buildPosition);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        // 취소 
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
-            PlaceBuilding(turret1, new Vector3(2, 0, 0));
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            PlaceBuilding(turret2, new Vector3(2, 0, 0));
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            PlaceBuilding(turret3, new Vector3(2, 0, 0));
+            CancelBuilding();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -45,22 +45,61 @@ public class BuildingManager : MonoBehaviour
             RemoveBuilding();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             DestroyBuilding();
         }
     }
 
-    public void PlaceBuilding(GameObject building, Vector3 position)
+    public void StartBuilding(GameObject buildingPrefab)
     {
-        GameObject newBuilding = Instantiate(building, position, Quaternion.identity);
-        BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
-
-        if (buildingComponent != null)
+        if (selectedBuilding != null)
         {
-            buildingComponent.Initialize();
-            placedBuildings.Add(newBuilding);
+            CancelBuilding(); // 기존 건설 취소
         }
+
+        selectedBuilding = buildingPrefab;
+        previewBuilding = Instantiate(buildingPrefab);
+        previewBuilding.GetComponent<Collider>().enabled = false; 
+        previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f); // 반투명 표시
+    }
+
+    public void PlaceBuilding(Vector3 position)
+    {
+        if (selectedBuilding != null)
+        {
+            GameObject newBuilding = Instantiate(selectedBuilding, position, Quaternion.identity);
+            BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
+
+            if (buildingComponent != null)
+            {
+                buildingComponent.Initialize();
+                placedBuildings.Add(newBuilding);
+            }
+
+            CancelBuilding(); // 건설 후 선택 취소
+        }
+    }
+
+    public void CancelBuilding()
+    {
+        if (previewBuilding != null)
+        {
+            Destroy(previewBuilding);
+        }
+
+        selectedBuilding = null;
+        previewBuilding = null;
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
     }
 
     public void RemoveBuilding()
