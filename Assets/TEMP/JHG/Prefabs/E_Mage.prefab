@@ -14316,7 +14316,6 @@ GameObject:
   - component: {fileID: 7689718198032099076}
   - component: {fileID: 4473914617892363140}
   - component: {fileID: 8245654240223206614}
-  - component: {fileID: -1205484248607115185}
   - component: {fileID: 2215127697936671001}
   m_Layer: 0
   m_Name: E_Mage
@@ -14481,20 +14480,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-1205484248607115185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985561641870403978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d1e29a6d0c8e643b0b8288cd434ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileprefab:
-  - {fileID: 3232898208003125483, guid: 5c8a0f4b1bc3ef94dbd41d2ea72227c6, type: 3}
 --- !u!114 &2215127697936671001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14507,7 +14492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d1e29a6d0c8e643b0b8288cd434ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileprefab: []
+  projectileprefab:
+  - {fileID: 4311546018253803334, guid: ab05fc002c005634f989a5fff43cf0bd, type: 3}
 --- !u!1 &7004460467188433503
 GameObject:
   m_ObjectHideFlags: 0
