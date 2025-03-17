@@ -13,7 +13,6 @@ public class ResourceObject : MonoBehaviour
 
 
     public static ResourceObject Instance;
-
     Map map;
 
     private void Awake()
@@ -29,10 +28,10 @@ public class ResourceObject : MonoBehaviour
 
     public void ReSpawn()
     {
-        Debug.Log("재생성까지 10초");
         if (spawnCount < maxSpawnCount)
         {
-            StartCoroutine(SpawnValue(10f));
+            StartCoroutine(SpawnValue(3f));
+            spawnCount++;
         }
 
     }
@@ -44,6 +43,7 @@ public class ResourceObject : MonoBehaviour
         for (int i = 0; i < maxSpawnCount; i++)
         {
             StartCoroutine(SpawnValue(0));
+            spawnCount++;
         }
 
     }
@@ -53,6 +53,8 @@ public class ResourceObject : MonoBehaviour
         yield return new WaitForSeconds(respwanTime);
         int randomIndex = Random.Range(0, 100);
         Vector3 randomPos = map.GetRandomPosition();
+        MiningResource miningResource = GetComponent<MiningResource>();
+
         if (randomIndex < 10)
         {
 
@@ -94,6 +96,6 @@ public class ResourceObject : MonoBehaviour
                 newResource.transform.SetParent(parentTransform);
             }
         }
-        spawnCount++;
+
     }
 }
