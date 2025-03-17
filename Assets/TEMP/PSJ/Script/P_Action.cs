@@ -24,6 +24,7 @@ public class P_Action : MonoBehaviour
     {
         player = GetComponent<PlayerController>();
         navMesh = GetComponent<NavMeshAgent>();
+        navMeshSurfaceObject = Resources.Load<GameObject>($"{Define.PATH_PLAYER}/PlayerSurface");
         navMeshSurface = Instantiate(navMeshSurfaceObject).GetComponent<NavMeshSurface>();
         isChasing = false;
         navMeshDistance = navMesh.radius / 2 + 0.2f;

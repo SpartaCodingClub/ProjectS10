@@ -7,5 +7,6 @@ public class Define
     public const string PATH_MAP = "Map";
     public const string PATH_OBJECT = "Objects";
     public const string PATH_UI = "UI";
+    public const string PATH_PLAYER = "Player";
     #endregion
 }
