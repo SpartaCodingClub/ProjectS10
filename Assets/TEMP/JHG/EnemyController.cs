@@ -237,7 +237,7 @@ public class EnemyController : MonoBehaviour
             boxSize / 2, transform.forward, transform.rotation, 0, layerMask);
         foreach (RaycastHit hit in curHits)
         {
-            if (hit.transform.gameObject == target.gameObject)
+            if (hit.transform.gameObject == target.gameObject && target.gameObject != null)
             {
                 Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
                 
@@ -264,19 +264,25 @@ public class EnemyController : MonoBehaviour
         switch (enemyStat.eclass)
         {
             case E_Class.Melee:
-                //target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
+                target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
                 break;
             case E_Class.Ranged:
                 projectileHandler.Shoot();
                 break;
             case E_Class.MiniBoss:
-
+                target.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
                 break;
             case E_Class.FinalBoss:
                 projectileHandler.Shoot();
                 break;
         }
+    }
 
-        
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (enemyStat.eclass == E_Class.MiniBoss && _state == State.Wandering)
+        {
+            collision.gameObject.GetComponent<StatHandler>().Damage(enemyStat.Attack);
+        }
     }
 }

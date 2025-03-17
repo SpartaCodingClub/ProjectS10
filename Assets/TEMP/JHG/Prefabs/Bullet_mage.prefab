@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 2327277099510090073}
   m_Layer: 0
   m_Name: Bullet_mage
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +326,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 448
-  tag: []
+  tag:
+  - Player
+  particle: {fileID: 0}
 --- !u!54 &190896320640066204
 Rigidbody:
   m_ObjectHideFlags: 0

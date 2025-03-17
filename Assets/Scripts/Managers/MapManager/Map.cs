@@ -206,7 +206,12 @@ public class Map : MonoBehaviour
             .Where(tile => tile is not Map_Block)
             .ToArray();
 
-        int randomIndex = Random.Range(0, tiles.Length);
+        int randomIndex = 2;
+        while (randomIndex == 2)
+        {
+            randomIndex = Random.Range(0, tiles.Length);
+        }
+
         return tiles[randomIndex].GetRandomPosition();
     }
 }
