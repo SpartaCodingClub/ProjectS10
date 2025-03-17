@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretRotation : MonoBehaviour
@@ -14,6 +12,7 @@ public class TurretRotation : MonoBehaviour
 
     private void FindTarget()
     {
+        // Enemy 태그 인식 후 회전
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;

@@ -8,15 +8,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] List<string> tag;
+    [SerializeField] ParticleSystem particle;
     Vector3 direction;
     Rigidbody rigid;
-    ParticleSystem particle;
     bool CanAttack = false;
 
     private void OnEnable()
     {
         rigid = GetComponent<Rigidbody>();
-        particle = GetComponentInChildren<ParticleSystem>();
     }
     public void Init()
     {

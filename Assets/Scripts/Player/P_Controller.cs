@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     Vector2 curMovementInput;
     CharacterController charControl;
     public CharacterController CharacterController { get { return charControl; } }
+    public Vector2 CurMovementInput { get { return curMovementInput; } }
 
     private void Awake()
     {
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
     void Look()
     {
         //가상의 Plane을 만들어 레이캐스트로 충돌 후에 좌표 구하기.
-        if (pAnimationHandler.isAnimationing)
+        if (pAnimationHandler.isAnimationing || PlayerAction.IsChasing)
             return;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            PlayerAction.CancelBuilding();
         }
         else if (context.canceled)
         {
@@ -100,6 +102,14 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             Attack();
+        }
+    }
+
+    public void OnBuild(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            
         }
     }
 
@@ -181,7 +191,7 @@ public class PlayerController : MonoBehaviour
         }
         //입력 값이 들어오면 현재 스피드를 천천히 상승 후에 velocity에 반영.
         float targetSpeed = curMovementInput.magnitude;
-        curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.deltaTime * speedChangeValue);
+        curSpeed = Mathf.Lerp(curSpeed, targetSpeed, Time.fixedDeltaTime * speedChangeValue);
         if ((targetSpeed == 0 || curSpeed < 0.02f))
         {
             curSpeed = 0;
@@ -214,7 +224,7 @@ public class PlayerController : MonoBehaviour
         }
         pAnimationHandler.ChangeMoveValue(curSpeed);
         pAnimationHandler.ChangeMoveAngle(MoveAngle);
-        charControl.Move(direction * Time.deltaTime);
+        charControl.Move(direction * Time.fixedDeltaTime);
     }
 
     public void Attack()
