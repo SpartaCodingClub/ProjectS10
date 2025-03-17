@@ -9,7 +9,7 @@ using UnityEngine.Playables;
 public class P_Action : MonoBehaviour
 {
     PlayerController player;
-    [SerializeField] private Queue<BuildingObject> actionQueue = new Queue<BuildingObject>();
+    [SerializeField] private Queue<BuildingBase> actionQueue = new Queue<BuildingBase>();
     [Header("Nav Mesh 관련")]
     [SerializeField] bool isChasing;
     [SerializeField] NavMeshAgent navMesh;
@@ -28,7 +28,7 @@ public class P_Action : MonoBehaviour
         isChasing = false;
         navMeshDistance = navMesh.radius / 2 + 0.2f;
     }
-    public void AddAction(BuildingObject build)
+    public void AddAction(BuildingBase build)
     {
         navMeshSurface.BuildNavMesh();
         actionQueue.Enqueue(build);
@@ -49,7 +49,7 @@ public class P_Action : MonoBehaviour
 
     IEnumerator Building()
     {
-        BuildingObject ac;
+        BuildingBase ac;
         actionQueue.TryDequeue(out ac);
         if (ac == null)
             yield break;
