@@ -9,7 +9,7 @@ public class EnemyObject : MonoBehaviour
     private Coroutine waveRoutine;
 
     [SerializeField] private List<GameObject> enemyPrefabs; // 적을 생성할 프리팹 리스트
-
+    [SerializeField] private GameObject bossEnemyPrefab;
     [SerializeField] private List<Rect> spawnAreas; // 적을 생성할 영역 리스트
 
     [SerializeField]
@@ -38,12 +38,18 @@ public class EnemyObject : MonoBehaviour
     // 적 프리팹 소환 코루틴
     private IEnumerator SpawnWave(int waveCount)
     {
+        int spawnWaveCount = waveCount * 2;
         enemySpawnComplite = false;
         yield return new WaitForSeconds(timeBetweenWaves);
-        for (int i = 0; i < waveCount; i++)
+        for (int i = 0; i < spawnWaveCount; i++)
         {
             yield return new WaitForSeconds(timeBetweenSpawns);
             SpawnRandomEnemy();
+        }
+
+        if (waveCount % 3 == 0)
+        {
+            BossSpawnRandomEnemy();
         }
 
         enemySpawnComplite = true;
@@ -91,13 +97,36 @@ public class EnemyObject : MonoBehaviour
         }
 
     }
-
+    int i = 1;
     private void Update()
     {
+        
         // 테스트용 웨이브 시작
         if (Input.GetKeyDown(KeyCode.A))
         {
-            StartWave(5);
+            
+            StartWave(i);
+            i++;
         }
+    }
+
+    private void BossSpawnRandomEnemy()
+    {
+        if (enemyPrefabs.Count == 0 || spawnAreas.Count == 0)
+        {
+            Debug.LogWarning("Enemy Prefabs 또는 Spawn Areas가 설정되지 않았습니다.");
+            return;
+        }
+
+        // 랜덤 위치 선택
+        Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
+        // Rect 영역 내부의 랜덤 위치 계산
+        Vector3 randomPosition = new Vector3(randomArea.x + randomArea.width / 2, 0, randomArea.y + randomArea.height / 2 );
+
+        // 적 생성 및 리스트에 추가
+        GameObject spawnedEnemy = Instantiate(bossEnemyPrefab, new Vector3(randomPosition.x, randomPosition.y, randomPosition.z), Quaternion.identity);
+        EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
+
+        activeEnemies.Add(enemyController);
     }
 }
