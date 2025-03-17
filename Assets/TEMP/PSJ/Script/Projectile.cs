@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         {
             foreach (string t in tag)
             {
-                if (other.tag.Equals(tag))
+                if (other.tag.Equals(t))
                 {
                     //데미지 주는 함수
                     other.GetComponent<StatHandler>().Damage(atk);

@@ -132,6 +132,7 @@ public class P_Action : MonoBehaviour
     IEnumerator MoveTo(Vector3 targetPos)
     {
         //경로 지정
+        Managers.Game.NavMeshSurface.BuildNavMesh();
         navMeshAgent.Warp(transform.position);
         navMeshAgent.SetDestination(targetPos);
         isChasing = true;
