@@ -251,4 +251,9 @@ public class PlayerController : MonoBehaviour
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
+
+    public void ForceMovePlayer(Vector3 pos)
+    {
+        PlayerAction.ForceMove(pos);
+    }
 }

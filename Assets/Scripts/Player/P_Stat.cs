@@ -29,9 +29,9 @@ public class P_Stat : StatHandler
 
         PlusSpeed = 0;
         CanDamage = true;
-}
+    }
 
-    public void Damage(float damage)
+    public override void Damage(float damage)
     {
         if (CanDamage == false)
             return;
