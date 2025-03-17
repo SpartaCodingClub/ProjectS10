@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 1045232459}
   - component: {fileID: 1045232458}
   - component: {fileID: 1045232457}
-  - component: {fileID: 1045232456}
+  - component: {fileID: 1045232462}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -304,18 +304,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1045232456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045232455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 367e2b0dc48ae6947a746b91f9f429c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1045232457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +403,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045232462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045232455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
 --- !u!1 &1176646368
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +521,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 1
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.6
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -539,9 +541,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca62c30d3697d49bf8232857433c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
   isChasing: 0
   navMesh: {fileID: 0}
   navMeshSurface: {fileID: 0}
+--- !u!114 &1755103173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933093206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
 --- !u!1 &2010908889
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1009,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 173474498470879638, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1755103150}
+    - targetCorrespondingSourceObject: {fileID: 173474498470879638, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1755103173}
   m_SourcePrefab: {fileID: 100100000, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
 --- !u!4 &83506261343310312
 Transform:

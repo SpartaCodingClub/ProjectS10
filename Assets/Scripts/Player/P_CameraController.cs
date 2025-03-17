@@ -39,12 +39,13 @@ public class P_CameraController : MonoBehaviour
 
     void TargetFollowing()
     {
-        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (minDiffZ + (maxDiffZ - minDiffZ) * curve.Evaluate(curAngle)));
-        cam.transform.position = Vector3.Lerp(cam.transform.position, targetPos, followingSpeed * Time.smoothDeltaTime);
-        Quaternion targetRotation = Quaternion.LookRotation(target.position - cam.transform.position);
-        targetRotation.y = 0;
-        targetRotation.z = 0;
-        cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, targetRotation, rotationSpeed * Time.smoothDeltaTime);
+        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - 5.5f);
+        //Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (minDiffZ + (maxDiffZ - minDiffZ) * curve.Evaluate(curAngle)));
+        cam.transform.position = Vector3.Lerp(cam.transform.position, targetPos, followingSpeed * Time.deltaTime);
+        Quaternion targetrotation = Quaternion.LookRotation(target.position - cam.transform.position);
+        targetrotation.y = 0;
+        targetrotation.z = 0;
+        cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, targetrotation, rotationSpeed * Time.fixedDeltaTime);
     }
 
     public void OnScroll(InputAction.CallbackContext context)
@@ -64,6 +65,6 @@ public class P_CameraController : MonoBehaviour
     {
         Vector3 camPos = cam.transform.position;
         camPos.y = minY + (maxY - minY) * curAngle;
-        cam.transform.position = Vector3.Lerp(cam.transform.position, camPos, moveSpeed * Time.deltaTime);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, camPos, moveSpeed * Time.fixedDeltaTime);
     }
 }
