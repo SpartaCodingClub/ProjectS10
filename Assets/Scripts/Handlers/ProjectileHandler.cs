@@ -8,6 +8,12 @@ public class ProjectileHandler : MonoBehaviour
     [SerializeField] Vector3 offset;
     Vector3 offsetPos;
 
+
+    private void Update()
+    {
+        offsetPos = transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y;
+    }
+
     public void Shoot(int index = 0)
     {
         if (index >= projectileprefab.Count)
@@ -15,7 +21,6 @@ public class ProjectileHandler : MonoBehaviour
             Debug.Log("잘못된 투사체 접근입니다.");
             return;
         }
-        offsetPos = transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y;
         GameObject prefab = Instantiate(projectileprefab[index], transform.position + offsetPos, transform.rotation);
         prefab.GetComponent<Projectile>().Init();
     }
