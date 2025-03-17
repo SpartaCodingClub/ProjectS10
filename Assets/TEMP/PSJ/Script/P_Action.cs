@@ -15,6 +15,7 @@ public class P_Action : MonoBehaviour
     [SerializeField] bool isChasing;
     [SerializeField] NavMeshAgent navMesh;
     [SerializeField] NavMeshSurface navMeshSurface;
+    [SerializeField] GameObject navMeshSurfaceObject;
     float navMeshDistance;
     public bool IsChasing { get { return isChasing; } }
     Coroutine curCoroutine;
@@ -23,7 +24,7 @@ public class P_Action : MonoBehaviour
     {
         player = GetComponent<PlayerController>();
         navMesh = GetComponent<NavMeshAgent>();
-        navMeshSurface = FindObjectOfType<NavMeshSurface>();
+        navMeshSurface = Instantiate(navMeshSurfaceObject).GetComponent<NavMeshSurface>();
         isChasing = false;
         navMeshDistance = navMesh.radius / 2 + 0.2f;
         navMesh.updatePosition = false;
