@@ -310,6 +310,8 @@ MonoBehaviour:
   - {fileID: 1416038754654844511, guid: a0ae4acadb0839247b5a0829a54068c4, type: 3}
   - {fileID: 7192243773194298430, guid: b4bf49012556f774f83cfceba5baf4ee, type: 3}
   - {fileID: 1376147871662652032, guid: 0dca9204a1ff59847af8f885d2eb4c98, type: 3}
+  - {fileID: 164933303383153954, guid: bf1144a3f6c5d4c42b610a1cf46041a3, type: 3}
+  - {fileID: 4574884010591727735, guid: 89329a822a39ffc459293b2dd3280941, type: 3}
   spawnCount: 10
   parentTransform: {fileID: 674310829}
   maxSpawnCount: 10

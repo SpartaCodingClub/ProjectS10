@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MiningResource : InteractableObject
 {
-    [SerializeField]public ItemData itemToGive; //드랍되는아이템
-    [SerializeField] public int quantityperhit; // 
-    [SerializeField] public int capacity; // 총 몇번때릴수있는지 
-    [SerializeField] public int resourceNumber;
+    [SerializeField] private ItemData itemToGive; //얻을수있는 아이템
+    [SerializeField] private int capacity; // 총 몇번때릴수있는지 
 
+    private UI_Inventory inventoryUI;
     ResourceObject resourceObject;
-
-
+    
     public override void OnInteraction()
     {
         base.OnInteraction();
@@ -26,21 +25,21 @@ public class MiningResource : InteractableObject
     private void Start()
     {
         resourceObject = FindAnyObjectByType<ResourceObject>();
+
     }
 
     public void Gather(Vector3 hitPoint, Vector3 hitNormal)
     {
-        for (int i = 0; i < quantityperhit; i++)
-        {
+        int amount = Random.Range(0, 10);
+        Item item = new Item(itemToGive , amount);
+
             capacity--;
+            Managers.Item.AddItem(item);
             if (capacity <= 0)
             {
                 DestroyResource();
                 Debug.Log($"Destroy" );
-                break;
             }
-            Instantiate(itemToGive, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
-        }
     }
 
     private void DestroyResource()

@@ -111,8 +111,6 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fe3388c412d00f24d97bad56b8a54079, type: 2}
   quantityperhit: 1
   capacity: 1
-  resourceNumber: 1
-  parentTransform: {fileID: 2961252095922158226, guid: 175a5131ea8434b48b1c0eb37dc30fd7, type: 3}
 --- !u!1 &8037584114675080630
 GameObject:
   m_ObjectHideFlags: 0
