@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     Vector2 curMovementInput;
     CharacterController charControl;
     public CharacterController CharacterController { get { return charControl; } }
+    public Vector2 CurMovementInput { get { return curMovementInput; } }
 
     private void Awake()
     {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            PlayerAction.CancelBuilding();
         }
         else if (context.canceled)
         {
