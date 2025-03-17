@@ -108,7 +108,7 @@ public class GameManager
         CurrentMap.Open();
         DOVirtual.DelayedCall(1.0f, () =>
         {
-
+            Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f));
         });
     }
 }
