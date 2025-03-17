@@ -27,6 +27,11 @@ public class P_AniHandler : MonoBehaviour
         animator.SetFloat("MovementAngle", Mathf.Clamp(value, -180, 180));
     }
 
+    public void ChangeIsWorking(bool value)
+    {
+        animator.SetBool("IsWorking", value);
+    }
+
     public void PlayAnim(string input)
     {
         if(isAnimationing == false)
