@@ -1,15 +1,22 @@
 using DG.Tweening;
+using System.Collections;
 using Unity.AI.Navigation;
 using UnityEngine;
 
 public class GameManager
 {
+    #region Spawn Settings
+    private int maxSpawnCount = 10;
+    #endregion
+
     public Camera MainCamera { get; private set; }
     public Map CurrentMap { get; set; }
     public PlayerController Player { get; set; }
 
     public NavMeshSurface NavMeshSurface { get; private set; }
     private GameObject navMeshObject;
+
+    public int SpawnCount { get; set; }
 
     private UI_Stage stageUI;
 
@@ -31,6 +38,69 @@ public class GameManager
 
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(60.0f, () => Debug.Log("TEST"));
-        ResourceObject.Instance.Spawn();
+
+        DOVirtual.DelayedCall(1.0f, () =>
+        {
+            for (int i = 0; i < maxSpawnCount; i++)
+            {
+                Spawn();
+            }
+        });
+    }
+
+    public void ReSpawn()
+    {
+        if (SpawnCount < maxSpawnCount)
+        {
+            Managers.Instance.StartCoroutine(WaitForSpawn(3f));
+        }
+    }
+
+    private IEnumerator WaitForSpawn(float respwanTime)
+    {
+        yield return new WaitForSeconds(respwanTime);
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        int randomIndex = Random.Range(0, 100);
+        Vector3 randomPos = CurrentMap.GetRandomPosition();
+
+        if (randomIndex < 10)
+        {
+            if (randomIndex < 5)
+            {
+                Managers.Resource.Instantiate("Crystal", randomPos);
+            }
+            else
+            {
+                Managers.Resource.Instantiate("Crystal 2", randomPos);
+            }
+        }
+        else if (randomIndex < 55)
+        {
+            if (randomIndex < 20)
+            {
+                Managers.Resource.Instantiate("Crystal Blue", randomPos);
+            }
+            else
+            {
+                Managers.Resource.Instantiate("Crystal Blue 2", randomPos);
+            }
+        }
+        else
+        {
+            if (randomIndex < 70)
+            {
+                Managers.Resource.Instantiate("Crystal Purple", randomPos);
+            }
+            else
+            {
+                Managers.Resource.Instantiate("Crystal Purple 2", randomPos);
+            }
+        }
+
+        SpawnCount++;
     }
 }

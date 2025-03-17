@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 9
-  rows: 4
+  rows: 5
   margin: 5
 --- !u!65 &8140415823246701121
 BoxCollider:

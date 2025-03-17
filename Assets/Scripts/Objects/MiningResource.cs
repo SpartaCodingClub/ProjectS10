@@ -1,17 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MiningResource : InteractableObject
 {
     [SerializeField] private ItemData itemToGive; //얻을수있는 아이템
-    [SerializeField]private int capacity; // 총 몇번때릴수있는지 
+    [SerializeField] private int capacity; // 총 몇번때릴수있는지 
     [SerializeField] private int curentCapacity;
-
-    ResourceObject resourceObject;
 
     public override void OnInteraction()
     {
@@ -25,9 +18,7 @@ public class MiningResource : InteractableObject
 
     private void Start()
     {
-        resourceObject = FindAnyObjectByType<ResourceObject>();
         curentCapacity = capacity;
-     
     }
 
 
@@ -41,14 +32,13 @@ public class MiningResource : InteractableObject
         if (curentCapacity <= 0)
         {
             DestroyResource();
-            resourceObject.ReSpawn();
+            Managers.Game.ReSpawn();
         }
     }
 
     private void DestroyResource()
     {
         Managers.Resource.Destroy(gameObject);
-        resourceObject.spawnCount--;
+        Managers.Game.SpawnCount--;
     }
 }
-
