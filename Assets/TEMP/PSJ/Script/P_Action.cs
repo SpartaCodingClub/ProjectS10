@@ -142,7 +142,6 @@ public class P_Action : MonoBehaviour
         {
             Vector3 direction = navMeshAgent.desiredVelocity.normalized;
             player.CharacterController.Move(direction * player.PStat.curSpeed * Time.fixedDeltaTime);
-            navMeshAgent.velocity = player.CharacterController.velocity;
             player.pAnimationHandler.ChangeMoveAngle(0);
             player.pAnimationHandler.ChangeMoveValue(1);
 
