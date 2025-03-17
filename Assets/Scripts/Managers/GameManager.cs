@@ -17,10 +17,14 @@ public class GameManager
         }
     }
 
-    private IEnumerator WaitForSpawn(float respwanTime)
+    private IEnumerator WaitForSpawn(float respwanTime, int amount = 1)
     {
         yield return new WaitForSeconds(respwanTime);
-        Spawn();
+
+        for (int i = 0; i < amount; i++)
+        {
+            Spawn();
+        }
     }
 
     private void Spawn()
@@ -91,6 +95,8 @@ public class GameManager
         Managers.UI.Show<UI_Title>().OnClosed += GameStart;
         Managers.UI.Show<UI_Build>();
         Managers.Game.Player.enabled = false;
+
+        Managers.Instance.StartCoroutine(WaitForSpawn(0.0f, maxSpawnCount));
     }
 
     private void GameStart()
@@ -98,11 +104,6 @@ public class GameManager
         Managers.Game.Player.enabled = true;
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(6.0f, WaveStart);
-
-        for (int i = 0; i < maxSpawnCount; i++)
-        {
-            Spawn();
-        }
     }
 
     private void WaveStart()
