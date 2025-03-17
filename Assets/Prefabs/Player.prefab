@@ -52,6 +52,9 @@ GameObject:
   - component: {fileID: 1091871546241678152}
   - component: {fileID: 7793177088532563906}
   - component: {fileID: 1619506538654285857}
+  - component: {fileID: 8867106059407749845}
+  - component: {fileID: 1970164690559815663}
+  - component: {fileID: 620687231315010723}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -219,6 +222,150 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: baf2e343-d330-4ccd-b793-dacd2f79e866
     m_ActionName: Player/CamMove[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedOne
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8e25db10-78da-4a05-8e61-11ea5361e859
+    m_ActionName: Player/1Pressed[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedTwo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9e32f853-1ca4-40c0-9d0b-74ebe438be79
+    m_ActionName: Player/2Pressed[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedThree
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a7ab75f-8543-4d3b-8666-af938348b45e
+    m_ActionName: Player/3Pressed[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedFour
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 83092ebc-210c-4ed8-a96c-92356e0af812
+    m_ActionName: Player/4Pressed[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedFive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 196e7a3c-725e-49a5-91ea-eba32c601668
+    m_ActionName: Player/5Pressed[/Keyboard/5]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedSix
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bfaa9de0-f711-4603-9b5a-6d777efc37e2
+    m_ActionName: Player/6Pressed[/Keyboard/6]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedSeven
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a390d71f-5b05-4529-8239-bb918a84fd8c
+    m_ActionName: Player/7Pressed[/Keyboard/7]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedEight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a81ff4c-27a5-48e3-88c6-81476ef7f491
+    m_ActionName: Player/8Pressed[/Keyboard/8]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7416941870249712170}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPressedNine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 032af966-b755-4001-aee6-32b44b81a6c1
+    m_ActionName: Player/9Pressed[/Keyboard/9]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -242,6 +389,7 @@ MonoBehaviour:
   PInteract: {fileID: 0}
   pAnimationHandler: {fileID: 0}
   projectile: {fileID: 0}
+  PlayerAction: {fileID: 0}
   rotateSpeed: 10
   curSpeed: 0
   speedChangeValue: 5
@@ -323,6 +471,8 @@ MonoBehaviour:
   water: 0
   hunger: 0
   PlusSpeed: 0
+  InvincibleTime: 0.5
+  CanDamage: 0
 --- !u!114 &1091871546241678152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b385e119050c9458e208e892c745fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   isAnimationing: 0
 --- !u!114 &7793177088532563906
 MonoBehaviour:
@@ -349,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileprefab: []
+  offset: {x: 0, y: 0.5, z: 0.7}
 --- !u!114 &1619506538654285857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +513,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937bcb836f6f5404c8fbbf6642e54e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8867106059407749845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173474498470879638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfca62c30d3697d49bf8232857433c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  isChasing: 0
+  navMesh: {fileID: 0}
+  navMeshSurface: {fileID: 0}
+--- !u!195 &1970164690559815663
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173474498470879638}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 1
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.6
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &620687231315010723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173474498470879638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
 --- !u!1 &891966573995618696
 GameObject:
   m_ObjectHideFlags: 0
