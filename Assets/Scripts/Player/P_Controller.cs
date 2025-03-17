@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction PInteract;
     public P_AniHandler pAnimationHandler;
     public ProjectileHandler projectile;
+    public P_Action PlayerAction;
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
     Vector3 direction;
@@ -19,8 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float curSpeed;
     [SerializeField] float speedChangeValue;
     [SerializeField] float MoveAngle;
+    public float CurSpeed { get { return curSpeed; } }
+    public float SpeedChangeValue { get { return speedChangeValue; } }
     Vector2 curMovementInput;
     CharacterController charControl;
+    public CharacterController CharacterController { get { return charControl; } }
 
     private void Awake()
     {
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
         PInteract = GetComponent<PlayerInteraction>();
         pAnimationHandler = GetComponent<P_AniHandler>();
         projectile = GetComponent<ProjectileHandler>();
+        PlayerAction = GetComponent<P_Action>();
     }
 
     private void Start()
