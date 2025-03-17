@@ -8,7 +8,7 @@ public class GameManager
     public PlayerController Player { get; set; }
 
     private UI_Stage stageUI;
-
+    ResourceObject resourceObject;
     public void Initialize()
     {
         DOTween.SetTweensCapacity(200, 125);
@@ -24,5 +24,6 @@ public class GameManager
 
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(60.0f, () => Debug.Log("TEST"));
+        resourceObject = new ResourceObject();
     }
 }
