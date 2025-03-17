@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PSJTest : InteractableObject
 {
-    [SerializeField] BuildingObject building;
+    [SerializeField] BuildingBase building;
 
     private void Start()
     {
-        building = GetComponent<BuildingObject>();
+        building = GetComponent<BuildingBase>();
         Invoke(nameof(AddBuildingAction), 3.0f);
         //InvokeRepeating(nameof(AddBuildingAction), 3.0f, 5);
     }
