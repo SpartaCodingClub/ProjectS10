@@ -18,4 +18,6 @@ public class StatHandler : MonoBehaviour
 
     [Range(1, 30)][SerializeField] public float defense;
     public float Defense { get => defense; set => defense = Mathf.Clamp(value, 1, 30); }
+
+    public virtual void Damage(float damage) { }
 }
