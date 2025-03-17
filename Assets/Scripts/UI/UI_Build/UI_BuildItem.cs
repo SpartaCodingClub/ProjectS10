@@ -2,8 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BuildItem : UI_Base, IPointerClickHandler
+public class UI_BuildItem : UI_Base, IPointerClickHandler, IPointerEnterHandler
 {
+    #region Inspector
+    [SerializeField]
+    private ItemData buildingData;
+    #endregion
+
     private enum Children
     {
         Text_Value_BlueStone,
@@ -17,6 +22,8 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler
     {
         base.Initialize();
         BindChildren(typeof(Children));
+
+        UpdateUI(buildingData.ResourceAmount.x, buildingData.ResourceAmount.y, buildingData.ResourceAmount.z);
     }
 
     public void UpdateUI(int blueStone, int purpleStone, int redStone = 0)
@@ -68,5 +75,17 @@ public class UI_BuildItem : UI_Base, IPointerClickHandler
 
         // 건물 생성
         Debug.Log("재료 충분");
+
+        (Managers.UI.CurrentSceneUI as UI_Build).Close();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Managers.Item.ItemPopup == null)
+        {
+            Managers.Item.ItemPopup = Managers.UI.Show<UI_ItemPopup>();
+        }
+
+        Managers.Item.ItemPopup.UpdateUI(buildingData);
     }
 }

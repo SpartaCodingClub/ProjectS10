@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e76dc4cb221cac41a84abd07e25c6cc, type: 3}
-  m_Name: Turret2Data
+  m_Name: 30002
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: 
-  Description: 
+  ID: 30002
+  Name: "\uB300\uD3EC \uD0C0\uC6CC"
+  Description: "\uD3EC\uD0C4\uC744 \uBC1C\uC0AC\uD55C\uB2E4."
   Type: 3
   CanStacking: 0
   MaxStacking: 0
   Weapon: {fileID: 0}
-  Building: {fileID: 0}
-  MaxHealth: 0
-  ResourceAmount: 0
-  BuildTime: 0
+  Building: {fileID: 6587566697480749759, guid: aec312bb06d5859418c41d28d92585b9, type: 3}
+  MaxHealth: 150
+  ResourceAmount: {x: 10, y: 10, z: 0}
+  BuildTime: 7

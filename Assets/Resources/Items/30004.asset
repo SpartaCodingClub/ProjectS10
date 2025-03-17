@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e76dc4cb221cac41a84abd07e25c6cc, type: 3}
-  m_Name: TentData
+  m_Name: 30004
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: 
-  Description: 
+  ID: 30004
+  Name: "\uC758\uBB34\uC2E4"
+  Description: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   Type: 3
   CanStacking: 0
   MaxStacking: 0
   Weapon: {fileID: 0}
-  Building: {fileID: 0}
-  MaxHealth: 0
-  ResourceAmount: 0
-  BuildTime: 0
+  Building: {fileID: 1739148478318478145, guid: 8ac6c031835209944aaabc37c8f6a274, type: 3}
+  MaxHealth: 100
+  ResourceAmount: {x: 10, y: 10, z: 0}
+  BuildTime: 2

@@ -6,14 +6,13 @@ using UnityEngine.UIElements;
 
 public class ResourceObject : MonoBehaviour
 {
-    [SerializeField]private GameObject[] Objects;
+    [SerializeField] private GameObject[] Objects;
     public int spawnCount;
     [SerializeField] private Transform parentTransform;
     [SerializeField] private int maxSpawnCount;
 
-    
-    public static ResourceObject Instance;
 
+    public static ResourceObject Instance;
     Map map;
 
     private void Awake()
@@ -24,61 +23,50 @@ public class ResourceObject : MonoBehaviour
     private void Start()
     {
         map = FindAnyObjectByType<Map>();
-        for (int i = 0; i < spawnCount; i++)
-        {
-            StartCoroutine(Spawn(0.1f));
-        }
-
+        StartCoroutine(Spawn(0.1f));
     }
-    private void Update()
+
+    public void ReSpawn()
     {
         if (spawnCount < maxSpawnCount)
         {
-            StartCoroutine(ReSpawn(3f));
-        }
-    }
-
-
-    //private void Spawn()
-    //{
-    //    int randomIndex = Random.Range(0, Objects.Length);
-    //    Vector3 randomPos = map.GetRandomPosition();
-    //    GameObject newResource = Instantiate(Objects[randomIndex], randomPos, Quaternion.identity, parentTransform);
-    //}
-
-    IEnumerator ReSpawn(float respwanTime)
-    {
-        int randomIndex = Random.Range(0, Objects.Length);
-
-        yield return new WaitForSeconds(respwanTime);
-
-        Vector3 randomPos = map.GetRandomPosition();
-        if (spawnCount < maxSpawnCount)
-        {
-            StartCoroutine(Spawn(1f));
+            StartCoroutine(SpawnValue(3f));
             spawnCount++;
         }
-        StartCoroutine(ReSpawn(1f));
+
     }
 
-    IEnumerator Spawn(float respwanTime)
+    public IEnumerator Spawn(float respwanTime)
     {
-        int randomIndex = Random.Range(0, 100);
-
+        spawnCount = 0;
         yield return new WaitForSeconds(respwanTime);
+        for (int i = 0; i < maxSpawnCount; i++)
+        {
+            StartCoroutine(SpawnValue(0));
+            spawnCount++;
+        }
+
+    }
+
+    IEnumerator SpawnValue(float respwanTime)
+    {
+        yield return new WaitForSeconds(respwanTime);
+        int randomIndex = Random.Range(0, 100);
         Vector3 randomPos = map.GetRandomPosition();
+        MiningResource miningResource = GetComponent<MiningResource>();
+
         if (randomIndex < 10)
         {
-            
-            if(randomIndex < 5)
+
+            if (randomIndex < 5)
             {
-                GameObject newResource = Instantiate(Objects[4], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("4");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal Purple", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
             else
             {
-                GameObject newResource = Instantiate(Objects[5], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("5");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal Purple 2", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
 
         }
@@ -86,27 +74,28 @@ public class ResourceObject : MonoBehaviour
         {
             if (randomIndex < 20)
             {
-                GameObject newResource = Instantiate(Objects[3], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("3");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal Blue", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
             else
             {
-                GameObject newResource = Instantiate(Objects[2], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("2");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal Blue 2", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
         }
         else
         {
             if (randomIndex < 70)
             {
-                GameObject newResource = Instantiate(Objects[1], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("1");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
             else
             {
-                GameObject newResource = Instantiate(Objects[0], randomPos, Quaternion.identity, parentTransform);
-                Debug.Log("0");
+                GameObject newResource = Managers.Resource.Instantiate("Crystal 2", randomPos);
+                newResource.transform.SetParent(parentTransform);
             }
         }
+
     }
 }
