@@ -47,6 +47,18 @@ public class EnemyStat : StatHandler
             TakeDamage(10);
         }
     }
+
+    public override void Damage(float damage)
+    {
+
+        Health -= damage;
+        healthBar.UpdateUI(Health, maxHealth);
+
+        if (Health > 0)
+            TakeDamage(damage);
+        else
+            isDead = true;
+    }
     public void TakeDamage(float Damage)
     {
         if (Health > 0)
