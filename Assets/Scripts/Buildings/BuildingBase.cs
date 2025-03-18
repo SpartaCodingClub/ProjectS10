@@ -39,7 +39,6 @@ public class BuildingBase : Poolable
         }
     }
 
-
     //public virtual void TakeDamage(float damage)
     //{
     //    currentHealth -= damage;
