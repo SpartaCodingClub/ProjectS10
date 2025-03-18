@@ -58,7 +58,6 @@ public class BuildingBase : Poolable
         if (destruction != null)
         {
             destruction.StartDestruction();
-            return;
         }
 
         Managers.Resource.Destroy(gameObject);

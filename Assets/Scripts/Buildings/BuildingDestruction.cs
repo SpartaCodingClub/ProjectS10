@@ -3,42 +3,38 @@ using UnityEngine;
 
 public class BuildingDestruction : MonoBehaviour
 {
-    private Material[] materials;
-    private float dissolveAmount = 0;
-    public float dissolveSpeed = 1f;
-    public ParticleSystem destructionEffect; 
-
-    private void Start()
-    {
-        materials = GetComponent<Renderer>().materials;
-    }
+    public ParticleSystem destructionEffect;
 
     public void StartDestruction()
     {
         if (destructionEffect != null)
         {
             Debug.Log("파티클 실행됨");
-            destructionEffect.Play(); 
+            destructionEffect.Play();
         }
-        StartCoroutine(DissolveEffect());
+
+        StartCoroutine(ScaleDownEffect());
     }
 
-    private IEnumerator DissolveEffect()
+    private IEnumerator ScaleDownEffect()
     {
-        while (dissolveAmount < 1)
-        {
-            dissolveAmount += Time.deltaTime * dissolveSpeed;
+        float duration = 1.0f;
+        float timer = 0f;
+        Vector3 originalScale = transform.localScale;
 
-            foreach (var mat in materials)
-            {
-                if (mat.HasProperty("_DissolveAmount"))
-                {
-                    mat.SetFloat("_DissolveAmount", dissolveAmount);
-                }
-            }
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float scaleAmount = Mathf.Lerp(1f, 0f, timer / duration);
+            transform.localScale = originalScale * scaleAmount;
+
+            float shakeAmount = Mathf.Sin(timer * 30f) * 0.05f;
+            transform.position += new Vector3(shakeAmount, 0, 0);
+
             yield return null;
         }
-        yield return new WaitForSeconds(1.5f);
+
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }
