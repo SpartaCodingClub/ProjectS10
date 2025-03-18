@@ -1,9 +1,5 @@
 using DG.Tweening;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AI;
 public enum State
@@ -62,9 +58,15 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        playerTarget = Managers.Game.Player.gameObject.transform; 
+        playerTarget = Managers.Game.Player.gameObject.transform;
+        agent.enabled = true;
         agent.speed = enemyStat.Speed;
         SetState(State.Wandering);
+    }
+
+    private void OnDisable()
+    {
+        transform.DOKill();
     }
 
     private void FixedUpdate()
@@ -122,12 +124,12 @@ public class EnemyController : MonoBehaviour
 
         else if (_state == State.Wandering && agent.remainingDistance < 0.5f)
         {
-            
+
             SetState(State.Idle);
             Invoke("WanderToNewLocation", wanderWaitTime);
         }
 
-        
+
     }
 
     // 이동
@@ -176,7 +178,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             SetState(State.Wandering); // 찾은 대상이 없으면 다시 배회 상태로 변경
-        }        
+        }
     }
 
     public void FindPlayerTarget()
@@ -222,7 +224,7 @@ public class EnemyController : MonoBehaviour
     //공격 주기를 코루틴으로 설정
     private IEnumerator AttackRateRoutine()
     {
-        yield return new WaitForSeconds(attackRate); 
+        yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
 
@@ -240,12 +242,12 @@ public class EnemyController : MonoBehaviour
             if (hit.transform.gameObject == target.gameObject && target.gameObject != null)
             {
                 Vector3 targetPoint = hit.collider.ClosestPoint(transform.position);
-                
+
                 transform.DOLookAt(targetPoint, 1.0f);
                 attackRaycast = true;
                 break;
             }
-                
+
         }
 
         return attackRaycast;
@@ -261,6 +263,11 @@ public class EnemyController : MonoBehaviour
 
     public void Attacking()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         switch (enemyStat.eclass)
         {
             case E_Class.Melee:

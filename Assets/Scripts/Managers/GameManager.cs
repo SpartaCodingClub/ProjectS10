@@ -81,7 +81,10 @@ public class GameManager
 
     private int currentStage;
     private int currentKill;
+    private int targetKill;
     private int currentWave;
+
+    private readonly float timer = 6.0f;
 
     public void Initialize()
     {
@@ -107,7 +110,7 @@ public class GameManager
     {
         Managers.Game.Player.enabled = true;
         stageUI = Managers.UI.Show<UI_Stage>();
-        stageUI.SetTimer(60.0f, WaveStart);
+        stageUI.SetTimer(timer, WaveStart);
     }
 
     private void WaveStart()
@@ -115,13 +118,27 @@ public class GameManager
         CurrentMap.Open();
 
         Managers.Enemy.StartWave(++currentWave);
-        stageUI.UpdateUI(0, currentWave * 2, ++currentStage);
+        targetKill = currentWave * 2 + (currentWave % 2 == 0 ? 1 : 0) + (currentWave % 3 == 0 ? 1 : 0);
+        stageUI.UpdateUI(0, targetKill, ++currentStage);
 
         DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
     }
 
+    private void NextWaveReady()
+    {
+        CurrentMap.Open();
+        stageUI.SetTimer(timer, WaveStart);
+
+        currentKill = 0;
+        targetKill = 0;
+    }
+
     public void KillMonster()
     {
-        stageUI.UpdateUI(++currentKill, currentWave * 2, currentStage);
+        stageUI.UpdateUI(++currentKill, targetKill, currentStage);
+        if (currentKill == targetKill)
+        {
+            NextWaveReady();
+        }
     }
 }

@@ -87,7 +87,7 @@ public class UI_Stage : UI_SubItem
 
     private IEnumerator Filling()
     {
-        while (sliderWave.value > 0.0f)
+        while (sliderWave.value > 0.01f)
         {
             sliderWave.value = Mathf.Lerp(sliderWave.value, 0.0f, 5.0f * Time.deltaTime);
             yield return null;

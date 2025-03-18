@@ -13,7 +13,7 @@ public enum EnemyType
     E_Count,
 
     E_MiniBossCavalry,
-    E_Boss_Dragon
+    E_BossDragon
 }
 
 public class EnemyManger
@@ -60,7 +60,7 @@ public class EnemyManger
 
         if (waveCount % 3 == 0)
         {
-            BossSpawnRandomEnemy(Resources.Load<GameObject>($"Objects/{EnemyType.E_Boss_Dragon}"));
+            BossSpawnRandomEnemy(Resources.Load<GameObject>($"Objects/{EnemyType.E_BossDragon}"));
         }
 
         enemySpawnComplite = true;
@@ -82,7 +82,8 @@ public class EnemyManger
 
         // 적 생성 및 리스트에 추가
         GameObject spawnedEnemy = Managers.Resource.Instantiate(randomPrefab);
-        spawnedEnemy.transform.position = new Vector3(randomPosition.x, randomPosition.y, randomPosition.z);
+        spawnedEnemy.transform.position = randomPosition;
+
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
 
         activeEnemies.Add(enemyController);
@@ -134,9 +135,9 @@ public class EnemyManger
 
         // 적 생성 및 리스트에 추가
         GameObject spawnedEnemy = Managers.Resource.Instantiate(boss);
-        spawnedEnemy.transform.position = new Vector3(randomPosition.x, randomPosition.y, randomPosition.z);
-        EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
+        spawnedEnemy.transform.position = randomPosition;
 
+        EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
         activeEnemies.Add(enemyController);
     }
 }
