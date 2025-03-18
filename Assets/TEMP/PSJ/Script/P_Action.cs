@@ -31,7 +31,6 @@ public class P_Action : MonoBehaviour
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         forceMod = false;
-        
     }
 
     private void Update()
