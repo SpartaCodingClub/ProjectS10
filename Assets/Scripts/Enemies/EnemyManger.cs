@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyObject : MonoBehaviour
+public class EnemyManger : MonoBehaviour
 {
     private Coroutine waveRoutine;
 

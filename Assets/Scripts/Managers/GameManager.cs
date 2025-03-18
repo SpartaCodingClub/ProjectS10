@@ -109,6 +109,8 @@ public class GameManager
     private void WaveStart()
     {
         CurrentMap.Open();
-        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
+        stageUI.UpdateUI(0, 10, 1);
+
+        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
     }
 }
