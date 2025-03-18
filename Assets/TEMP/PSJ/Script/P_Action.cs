@@ -31,7 +31,7 @@ public class P_Action : MonoBehaviour
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         forceMod = false;
-        InvokeRepeating(nameof(WarpingNavmesh), 0, 0.5f);
+        
     }
 
     private void Update()
