@@ -7,6 +7,7 @@ public class TurretRotation : MonoBehaviour
 
     public void EnableRotation()
     {
+        Debug.Log("Turret Rotation Enabled!");
         InvokeRepeating("FindTarget", 0f, 0.5f); 
     }
 
@@ -16,6 +17,8 @@ public class TurretRotation : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
+
+        Debug.Log($"적 개수: {enemies.Length}");
 
         foreach (GameObject enemy in enemies)
         {
@@ -33,11 +36,21 @@ public class TurretRotation : MonoBehaviour
 
     private void Update()
     {
-        if (target == null) return;
+        if (target == null)
+        {
+            Debug.Log("타겟 없음");
+            return;
+        }
 
         Vector3 direction = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
 
+        if (direction == Vector3.zero) 
+        {
+            Debug.LogWarning("Look rotation viewing vector is zero. 회전할 방향이 없습니다!");
+            return;
+        }
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed * 2f);
     }
 }

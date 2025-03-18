@@ -4914,7 +4914,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7413812349885389859}
@@ -9747,7 +9747,7 @@ MonoBehaviour:
   speed: 7
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   Enemytag: []
   particle: {fileID: 4302819955691939951, guid: 563328480fec2644ebffaa000c9f1fcc, type: 3}
 --- !u!54 &1545084578465282760
@@ -9812,6 +9812,18 @@ PrefabInstance:
     - target: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
       propertyPath: m_RootOrder
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10132,6 +10144,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1688021419294208396, guid: b5c49b7d08769594c855059bca8bebf5, type: 3}
+      propertyPath: m_PreviewTimeScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688021419294208396, guid: b5c49b7d08769594c855059bca8bebf5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8d4f533abe3d4064e83a3cbdff898568, type: 2}
@@ -10316,6 +10332,18 @@ PrefabInstance:
     - target: {fileID: 7428491531972119129, guid: 9132de837bfa5f547b86c7496dd963f4, type: 3}
       propertyPath: m_RootOrder
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428491531972119129, guid: 9132de837bfa5f547b86c7496dd963f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428491531972119129, guid: 9132de837bfa5f547b86c7496dd963f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428491531972119129, guid: 9132de837bfa5f547b86c7496dd963f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7428491531972119129, guid: 9132de837bfa5f547b86c7496dd963f4, type: 3}
       propertyPath: m_LocalPosition.x

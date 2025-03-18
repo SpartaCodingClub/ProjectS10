@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingWell : BuildingBase
 {
     public float waterRecoveryAmount = 20f;
+    public float hungerRecoveryAmount = 15f;
     private bool canUse = true;
     private bool canInteract = false;
 
@@ -24,7 +25,7 @@ public class BuildingWell : BuildingBase
         }
     }
 
-    public void RecoverWater()
+    public void Recovery()
     {
         if (!canUse || !canInteract) return;
 
@@ -33,6 +34,10 @@ public class BuildingWell : BuildingBase
         {
             playerStat.Water += waterRecoveryAmount;
             playerStat.Water = Mathf.Clamp(playerStat.Water, 0, 100);
+
+            playerStat.Water = Mathf.Clamp(playerStat.Water, 0, 100);
+            playerStat.Hunger = Mathf.Clamp(playerStat.Hunger, 0, 100);
+
             StartCoroutine(Cooldown());
         }
     }

@@ -41,11 +41,6 @@ public class BuildingManager
         {
             RemoveBuilding();
         }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DestroyBuilding();
-        }
     }
 
     public void StartBuilding(ItemData itemData)
@@ -138,20 +133,20 @@ public class BuildingManager
         placedBuildings.Remove(obj);
     }
 
-    public void DestroyBuilding()
-    {
-        if (placedBuildings.Count > 0)
-        {
-            GameObject lastBuilding = placedBuildings[placedBuildings.Count - 1];
-            BuildingBase buildingComponent = lastBuilding.GetComponent<BuildingBase>();
+    //public void DestroyBuilding()
+    //{
+    //    if (placedBuildings.Count > 0)
+    //    {
+    //        GameObject lastBuilding = placedBuildings[placedBuildings.Count - 1];
+    //        BuildingBase buildingComponent = lastBuilding.GetComponent<BuildingBase>();
 
-            if (buildingComponent != null)
-            {
-                buildingComponent.DestroyBuilding();
-                Managers.Instance.StartCoroutine(WaitAndRemove(lastBuilding, 2f));
-            }
-        }
-    }
+    //        if (buildingComponent != null)
+    //        {
+    //            buildingComponent.DestroyBuilding();
+    //            Managers.Instance.StartCoroutine(WaitAndRemove(lastBuilding, 2f));
+    //        }
+    //    }
+    //}
 
     private IEnumerator WaitAndRemove(GameObject obj, float delay)
     {

@@ -14,21 +14,6 @@ public class TurretShooting : MonoBehaviour
         InvokeRepeating("Shoot", 0f, fireRate); 
     }
 
-    public void DisableShooting()
-    {
-        isShooting = false;
-        CancelInvoke(nameof(Shoot));
-
-        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject bullet in bullets)
-        {
-            if (bullet.activeInHierarchy)
-            {
-                Managers.Pool.Push(bullet.GetComponent<Poolable>());
-            }
-        }
-    }
-
     private void Shoot()
     {
         if (!isShooting || Time.time < nextFireTime) return;
