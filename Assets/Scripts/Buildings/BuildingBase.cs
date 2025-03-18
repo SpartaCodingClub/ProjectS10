@@ -5,9 +5,7 @@ using UnityEngine;
 public class BuildingBase : Poolable
 {
     [SerializeField] private ItemData buildingData;
-
     private BuildingAnimation buildingAnimation;
-
     private float currentHealth;
     private float buildingHeight;
 
@@ -16,6 +14,9 @@ public class BuildingBase : Poolable
     public float CurrentHealth => currentHealth;
     public Vector3Int ResourceCost => buildingData.ResourceAmount;
     public float BuildTime => buildingData.BuildTime;
+
+    public float BuildingHeight => buildingHeight;
+    public BuildingAnimation BuildingAnim => buildingAnimation;
 
     public virtual void Initialize()
     {
@@ -53,12 +54,19 @@ public class BuildingBase : Poolable
     public virtual void DestroyBuilding()
     {
         Debug.Log($"DestroyBuilding() 실행됨");
-        BuildingDestruction destruction = GetComponent<BuildingDestruction>();
 
-        if (destruction != null)
+        if (buildingAnimation != null)
         {
-            destruction.StartDestruction();
+            Debug.Log($"DestroyBuilding() 애니메이션 실행");
+            buildingAnimation.RemoveAnimation(1.5f, buildingHeight);
         }
+
+        StartCoroutine(DestroyRoutine(1.5f));
+    }
+
+    private IEnumerator DestroyRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
 
         Managers.Resource.Destroy(gameObject);
     }

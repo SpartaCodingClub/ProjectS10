@@ -125,33 +125,14 @@ public class BuildingManager
     // 코루틴 점검 필요
     private IEnumerator RemoveBuildingWithDelay(BuildingBase building, GameObject obj, float delay)
     {
-        // 건물 철거 애니메이션 실행
-        building.StartRemoving(delay);
+        if (building.BuildingAnim != null) 
+        {
+            building.BuildingAnim.RemoveAnimation(delay, building.BuildingHeight); 
+        }
 
         yield return new WaitForSeconds(delay);
 
-        // 리스트에서 제거
         placedBuildings.Remove(obj);
-    }
-
-    //public void DestroyBuilding()
-    //{
-    //    if (placedBuildings.Count > 0)
-    //    {
-    //        GameObject lastBuilding = placedBuildings[placedBuildings.Count - 1];
-    //        BuildingBase buildingComponent = lastBuilding.GetComponent<BuildingBase>();
-
-    //        if (buildingComponent != null)
-    //        {
-    //            buildingComponent.DestroyBuilding();
-    //            Managers.Instance.StartCoroutine(WaitAndRemove(lastBuilding, 2f));
-    //        }
-    //    }
-    //}
-
-    private IEnumerator WaitAndRemove(GameObject obj, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        placedBuildings.Remove(obj);
+        Managers.Resource.Destroy(obj);
     }
 }
