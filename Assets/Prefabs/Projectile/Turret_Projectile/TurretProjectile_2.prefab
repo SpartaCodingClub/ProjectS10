@@ -9789,6 +9789,7 @@ GameObject:
   - component: {fileID: 8143678713435518174}
   - component: {fileID: 696080310306155821}
   - component: {fileID: 9106403100162123593}
+  - component: {fileID: -5123973253501064715}
   m_Layer: 0
   m_Name: TurretProjectile_2
   m_TagString: Untagged
@@ -14640,13 +14641,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86be49dcdec008c408720be205eb6d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
+  atk: 7
   speed: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048
-  Enemytag: []
-  particle: {fileID: 6850452143248495680, guid: 24290119fa33d31438323810eb890b8a, type: 3}
+  Enemytag:
+  - Enemy
+  particle: {fileID: 0}
 --- !u!54 &9106403100162123593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14674,6 +14676,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &-5123973253501064715
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136885025620135791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4391579414741317511
 GameObject:
   m_ObjectHideFlags: 0
@@ -44508,40 +44531,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3742404362350686232, guid: 501c389e10594254382f18da11aaff7d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2144635191832289315}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501c389e10594254382f18da11aaff7d, type: 3}
 --- !u!4 &1643015964584543676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8361114757782045861, guid: 501c389e10594254382f18da11aaff7d, type: 3}
   m_PrefabInstance: {fileID: 7117252850165186841}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5848556551575662849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3742404362350686232, guid: 501c389e10594254382f18da11aaff7d, type: 3}
-  m_PrefabInstance: {fileID: 7117252850165186841}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &2144635191832289315
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5848556551575662849}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
