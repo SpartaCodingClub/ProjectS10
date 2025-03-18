@@ -25,6 +25,14 @@ public class BuildingWell : BuildingBase
         }
     }
 
+    private void Update()
+    {
+        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        {
+            Recovery();
+        }
+    }
+
     public void Recovery()
     {
         if (!canUse || !canInteract) return;
@@ -38,6 +46,7 @@ public class BuildingWell : BuildingBase
             playerStat.Water = Mathf.Clamp(playerStat.Water, 0, 100);
             playerStat.Hunger = Mathf.Clamp(playerStat.Hunger, 0, 100);
 
+            Debug.Log($"우물 사용");
             StartCoroutine(Cooldown());
         }
     }
