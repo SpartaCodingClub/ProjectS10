@@ -10951,7 +10951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileprefab:
   - {fileID: 7252990972716903678, guid: 2005845bbfbf009438b2b2931346786a, type: 3}
-  offset: {x: 0, y: 3, z: 2}
+  offset: {x: 0, y: 1.5, z: 2}
 --- !u!1 &4304356271458937071
 GameObject:
   m_ObjectHideFlags: 0

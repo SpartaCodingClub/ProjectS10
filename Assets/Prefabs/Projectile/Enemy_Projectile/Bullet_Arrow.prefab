@@ -52,7 +52,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 448
-  tag:
+  Enemytag:
   - Player
   particle: {fileID: 0}
 --- !u!54 &4101892448693708929
