@@ -103,12 +103,14 @@ public class GameManager
     {
         Managers.Game.Player.enabled = true;
         stageUI = Managers.UI.Show<UI_Stage>();
-        stageUI.SetTimer(60.0f, WaveStart);
+        stageUI.SetTimer(6.0f, WaveStart);
     }
 
     private void WaveStart()
     {
         CurrentMap.Open();
+        stageUI.UpdateUI(0, 10, 1);
+
         DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
     }
 }
