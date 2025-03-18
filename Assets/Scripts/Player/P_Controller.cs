@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         projectile = GetComponent<ProjectileHandler>();
         PlayerAction = GetComponent<P_Action>();
         playerinput = GetComponent<PlayerInput>();
+        Managers.Game.Player = this;
     }
 
     private void Start()
@@ -64,7 +65,6 @@ public class PlayerController : MonoBehaviour
         charControl = GetComponent<CharacterController>();
 
         StartYPos = transform.position.y;
-        Managers.Game.Player = this;
     }
 
     private void Update()
