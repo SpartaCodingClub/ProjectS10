@@ -10874,7 +10874,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4279410003511900116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -23899,7 +23899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4902686593381412739, guid: 74741086e7be1104e8ddb82edcdf7771, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4902686593381412739, guid: 74741086e7be1104e8ddb82edcdf7771, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

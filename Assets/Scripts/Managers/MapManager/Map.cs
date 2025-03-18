@@ -103,6 +103,7 @@ public class Map : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(90.0f * Random.Range(0, 4) * Vector3.up);
                 Instantiate(prefab_Tile, position, rotation, Tiles);
 
+                position.x -= 10.0f;
                 EnemySpawnPosition = position;
             }
         }
