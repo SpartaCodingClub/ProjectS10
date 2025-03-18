@@ -18,21 +18,14 @@ public class TurretShooting : MonoBehaviour
     {
         if (!isShooting || Time.time < nextFireTime) return;
 
-        GameObject bullet = Managers.Pool.TryPop("Bullet");
-
-        if (bullet == null)
-        {
-            bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        }
-
-        bullet.transform.position = firePoint.position;
-        bullet.transform.rotation = firePoint.rotation;
-        bullet.SetActive(true);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = firePoint.forward * 10f;
         bullet.GetComponent<Projectile>().Init();
 
         nextFireTime = Time.time + fireRate;
+
+        Destroy(bullet, 5f);
     }
 }
