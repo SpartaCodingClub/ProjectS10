@@ -57,7 +57,7 @@ public class P_Action : MonoBehaviour
     }
     public void CancelBuilding()
     {
-        if (curBuildCoroutine != null && forceMod != true) 
+        if (curBuildCoroutine != null && forceMod == false) 
         {
             CancelFunction();
         }
