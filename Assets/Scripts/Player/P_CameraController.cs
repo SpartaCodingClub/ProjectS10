@@ -39,8 +39,7 @@ public class P_CameraController : MonoBehaviour
 
     void TargetFollowing()
     {
-        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - 5.5f);
-        //Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (minDiffZ + (maxDiffZ - minDiffZ) * curve.Evaluate(curAngle)));
+        Vector3 targetPos = new Vector3(target.position.x, cam.transform.position.y, target.position.z - (minDiffZ + (maxDiffZ - minDiffZ) * curve.Evaluate(curAngle)));
         cam.transform.position = Vector3.Lerp(cam.transform.position, targetPos, followingSpeed * Time.deltaTime);
         Quaternion targetrotation = Quaternion.LookRotation(target.position - cam.transform.position);
         targetrotation.y = 0;

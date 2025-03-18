@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float atk = 0;
     [SerializeField] float speed = 5f;
     [SerializeField] LayerMask enemyLayer;
-    [SerializeField] List<string> tag;
+    [SerializeField] List<string> Enemytag;
     [SerializeField] ParticleSystem particle;
     Vector3 direction;
     Rigidbody rigid;
@@ -29,9 +29,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (CanAttack == false)
+            return;
         if (enemyLayer.value == (enemyLayer.value | (1 << other.gameObject.layer)))
         {
-            foreach (string t in tag)
+            foreach (string t in Enemytag)
             {
                 if (other.tag.Equals(t))
                 {
