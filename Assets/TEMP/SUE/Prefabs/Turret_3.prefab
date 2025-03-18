@@ -118,7 +118,7 @@ PrefabInstance:
       addedObject: {fileID: 1631110486046330930}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 794daaec53a28b84ab43194e24cf71c7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5727643003852110088}
+      addedObject: {fileID: -5624458991384450813}
   m_SourcePrefab: {fileID: 100100000, guid: 794daaec53a28b84ab43194e24cf71c7, type: 3}
 --- !u!4 &2595925500540760555 stripped
 Transform:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2224c5bbe86df344d875b1dad7c6693d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingData: {fileID: 0}
+  buildingData: {fileID: 11400000, guid: 61d38637e3b87564d98bda6ad2cca656, type: 2}
 --- !u!114 &-7800628255975730598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff833bb00a388ef40b5ec1e9429f5b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveSpeed: 1
   destructionEffect: {fileID: 2372817309799438414, guid: 1b55b0300b8952843943e448554fef23, type: 3}
 --- !u!114 &-718005574738724939
 MonoBehaviour:
@@ -219,7 +218,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4136885025620135791, guid: f7feab1f581b280408c7aca645840814, type: 3}
   firePoint: {fileID: 7860328884050822143}
   fireRate: 3
---- !u!114 &-5727643003852110088
+--- !u!114 &-5624458991384450813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +227,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3408456160409054033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
+  m_Script: {fileID: 11500000, guid: f7fc9e94df5222a418c16db73cfc8c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: 61d38637e3b87564d98bda6ad2cca656, type: 2}

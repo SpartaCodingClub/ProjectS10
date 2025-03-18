@@ -74,12 +74,6 @@ public class BuildingBase : Poolable
 
     private IEnumerator RemoveRoutine(float removeTime)
     {
-        if (currentHealth > 0)
-        {
-            Debug.Log("건물 체력이 남아있습니다.");
-            yield break;
-        }
-
         yield return new WaitForSeconds(removeTime);
         Managers.Resource.Destroy(gameObject);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingWell : MonoBehaviour
+public class BuildingWell : BuildingBase
 {
     public float waterRecoveryAmount = 20f;
     private bool canUse = true;
@@ -26,30 +26,14 @@ public class BuildingWell : MonoBehaviour
 
     public void RecoverWater()
     {
-        if (!canUse)
+        if (!canUse || !canInteract) return;
+
+        P_Stat playerStat = Managers.Game.Player?.GetComponent<P_Stat>();
+        if (playerStat != null)
         {
-            Debug.Log("쿨타임");
-            return;
-        }
-
-        if (!canInteract)
-        {
-            Debug.Log("플레이어가 너무 멀리 있음");
-            return;
-        }
-
-        if (Managers.Game.Player != null)
-        {
-            P_Stat playerStat = Managers.Game.Player.GetComponent<P_Stat>();
-
-            if (playerStat != null)
-            {
-                playerStat.Water += waterRecoveryAmount;
-                playerStat.Water = Mathf.Clamp(playerStat.Water, 0, 100);
-                Debug.Log("식수 게이지: " + playerStat.Water);
-
-                StartCoroutine(Cooldown());
-            }
+            playerStat.Water += waterRecoveryAmount;
+            playerStat.Water = Mathf.Clamp(playerStat.Water, 0, 100);
+            StartCoroutine(Cooldown());
         }
     }
 

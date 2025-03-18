@@ -9748,7 +9748,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  tag: 
+  Enemytag: []
+  particle: {fileID: 4302819955691939951, guid: 563328480fec2644ebffaa000c9f1fcc, type: 3}
 --- !u!54 &1545084578465282760
 Rigidbody:
   m_ObjectHideFlags: 0

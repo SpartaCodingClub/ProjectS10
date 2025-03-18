@@ -72,9 +72,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f3a723e7f160c24b99a677a8e67c2ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8551901436552492476}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f3a723e7f160c24b99a677a8e67c2ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8246730296284255434}
   m_SourcePrefab: {fileID: 100100000, guid: 1f3a723e7f160c24b99a677a8e67c2ca, type: 3}
 --- !u!1 &1739148478318478145 stripped
 GameObject:
@@ -93,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8790b6aae8c18d242a0fdb397d91f0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingData: {fileID: 11400000, guid: 549081c85d638204bbc2217a1bcf8cb2, type: 2}
   healthRecoveryAmount: 30
 --- !u!65 &4727967095303138641
 BoxCollider:
@@ -139,18 +137,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff833bb00a388ef40b5ec1e9429f5b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveSpeed: 1
   destructionEffect: {fileID: 2372817309799438414, guid: 1b55b0300b8952843943e448554fef23, type: 3}
---- !u!114 &8246730296284255434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739148478318478145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb33397a2cdc0a40840b8437b18e8bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: 549081c85d638204bbc2217a1bcf8cb2, type: 2}
