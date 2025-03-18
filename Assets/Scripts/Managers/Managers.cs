@@ -12,6 +12,7 @@ public class Managers : MonoBehaviour
     public static readonly PoolManager Pool = new();
     public static readonly ResourceManager Resource = new();
     public static readonly UIManager UI = new();
+    public static readonly EnemyManger Enemy = new();
 
     private void Awake()
     {
