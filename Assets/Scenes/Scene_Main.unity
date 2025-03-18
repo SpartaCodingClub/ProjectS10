@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3221412933329098493, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      propertyPath: attack
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3657726037723415380, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: m_Layer
       value: 6
