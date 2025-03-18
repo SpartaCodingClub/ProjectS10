@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingBase : Poolable
+public class BuildingBase : MonoBehaviour
 {
     [SerializeField] private ItemData buildingData;
     private BuildingAnimation buildingAnimation;
@@ -67,8 +67,7 @@ public class BuildingBase : Poolable
     private IEnumerator DestroyRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        Managers.Resource.Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     public virtual void StartRemoving(float removeTime)
@@ -83,6 +82,6 @@ public class BuildingBase : Poolable
     private IEnumerator RemoveRoutine(float removeTime)
     {
         yield return new WaitForSeconds(removeTime);
-        Managers.Resource.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
