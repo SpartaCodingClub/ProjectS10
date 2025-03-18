@@ -6,7 +6,6 @@ public class Managers : MonoBehaviour
 
     public static readonly AudioManager Audio = new();
     public static readonly BuildingManager Building = new();
-    public static readonly DataManager Data = new();
     public static readonly GameManager Game = new();
     public static readonly ItemManager Item = new();
     public static readonly PoolManager Pool = new();
