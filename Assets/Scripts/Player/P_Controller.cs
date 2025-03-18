@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            PlayerAction.WarpingNavmesh();
             curMovementInput = context.ReadValue<Vector2>();
             PlayerAction.CancelBuilding();
         }

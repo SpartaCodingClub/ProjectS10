@@ -908,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7416941870249712170, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: checkRadius
-      value: 0.52
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7416941870249712170, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: collisionLayerMask.m_Bits

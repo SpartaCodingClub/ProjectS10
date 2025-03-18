@@ -20,6 +20,7 @@ public class P_Action : MonoBehaviour
     public bool IsChasing { get { return isChasing; } }
     Coroutine curBuildCoroutine;
     Coroutine curMoveToCoroutine;
+    public NavMeshAgent NavMeshAg {  get { return navMeshAgent; } }
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class P_Action : MonoBehaviour
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         forceMod = false;
+        InvokeRepeating(nameof(WarpingNavmesh), 0, 0.5f);
     }
 
     private void Update()
@@ -70,6 +72,7 @@ public class P_Action : MonoBehaviour
 
     void CancelFunction()
     {
+        navMeshAgent.updateRotation = false;
         CancelcurBuildCoroutine();
         CancelCurMoveCoroutine();
         forceMod = false;
@@ -94,6 +97,10 @@ public class P_Action : MonoBehaviour
 
     #endregion
 
+    public void WarpingNavmesh()
+    {
+        navMeshAgent.Warp(transform.position);
+    }
     private void StartBuilding()
     {
         curBuildCoroutine = StartCoroutine(Building());
@@ -105,6 +112,7 @@ public class P_Action : MonoBehaviour
     }
     IEnumerator Building()
     {
+        navMeshAgent.updateRotation = true;
         BuildingBase ac;
         actionQueue.TryDequeue(out ac);
         if (ac == null)
@@ -118,6 +126,7 @@ public class P_Action : MonoBehaviour
         yield return new WaitForSeconds(3);
         isChasing = false;
         curBuildCoroutine = null;
+        navMeshAgent.updateRotation = false;
         yield return new WaitForFixedUpdate();
     }
 
@@ -135,6 +144,7 @@ public class P_Action : MonoBehaviour
     IEnumerator MoveTo(Vector3 targetPos)
     {
         //경로 지정
+        navMeshAgent.updateRotation = true;
         Managers.Game.NavMeshSurface.BuildNavMesh();
         navMeshAgent.Warp(transform.position);
         navMeshAgent.SetDestination(targetPos);
@@ -160,6 +170,7 @@ public class P_Action : MonoBehaviour
         isChasing = false;
         curMoveToCoroutine = null;
         navMeshAgentReset();
+        navMeshAgent.updateRotation = false;
         yield return new WaitForFixedUpdate();
     }
 }
