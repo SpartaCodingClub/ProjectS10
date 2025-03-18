@@ -11,7 +11,7 @@ public class TurretShooting : MonoBehaviour
     public void EnableShooting()
     {
         isShooting = true;
-        InvokeRepeating("Shoot", 0f, fireRate); 
+        InvokeRepeating("Shoot", 0f, fireRate);
     }
 
     private void Shoot()
@@ -31,6 +31,7 @@ public class TurretShooting : MonoBehaviour
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = firePoint.forward * 10f;
+        bullet.GetComponent<Projectile>().Init();
 
         nextFireTime = Time.time + fireRate;
     }

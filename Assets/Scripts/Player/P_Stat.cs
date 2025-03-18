@@ -27,6 +27,7 @@ public class P_Stat : StatHandler
     [Header("전투 관련")]
     public float InvincibleTime;
     public bool CanDamage;
+    public bool isDead;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class P_Stat : StatHandler
         PlusSpeed = 0;
         CanDamage = true;
         isStart = false;
+        isDead = false;
     }
 
     public void Init()
@@ -66,8 +68,12 @@ public class P_Stat : StatHandler
             player.PStat.Health -= hpDecreaseSpeedByHunger * Time.deltaTime;
             statusBar.UpdateUI(UI_StatusBar.Type.Health, Health, 100);
         }
-        if (Health <= 0)
+        if (Health <= 0 && isDead == false)
+        {
+            isDead = true;
+            CanDamage = false;
             player.pAnimationHandler.PlayDie();
+        }
     }
 
     public override void Damage(float damage)
@@ -80,6 +86,10 @@ public class P_Stat : StatHandler
         if (Health > 0)
             DamageAction();
         else
+        {
+            isDead = true;
+            CanDamage = false;
             player.pAnimationHandler.PlayDie();
+        }
     }
 }
