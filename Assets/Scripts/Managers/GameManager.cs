@@ -108,7 +108,7 @@ public class GameManager
 
     private void GameStart()
     {
-        Managers.Game.Player.enabled = true;
+        Managers.Game.Player.Init();
         stageUI = Managers.UI.Show<UI_Stage>();
         stageUI.SetTimer(timer, WaveStart);
     }

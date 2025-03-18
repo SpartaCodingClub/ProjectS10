@@ -9,7 +9,7 @@ public class BuildingAnimation : MonoBehaviour
 
     public void PlayAnimation(float constructionTime, float buildingHeight)
     {
-        animationTime = constructionTime;
+        animationTime = Mathf.Max(constructionTime * 0.3f, 0.3f);
 
         startPos = new Vector3(transform.position.x, -buildingHeight, transform.position.z);
         finalPos = new Vector3(transform.position.x, 0, transform.position.z);

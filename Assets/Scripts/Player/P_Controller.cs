@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
     public CharacterController CharacterController { get { return charControl; } }
     public Vector2 CurMovementInput { get { return curMovementInput; } }
 
+    public void Init()
+    {
+        this.enabled = true;
+        PStat.Init();
+    }
+
     private void Awake()
     {
         PEquip = GetComponent<P_Equipment>();
