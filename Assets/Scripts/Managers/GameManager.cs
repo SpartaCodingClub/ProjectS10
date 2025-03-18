@@ -84,7 +84,7 @@ public class GameManager
     private int targetKill;
     private int currentWave;
 
-    private readonly float timer = 6.0f;
+    private readonly float timer = 15.0f;
 
     public void Initialize()
     {

@@ -10,6 +10,8 @@ public class P_Action : MonoBehaviour
 {
     PlayerController player;
     [SerializeField] private Queue<BuildingBase> actionQueue = new Queue<BuildingBase>();
+    [Header("현재 건물")]
+    [SerializeField] private BuildingBase curBuilding;
     [Header("Nav Mesh 관련")]
     [SerializeField] Vector3 offset;
     [SerializeField] bool isChasing;
@@ -35,7 +37,7 @@ public class P_Action : MonoBehaviour
     private void Update()
     {
         navMeshAgent.velocity = player.CharacterController.velocity;
-        if (actionQueue.Count > 0 && curBuildCoroutine == null)
+        if (actionQueue.Count > 0 && curBuildCoroutine == null && curBuilding == null)  
             StartBuilding();
         navMeshAgent.nextPosition = transform.position;
     }
@@ -75,6 +77,11 @@ public class P_Action : MonoBehaviour
         CancelcurBuildCoroutine();
         CancelCurMoveCoroutine();
         forceMod = false;
+        if (curBuilding != null)
+        {
+            curBuilding.StartRemoving(1.5f);
+        }
+        curBuilding = null;
         navMeshAgentReset();
         isChasing = false;
         player.pAnimationHandler.ChangeIsWorking(false);
@@ -91,7 +98,12 @@ public class P_Action : MonoBehaviour
     }
     public void AllListDelete()
     {
+        foreach(var action in actionQueue)
+        {
+            action.StartRemoving(1.5f);
+        }
         actionQueue.Clear();
+        Debug.Log("큐 청소");
     }
 
     #endregion
@@ -102,7 +114,8 @@ public class P_Action : MonoBehaviour
     }
     private void StartBuilding()
     {
-        curBuildCoroutine = StartCoroutine(Building());
+        if (curBuildCoroutine == null) 
+            curBuildCoroutine = StartCoroutine(Building());
     }
     public void ForceMove(Vector3 targetPos, bool DoorClose)
     {
@@ -112,17 +125,18 @@ public class P_Action : MonoBehaviour
     IEnumerator Building()
     {
         navMeshAgent.updateRotation = true;
-        BuildingBase ac;
-        actionQueue.TryDequeue(out ac);
-        if (ac == null)
+        actionQueue.TryDequeue(out curBuilding);
+        if (curBuilding == null)
             yield break;
-        curMoveToCoroutine = StartCoroutine(MoveTo(ac.transform.position));
+        curMoveToCoroutine = StartCoroutine(MoveTo(curBuilding.transform.position));
         yield return curMoveToCoroutine;
         Debug.Log("도착!");
         //도착 후 건물 건설 시작 and 그만큼 대기.
         isChasing = true;
-        player.pAnimationHandler.PlayBuilding(3);
-        yield return new WaitForSeconds(3);
+        curBuilding.Initialize();
+        player.pAnimationHandler.PlayBuilding(curBuilding.BuildTime);
+        yield return new WaitForSeconds(curBuilding.BuildTime);
+        curBuilding = null;
         isChasing = false;
         curBuildCoroutine = null;
         navMeshAgent.updateRotation = false;

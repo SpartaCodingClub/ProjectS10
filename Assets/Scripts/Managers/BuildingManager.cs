@@ -70,7 +70,7 @@ public class BuildingManager
 
         CancelBuilding();
 
-        yield return new WaitForSeconds(data.BuildTime);
+        //yield return new WaitForSeconds(data.BuildTime);
 
         GameObject newBuilding = Managers.Resource.Instantiate(data.Building);
         newBuilding.transform.position = position;
@@ -79,7 +79,8 @@ public class BuildingManager
 
         if (buildingComponent != null)
         {
-            buildingComponent.Initialize();  // 초기화
+            Managers.Game.Player.PlayerAction.AddAction(buildingComponent);
+            yield return new WaitForSeconds(buildingComponent.BuildTime);
             placedBuildings.Add(newBuilding); // 설치된 건물 리스트에 추가
         }
     }
