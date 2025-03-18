@@ -29,8 +29,8 @@ public class BuildingBase : Poolable
         }
 
         buildingAnimation = GetComponent<BuildingAnimation>();
-
         buildingHeight = GetComponent<Renderer>().bounds.size.y;
+
         transform.position = new Vector3(transform.position.x, -buildingHeight, transform.position.z);
 
         if (buildingAnimation != null)

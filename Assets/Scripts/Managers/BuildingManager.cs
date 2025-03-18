@@ -77,6 +77,7 @@ public class BuildingManager
         newBuilding.transform.position = position;
 
         BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
+
         if (buildingComponent != null)
         {
             buildingComponent.Initialize();  // 초기화
@@ -98,7 +99,7 @@ public class BuildingManager
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.NameToLayer("Ground")))
         {
             return hit.point;
         }
