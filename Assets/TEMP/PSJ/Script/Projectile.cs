@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         rigid = GetComponent<Rigidbody>();
+        Invoke(nameof(DestroyObject), 7);
     }
     public void Init()
     {
@@ -67,5 +68,10 @@ public class Projectile : MonoBehaviour
     public void ProjectileAction()
     {
         rigid.velocity = transform.forward * speed;
+    }
+
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

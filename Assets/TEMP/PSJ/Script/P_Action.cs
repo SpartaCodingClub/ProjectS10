@@ -165,7 +165,7 @@ public class P_Action : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
-        player.pAnimationHandler.isAnimationing = true;
+        player.pAnimationHandler.isAnimationing = false;
         player.pAnimationHandler.ChangeMoveValue(0);
         isChasing = false;
         curMoveToCoroutine = null;
