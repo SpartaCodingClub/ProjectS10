@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum EnemyType
+{
+    E_Archer,
+    E_King,
+    E_Knight,
+    E_Mage,
+    E_Spearman,
+    E_Count,
+
+    E_MiniBossCavalry,
+    E_Boss_Dragon
+}
+
 public class EnemyManger
 {
     private Coroutine waveRoutine;
 
-    [SerializeField] private List<GameObject> enemyPrefabs; // 적을 생성할 프리팹 리스트
-    [SerializeField] private GameObject miniBossEnemyPrefab;
-    [SerializeField] private GameObject bossEnemyPrefab;
-    [SerializeField] private List<Rect> spawnAreas; // 적을 생성할 영역 리스트
-
-    [SerializeField]
-    private Color gizmoColor = new Color(1, 0, 0, 0.3f); // 기즈모 색상
-
-    private List<EnemyController> activeEnemies = new List<EnemyController>(); // 생성된 적
+    private readonly List<EnemyController> activeEnemies = new List<EnemyController>(); // 생성된 적
 
     private bool enemySpawnComplite;
 
@@ -50,36 +55,29 @@ public class EnemyManger
 
         if (waveCount % 2 == 0)
         {
-            BossSpawnRandomEnemy(miniBossEnemyPrefab);
+            BossSpawnRandomEnemy(Resources.Load<GameObject>($"Objects/{EnemyType.E_MiniBossCavalry}"));
         }
 
         if (waveCount % 3 == 0)
         {
-            BossSpawnRandomEnemy(bossEnemyPrefab);
+            BossSpawnRandomEnemy(Resources.Load<GameObject>($"Objects/{EnemyType.E_Boss_Dragon}"));
         }
 
         enemySpawnComplite = true;
     }
 
+
     private void SpawnRandomEnemy()
     {
-        if (enemyPrefabs.Count == 0 || spawnAreas.Count == 0)
-        {
-            Debug.LogWarning("Enemy Prefabs 또는 Spawn Areas가 설정되지 않았습니다.");
-            return;
-        }
-
         // 랜덤 적 프리팹 생성
-        GameObject randomPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-
-        // 랜덤 위치 선택
-        Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
+        GameObject randomPrefab = Resources.Load<GameObject>($"Objects/{(EnemyType)Random.Range(0, (int)EnemyType.E_Count)}");
 
         // Rect 영역 내부의 랜덤 위치 계산
+        Vector3 enemySpawnPosition = Managers.Game.CurrentMap.EnemySpawnPosition;
         Vector3 randomPosition = new Vector3(
-            Random.Range(randomArea.xMin, randomArea.xMax),
+            Random.Range(-enemySpawnPosition.x, enemySpawnPosition.x),
             0,
-            Random.Range(randomArea.yMin, randomArea.yMax)
+            enemySpawnPosition.z
             );
 
         // 적 생성 및 리스트에 추가
@@ -91,19 +89,20 @@ public class EnemyManger
     }
 
     // 적 프리팹 소환 범위 설정
-    private void OnDrawGizmosSelected()
-    {
-        if (spawnAreas == null) return;
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (spawnAreas == null) return;
 
-        Gizmos.color = gizmoColor;
-        foreach (var area in spawnAreas)
-        {
-            Vector3 center = new Vector3(area.x + area.width / 2, 0.2f, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, 0, area.height);
-            Gizmos.DrawCube(center, size);
-        }
+    //    Gizmos.color = gizmoColor;
+    //    foreach (var area in spawnAreas)
+    //    {
+    //        Vector3 center = new Vector3(area.x + area.width / 2, 0.2f, area.y + area.height / 2);
+    //        Vector3 size = new Vector3(area.width, 0, area.height);
+    //        Gizmos.DrawCube(center, size);
+    //    }
 
-    }
+    //}
+
     int i = 1;
     private void Update()
     {
@@ -119,17 +118,19 @@ public class EnemyManger
 
     private void BossSpawnRandomEnemy(GameObject boss)
     {
-        if (enemyPrefabs.Count == 0 || spawnAreas.Count == 0)
-        {
-            Debug.LogWarning("Enemy Prefabs 또는 Spawn Areas가 설정되지 않았습니다.");
-            return;
-        }
-
-        // 랜덤 위치 선택
-        Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
+        //if (enemyPrefabs.Count == 0 || spawnAreas.Count == 0)
+        //{
+        //    Debug.LogWarning("Enemy Prefabs 또는 Spawn Areas가 설정되지 않았습니다.");
+        //    return;
+        //}
 
         // Rect 영역 내부의 랜덤 위치 계산
-        Vector3 randomPosition = new Vector3(randomArea.x + randomArea.width / 2, 0, randomArea.y + randomArea.height / 2);
+        Vector3 enemySpawnPosition = Managers.Game.CurrentMap.EnemySpawnPosition;
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-enemySpawnPosition.x, enemySpawnPosition.x),
+            0,
+            enemySpawnPosition.z
+            );
 
         // 적 생성 및 리스트에 추가
         GameObject spawnedEnemy = Managers.Resource.Instantiate(boss);
