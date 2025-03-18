@@ -10860,7 +10860,7 @@ MonoBehaviour:
   targetDistance: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 320
   playerWanderDistance: 18
   targetWanderDistance: 100
   wanderWaitTime: 1

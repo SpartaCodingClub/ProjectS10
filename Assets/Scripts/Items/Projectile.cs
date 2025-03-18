@@ -39,7 +39,8 @@ public class Projectile : MonoBehaviour
                 if (other.tag.Equals(t))
                 {
                     //데미지 주는 함수
-                    other.GetComponent<StatHandler>().Damage(atk);
+                    other.GetComponent<StatHandler>()?.Damage(atk);
+                    other.GetComponent<BuildingBase>()?.TakeDamage(atk);
                     break;
                 }
             }
