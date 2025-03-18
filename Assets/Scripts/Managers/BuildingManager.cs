@@ -64,13 +64,6 @@ public class BuildingManager
 
     private IEnumerator PlaceBuilding(Vector3 position, ItemData data)
     {
-        // 중복 생성 방지
-        if (!HasEnoughResources(data.ResourceAmount))
-        {
-            Debug.Log("자원 부족");
-            yield break;
-        }
-
         foreach (GameObject placed in placedBuildings)
         {
             if (Vector3.Distance(placed.transform.position, position) < 0.1f)
@@ -80,7 +73,7 @@ public class BuildingManager
             }
         }
 
-        DeductResources(data.ResourceAmount);
+        CancelBuilding();
 
         yield return new WaitForSeconds(data.BuildTime);
 
@@ -96,29 +89,15 @@ public class BuildingManager
         }
     }
 
-    private bool HasEnoughResources(Vector3Int cost)
-    {
-        return Managers.Item.ContainsItem((int)ItemID.BlueStone, cost.x) &&
-               Managers.Item.ContainsItem((int)ItemID.PurpleStone, cost.y) &&
-               Managers.Item.ContainsItem((int)ItemID.RedStone, cost.z);
-    }
-
-    private void DeductResources(Vector3Int cost)
-    {
-        Managers.Item.RemoveItem((int)ItemID.BlueStone, cost.x);
-        Managers.Item.RemoveItem((int)ItemID.PurpleStone, cost.y);
-        Managers.Item.RemoveItem((int)ItemID.RedStone, cost.z);
-    }
-
     public void CancelBuilding()
     {
         if (previewBuilding != null)
         {
             Managers.Resource.Destroy(previewBuilding);
+            previewBuilding = null;
         }
 
         selectedItemData = null;
-        previewBuilding = null;
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -137,7 +116,6 @@ public class BuildingManager
     {
         if (placedBuildings.Count > 0)
         {
-            // 플레이어가 인식할 경우 철거로 수정
             GameObject lastBuilding = placedBuildings[placedBuildings.Count - 1];
             BuildingBase buildingComponent = lastBuilding.GetComponent<BuildingBase>();
 
@@ -151,8 +129,12 @@ public class BuildingManager
     // 코루틴 점검 필요
     private IEnumerator RemoveBuildingWithDelay(BuildingBase building, GameObject obj, float delay)
     {
+        // 건물 철거 애니메이션 실행
         building.StartRemoving(delay);
+
         yield return new WaitForSeconds(delay);
+
+        // 리스트에서 제거
         placedBuildings.Remove(obj);
     }
 
