@@ -111,7 +111,7 @@ public class GameManager
         CurrentMap.Open();
         stageUI.UpdateUI(0, 10, 1);
 
-        Managers.Enemy.StartWave(10);
+        Managers.Enemy.StartWave(1);
 
         DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
     }
