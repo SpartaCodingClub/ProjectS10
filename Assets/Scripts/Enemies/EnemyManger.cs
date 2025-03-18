@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyManger : MonoBehaviour
+public class EnemyManger
 {
     private Coroutine waveRoutine;
 
@@ -26,14 +25,15 @@ public class EnemyManger : MonoBehaviour
     public void StartWave(int waveCount)
     {
         if (waveRoutine != null)
-            StopCoroutine(waveRoutine);
-        waveRoutine = StartCoroutine(SpawnWave(waveCount));
+            Managers.Instance.StopCoroutine(waveRoutine);
+
+        waveRoutine = Managers.Instance.StartCoroutine(SpawnWave(waveCount));
     }
 
 
     public void StopWave()
     {
-        StopAllCoroutines();
+        Managers.Instance.StopAllCoroutines();
     }
 
     // 적 프리팹 소환 코루틴
@@ -83,7 +83,8 @@ public class EnemyManger : MonoBehaviour
             );
 
         // 적 생성 및 리스트에 추가
-        GameObject spawnedEnemy = Instantiate(randomPrefab, new Vector3(randomPosition.x, randomPosition.y, randomPosition.z), Quaternion.identity);
+        GameObject spawnedEnemy = Managers.Resource.Instantiate(randomPrefab);
+        spawnedEnemy.transform.position = new Vector3(randomPosition.x, randomPosition.y, randomPosition.z);
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
 
         activeEnemies.Add(enemyController);
@@ -106,11 +107,11 @@ public class EnemyManger : MonoBehaviour
     int i = 1;
     private void Update()
     {
-        
+
         // 테스트용 웨이브 시작
         if (Input.GetKeyDown(KeyCode.L))
         {
-            
+
             StartWave(i);
             i++;
         }
@@ -124,14 +125,15 @@ public class EnemyManger : MonoBehaviour
             return;
         }
 
-
         // 랜덤 위치 선택
         Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
+
         // Rect 영역 내부의 랜덤 위치 계산
-        Vector3 randomPosition = new Vector3(randomArea.x + randomArea.width / 2, 0, randomArea.y + randomArea.height / 2 );
+        Vector3 randomPosition = new Vector3(randomArea.x + randomArea.width / 2, 0, randomArea.y + randomArea.height / 2);
 
         // 적 생성 및 리스트에 추가
-        GameObject spawnedEnemy = Instantiate(boss, new Vector3(randomPosition.x, randomPosition.y, randomPosition.z), Quaternion.identity);
+        GameObject spawnedEnemy = Managers.Resource.Instantiate(boss);
+        spawnedEnemy.transform.position = new Vector3(randomPosition.x, randomPosition.y, randomPosition.z);
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
 
         activeEnemies.Add(enemyController);
