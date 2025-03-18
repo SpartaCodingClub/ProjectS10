@@ -19,7 +19,7 @@ public class UI_Inventory : UI_SubItem, IPointerExitHandler
 
     public void UpdateUI()
     {
-        for (int i = 0; i <content.Length; i++)
+        for (int i = 0; i < content.Length; i++)
         {
             if (content[i].Item != null)
             {

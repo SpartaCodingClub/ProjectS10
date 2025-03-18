@@ -66,6 +66,12 @@ public class UI_InventorySlot : UI_Base, IPointerEnterHandler
 
     public void UpdateUI(Item item)
     {
+        if (item == null)
+        {
+            Get<Image>((int)Children.Icon).gameObject.SetActive(false);
+            Get<TMP_Text>((int)Children.Text_Amount).gameObject.SetActive(false);
+        }
+
         Image icon = Get<Image>((int)Children.Icon);
         icon.sprite = Managers.Resource.GetSprite(SpriteType.Item, item.Data.ID);
         icon.gameObject.SetActive(true);
