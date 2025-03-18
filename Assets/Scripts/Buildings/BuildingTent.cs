@@ -25,6 +25,14 @@ public class BuildingTent : BuildingBase
         }
     }
 
+    private void Update()
+    {
+        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        {
+            RecoverHealth();
+        }
+    }
+
     public void RecoverHealth()
     {
         if (!canUse || !canInteract) return;
@@ -34,6 +42,8 @@ public class BuildingTent : BuildingBase
         {
             playerStat.Health += healthRecoveryAmount;
             playerStat.Health = Mathf.Clamp(playerStat.Health, 0, 100);
+
+            Debug.Log($"막사 사용");
             StartCoroutine(Cooldown());
         }
     }
