@@ -39,7 +39,8 @@ public class Projectile : MonoBehaviour
                 if (other.tag.Equals(t))
                 {
                     //데미지 주는 함수
-                    other.GetComponent<StatHandler>().Damage(atk);
+                    other.GetComponent<StatHandler>()?.Damage(atk);
+                    other.GetComponent<BuildingBase>()?.TakeDamage(atk);
                     break;
                 }
             }
@@ -49,8 +50,8 @@ public class Projectile : MonoBehaviour
 
     IEnumerator destroyWithParticle()
     {
-        MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
-        mesh.enabled = false;
+        if (TryGetComponent<MeshRenderer>(out MeshRenderer mesh))
+            mesh.enabled = false;
         CanAttack = false;
         //파티클 시스템이 있으면 사용됨.
         if (particle != null)

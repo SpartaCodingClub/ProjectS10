@@ -39,29 +39,29 @@ public class BuildingBase : Poolable
         }
     }
 
-    //public virtual void TakeDamage(float damage)
-    //{
-    //    currentHealth -= damage;
-    //    Debug.Log($"남은 체력: {currentHealth}");
+    public virtual void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        Debug.Log($"남은 체력: {currentHealth}");
 
-    //    if (currentHealth <= 0)
-    //    {
-    //        DestroyBuilding();
-    //    }
-    //}
+        if (currentHealth <= 0)
+        {
+            DestroyBuilding();
+        }
+    }
 
-    //public virtual void DestroyBuilding()
-    //{
-    //    Debug.Log($"DestroyBuilding() 실행됨");
-    //    BuildingDestruction destruction = GetComponent<BuildingDestruction>();
+    public virtual void DestroyBuilding()
+    {
+        Debug.Log($"DestroyBuilding() 실행됨");
+        BuildingDestruction destruction = GetComponent<BuildingDestruction>();
 
-    //    if (destruction != null)
-    //    {
-    //        destruction.StartDestruction();
-    //    }
+        if (destruction != null)
+        {
+            destruction.StartDestruction();
+        }
 
-    //    Managers.Resource.Destroy(gameObject);
-    //}
+        Managers.Resource.Destroy(gameObject);
+    }
 
     public virtual void StartRemoving(float removeTime)
     {

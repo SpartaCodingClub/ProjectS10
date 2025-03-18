@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("겹침 방지용")]
     [SerializeField] private float offsetY;
-    [SerializeField] private Vector3 lastPosition;
     [SerializeField] private float checkRadius = 0.5f;
     [SerializeField] private LayerMask collisionLayerMask;
 
@@ -74,20 +73,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        lastPosition = transform.position;
         Move();
         transform.position = new Vector3(transform.position.x, StartYPos, transform.position.z);
-        if (CheckForOverlap())
-        {
-            Debug.Log("겹침 감지");
-            transform.position = lastPosition;
-        }
     }
-
+    #region 캐릭터 회전 관련
     void Look()
     {
         //가상의 Plane을 만들어 레이캐스트로 충돌 후에 좌표 구하기.
-        if (pAnimationHandler.isAnimationing || PlayerAction.IsChasing)
+        if (pAnimationHandler.isAnimationing || PlayerAction.IsChasing || PStat.isDead)
             return;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -101,6 +94,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), rotateSpeed * Time.deltaTime);
         }
     }
+    #endregion
 
     #region 플레이어 인풋 받기
     public void OnMove(InputAction.CallbackContext context)
@@ -208,9 +202,11 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    #region 캐릭터 이동 관련
     void Move()
     {
-        if (pAnimationHandler.isAnimationing)
+        if (pAnimationHandler.isAnimationing || PStat.isDead)
         {
             curSpeed = 0; // 속도 0으로 설정
             pAnimationHandler.ChangeMoveValue(curSpeed); // 애니메이션 속도 업데이트
@@ -253,7 +249,8 @@ public class PlayerController : MonoBehaviour
         pAnimationHandler.ChangeMoveAngle(MoveAngle);
         charControl.Move(direction * Time.fixedDeltaTime);
     }
-
+    #endregion
+    //공격 코루틴
     IEnumerator Attack()
     {
         yield return new WaitForEndOfFrame();
@@ -270,23 +267,17 @@ public class PlayerController : MonoBehaviour
         else
             yield break;
     }
-
+    //UI 감지용
     private bool IsPointerOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
-
+    //강제 이동이벤트
     public void ForceMovePlayer(Vector3 pos, bool DoorClose = false)
     {
         PlayerAction.ForceMove(pos, DoorClose);
     }
-
-    bool CheckForOverlap()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position + transform.up * offsetY, checkRadius, collisionLayerMask);
-        return colliders.Length > 0;
-    }
-
+    //기즈모
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5614611754038462973}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,15 +105,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6020406318237272752, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -122,9 +122,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5614611754038462973}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4342987665763986111}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5639631963275188956}
@@ -139,7 +136,7 @@ PrefabInstance:
       addedObject: {fileID: 412854021365392003}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -2862474908943321637}
+      addedObject: {fileID: 5762432807313832948}
   m_SourcePrefab: {fileID: 100100000, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
 --- !u!4 &5773735319924430853 stripped
 Transform:
@@ -151,28 +148,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
   m_PrefabInstance: {fileID: 6317095432954953710}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &4342987665763986111
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6587566697480749759}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4867355784227577703, guid: 21b62ea0f7faa1240a87b64cc5069027, type: 3}
 --- !u!114 &5639631963275188956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,15 +201,24 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5949559113026375144, guid: 560fb528e87dabe46b550c1fa8f16385, type: 3}
   firePoint: {fileID: 5614611754038462973}
   fireRate: 1
---- !u!114 &-2862474908943321637
-MonoBehaviour:
+--- !u!65 &5762432807313832948
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6587566697480749759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7fc9e94df5222a418c16db73cfc8c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Size: {x: 4.3123813, y: 4.0024614, z: 4.101319}
+  m_Center: {x: 0, y: 2.0012288, z: -0.00000047683716}

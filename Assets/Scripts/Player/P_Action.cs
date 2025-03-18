@@ -85,7 +85,8 @@ public class P_Action : MonoBehaviour
         navMeshAgentReset();
         isChasing = false;
         player.pAnimationHandler.ChangeIsWorking(false);
-        player.pAnimationHandler.isAnimationing = false;
+        if (!player.PStat.isDead) 
+            player.pAnimationHandler.isAnimationing = false;
         AllListDelete();
     }
     #endregion

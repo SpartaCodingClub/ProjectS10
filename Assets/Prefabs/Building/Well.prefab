@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 08d6c5983fca8da40be740fb766bf86f, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingData: {fileID: 11400000, guid: ed2f535368e131b4bac75035c71cc407, type: 2}
   waterRecoveryAmount: 20
+  hungerRecoveryAmount: 15
 --- !u!114 &4312485578498823662
 MonoBehaviour:
   m_ObjectHideFlags: 0
