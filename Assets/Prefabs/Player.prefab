@@ -488,6 +488,10 @@ MonoBehaviour:
   water: 0
   hunger: 0
   PlusSpeed: 0
+  waterDecreaseSpeed: 1
+  hungerDecreaseSpeed: 1
+  hpDecreaseSpeedByWater: 2
+  hpDecreaseSpeedByHunger: 2
   InvincibleTime: 0.5
   CanDamage: 0
 --- !u!114 &1091871546241678152
