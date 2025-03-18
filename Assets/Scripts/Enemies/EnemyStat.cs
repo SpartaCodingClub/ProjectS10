@@ -78,5 +78,7 @@ public class EnemyStat : StatHandler
     {
         // 죽는 애니메이션이 끝나면 애니메이션 이벤트로 호출
         Destroy(gameObject);
+
+        Managers.Game.KillMonster();
     }
 }

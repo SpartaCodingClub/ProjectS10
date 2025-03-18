@@ -79,6 +79,10 @@ public class GameManager
 
     private UI_Stage stageUI;
 
+    private int currentStage;
+    private int currentKill;
+    private int currentWave;
+
     public void Initialize()
     {
         DOTween.SetTweensCapacity(200, 125);
@@ -109,10 +113,15 @@ public class GameManager
     private void WaveStart()
     {
         CurrentMap.Open();
-        stageUI.UpdateUI(0, 10, 1);
 
-        Managers.Enemy.StartWave(1);
+        Managers.Enemy.StartWave(++currentWave);
+        stageUI.UpdateUI(0, currentWave * 2, ++currentStage);
 
         DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
+    }
+
+    public void KillMonster()
+    {
+        stageUI.UpdateUI(++currentKill, currentWave * 2, currentStage);
     }
 }

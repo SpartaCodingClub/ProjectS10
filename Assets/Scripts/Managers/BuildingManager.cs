@@ -53,32 +53,34 @@ public class BuildingManager
         }
 
         selectedItemData = itemData;
-
-        // ItemManager에서 보유한 아이템이 충분한지 검사하고 있습니다!
-        //if (!HasEnoughResources(selectedItemData.ResourceAmount))
-        //{
-        //    Debug.Log("자원이 부족합니다");
-        //    selectedItemData = null;
-        //    return;
-        //}
-
         previewBuilding = Managers.Resource.Instantiate(selectedItemData.Building);
+
         previewBuilding.GetComponent<Collider>().enabled = false;
         previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
     }
 
     private IEnumerator PlaceBuilding(Vector3 position, ItemData data)
     {
+        // 중복 생성 방지
+        foreach (GameObject placed in placedBuildings)
+        {
+            if (Vector3.Distance(placed.transform.position, position) < 0.1f)
+            {
+                Debug.Log("이 위치에는 이미 건물이 존재합니다!");
+                yield break;
+            }
+        }
+
         yield return new WaitForSeconds(data.BuildTime);
 
         GameObject newBuilding = Managers.Resource.Instantiate(data.Building);
         newBuilding.transform.position = position;
-        BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
 
+        BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
         if (buildingComponent != null)
         {
-            buildingComponent.Initialize();
-            buildingComponent.StartBuilding();
+            buildingComponent.Initialize();  // 초기화
+            placedBuildings.Add(newBuilding); // 설치된 건물 리스트에 추가
         }
     }
 
@@ -145,11 +147,5 @@ public class BuildingManager
     {
         yield return new WaitForSeconds(delay);
         placedBuildings.Remove(obj);
-    }
-
-    private bool HasEnoughResources(int cost)
-    {
-        int playerResources = 100;
-        return playerResources >= cost;
     }
 }
