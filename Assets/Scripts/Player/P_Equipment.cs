@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using VFavorites.Libs;
 
 public class P_Equipment : MonoBehaviour
 {
@@ -21,10 +19,8 @@ public class P_Equipment : MonoBehaviour
     [Header("장착 위치")]
     [SerializeField] Transform OneH_Sword;
 
-    [Header("장착 가능 장비")]
-    [SerializeField] List<GameObject> equipmentPrefab;
+    [Header("곡괭이")]
     [SerializeField] GameObject Pickaxe;
-    public List<GameObject> equipment;
 
     // Start is called before the first frame update
     void Start()
@@ -51,25 +47,7 @@ public class P_Equipment : MonoBehaviour
         curPickAxe = Instantiate(Pickaxe, OneH_Sword);
         curPickAxe.SetActive(false);
     }
-    //void Add(Item inputitem)
-    //{
-    //    var obj = inputitem.Data.Weapon;
-    //    GameObject item = Instantiate(obj, OneH_Sword);
-    //    equipment.Add(item);
-    //    item.SetActive(false);
-    //}
-    //public void ChangeWeapon(int num)
-    //{
-    //    if (num == Weaponnum) 
-    //        return;
-    //    Weaponnum = num;
-    //    DeEquip();
-    //    for (int i = 0; i < equipment.Count; i++)  
-    //    {
-    //        if (i == num - 1)
-    //            Equip(equipment[i]);
-    //    }
-    //}
+
     public void Equip(Item iteminput)
     {
         DeEquip();
