@@ -38,6 +38,7 @@ public class P_Action : MonoBehaviour
         navMeshAgent.velocity = player.CharacterController.velocity;
         if (actionQueue.Count > 0 && curBuildCoroutine == null)
             StartBuilding();
+        navMeshAgent.nextPosition = transform.position;
     }
 
 
