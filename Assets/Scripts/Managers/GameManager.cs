@@ -103,6 +103,8 @@ public class GameManager
         Managers.UI.Show<UI_Build>();
 
         Managers.Instance.StartCoroutine(WaitForSpawn(0.0f, maxSpawnCount));
+
+        Managers.Game.Player.playerinput.enabled = false;
     }
 
     private void GameStart()
