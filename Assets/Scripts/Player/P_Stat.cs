@@ -66,9 +66,7 @@ public class P_Stat : StatHandler
             player.PStat.Health -= hpDecreaseSpeedByHunger * Time.deltaTime;
             statusBar.UpdateUI(UI_StatusBar.Type.Health, Health, 100);
         }
-        if (Health > 0)
-            DamageAction();
-        else
+        if (Health <= 0)
             player.pAnimationHandler.PlayDie();
     }
 
@@ -78,5 +76,10 @@ public class P_Stat : StatHandler
             return;
         Health -= damage;
         statusBar.UpdateUI(UI_StatusBar.Type.Health, Health, 100);
+
+        if (Health > 0)
+            DamageAction();
+        else
+            player.pAnimationHandler.PlayDie();
     }
 }
