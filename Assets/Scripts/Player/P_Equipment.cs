@@ -35,7 +35,7 @@ public class P_Equipment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void OnDrawGizmos()
@@ -123,6 +123,7 @@ public class P_Equipment : MonoBehaviour
             foreach (RaycastHit hit in curHits)
             {
                 //데미지 입히는 메서드
+                hit.transform.GetComponent<StatHandler>().Damage(player.PStat.Attack);
                 Debug.Log("적 감지");
             }
         }

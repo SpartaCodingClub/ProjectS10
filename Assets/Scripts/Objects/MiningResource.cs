@@ -16,11 +16,10 @@ public class MiningResource : InteractableObject
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         curentCapacity = capacity;
     }
-
 
     private void Gather(Vector3 hitPoint, Vector3 hitNormal)
     {

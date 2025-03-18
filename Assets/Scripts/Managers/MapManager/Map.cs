@@ -21,6 +21,8 @@ public class Map : MonoBehaviour
     [EndTab]
     #endregion
 
+    public Vector3 EnemySpawnPosition { get; private set; }
+
     // 초기 던전 크기
     private static readonly int TILE_COLUMNS = 5;
     private static readonly int TILE_ROWS = 3;
@@ -100,6 +102,9 @@ public class Map : MonoBehaviour
                 Vector3 position = new(column * TILE_SIZE, 0.0f, row * -TILE_SIZE);
                 Quaternion rotation = Quaternion.Euler(90.0f * Random.Range(0, 4) * Vector3.up);
                 Instantiate(prefab_Tile, position, rotation, Tiles);
+
+                position.x -= 10.0f;
+                EnemySpawnPosition = position;
             }
         }
 
@@ -206,7 +211,12 @@ public class Map : MonoBehaviour
             .Where(tile => tile is not Map_Block)
             .ToArray();
 
-        int randomIndex = Random.Range(0, tiles.Length);
+        int randomIndex = 2;
+        while (randomIndex == 2)
+        {
+            randomIndex = Random.Range(0, tiles.Length);
+        }
+
         return tiles[randomIndex].GetRandomPosition();
     }
 }

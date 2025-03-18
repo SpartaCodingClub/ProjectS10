@@ -23,8 +23,22 @@ public class EnemyStat : StatHandler
     void Start()
     {
         maxHealth = Health;
-        healthBar = gameObject.FindComponent<UI_HealthBar> ("UI_HealthBar_Monster");
-        if (healthBar == null ) healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Boss");
+
+        switch (eclass)
+        {
+            case E_Class.Melee:
+            case E_Class.Ranged:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Monster");
+                break;
+            case E_Class.MiniBoss:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Miniboss");
+                break;
+            case E_Class.FinalBoss:
+                healthBar = gameObject.FindComponent<UI_HealthBar>("UI_HealthBar_Boss");
+                break;
+
+        }
+
     }
     public void Update()
     {
@@ -32,6 +46,18 @@ public class EnemyStat : StatHandler
         {
             TakeDamage(10);
         }
+    }
+
+    public override void Damage(float damage)
+    {
+
+        Health -= damage;
+        healthBar.UpdateUI(Health, maxHealth);
+
+        if (Health > 0)
+            TakeDamage(damage);
+        else
+            isDead = true;
     }
     public void TakeDamage(float Damage)
     {
@@ -52,5 +78,7 @@ public class EnemyStat : StatHandler
     {
         // 죽는 애니메이션이 끝나면 애니메이션 이벤트로 호출
         Destroy(gameObject);
+
+        Managers.Game.KillMonster();
     }
 }

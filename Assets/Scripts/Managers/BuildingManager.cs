@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour
+public class BuildingManager
 {
-    public static BuildingManager Instance { get; private set; }
-
     public ItemData wallData;
     public ItemData turret1Data;
     public ItemData turret2Data;
@@ -17,22 +15,20 @@ public class BuildingManager : MonoBehaviour
     private GameObject previewBuilding;
     private ItemData selectedItemData;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     // 테스트
-    private void Update()
+    public void Update()
     {
         if (selectedItemData != null)
         {
             Vector3 buildPosition = GetMouseWorldPosition();
-            previewBuilding.transform.position = buildPosition;
+            if (buildPosition != Vector3.zero)
+            {
+                previewBuilding.transform.position = buildPosition;
+            }
 
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(PlaceBuilding(buildPosition, selectedItemData));
+                Managers.Instance.StartCoroutine(PlaceBuilding(buildPosition, selectedItemData));
             }
 
             if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
@@ -60,30 +56,36 @@ public class BuildingManager : MonoBehaviour
         }
 
         selectedItemData = itemData;
+        previewBuilding = Managers.Resource.Instantiate(selectedItemData.Building);
 
-        // ItemManager에서 보유한 아이템이 충분한지 검사하고 있습니다!
-        //if (!HasEnoughResources(selectedItemData.ResourceAmount))
-        //{
-        //    Debug.Log("자원이 부족합니다");
-        //    selectedItemData = null;
-        //    return;
-        //}
-
-        previewBuilding = Instantiate(selectedItemData.Building);
         previewBuilding.GetComponent<Collider>().enabled = false;
         previewBuilding.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
     }
 
     private IEnumerator PlaceBuilding(Vector3 position, ItemData data)
     {
+        foreach (GameObject placed in placedBuildings)
+        {
+            if (Vector3.Distance(placed.transform.position, position) < 0.1f)
+            {
+                Debug.Log("이 위치에는 이미 건물이 존재합니다!");
+                yield break;
+            }
+        }
+
+        CancelBuilding();
+
         yield return new WaitForSeconds(data.BuildTime);
 
-        GameObject newBuilding = Instantiate(data.Building, position, Quaternion.identity);
+        GameObject newBuilding = Managers.Resource.Instantiate(data.Building);
+        newBuilding.transform.position = position;
+
         BuildingBase buildingComponent = newBuilding.GetComponent<BuildingBase>();
 
         if (buildingComponent != null)
         {
-            buildingComponent.Initialize();
+            buildingComponent.Initialize();  // 초기화
+            placedBuildings.Add(newBuilding); // 설치된 건물 리스트에 추가
         }
     }
 
@@ -91,20 +93,22 @@ public class BuildingManager : MonoBehaviour
     {
         if (previewBuilding != null)
         {
-            Destroy(previewBuilding);
+            Managers.Resource.Destroy(previewBuilding);
+            previewBuilding = null;
         }
 
         selectedItemData = null;
-        previewBuilding = null;
     }
 
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
         {
             return hit.point;
         }
+
         return Vector3.zero;
     }
 
@@ -112,13 +116,12 @@ public class BuildingManager : MonoBehaviour
     {
         if (placedBuildings.Count > 0)
         {
-            // 플레이어가 인식할 경우 철거로 수정
             GameObject lastBuilding = placedBuildings[placedBuildings.Count - 1];
             BuildingBase buildingComponent = lastBuilding.GetComponent<BuildingBase>();
 
             if (buildingComponent != null)
             {
-                StartCoroutine(RemoveBuildingWithDelay(buildingComponent, lastBuilding, 1.5f));
+                Managers.Instance.StartCoroutine(RemoveBuildingWithDelay(buildingComponent, lastBuilding, 1.5f));
             }
         }
     }
@@ -126,8 +129,12 @@ public class BuildingManager : MonoBehaviour
     // 코루틴 점검 필요
     private IEnumerator RemoveBuildingWithDelay(BuildingBase building, GameObject obj, float delay)
     {
+        // 건물 철거 애니메이션 실행
         building.StartRemoving(delay);
+
         yield return new WaitForSeconds(delay);
+
+        // 리스트에서 제거
         placedBuildings.Remove(obj);
     }
 
@@ -141,7 +148,7 @@ public class BuildingManager : MonoBehaviour
             if (buildingComponent != null)
             {
                 buildingComponent.DestroyBuilding();
-                StartCoroutine(WaitAndRemove(lastBuilding, 2f));
+                Managers.Instance.StartCoroutine(WaitAndRemove(lastBuilding, 2f));
             }
         }
     }
@@ -150,11 +157,5 @@ public class BuildingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         placedBuildings.Remove(obj);
-    }
-
-    private bool HasEnoughResources(int cost)
-    {
-        int playerResources = 100; 
-        return playerResources >= cost;
     }
 }

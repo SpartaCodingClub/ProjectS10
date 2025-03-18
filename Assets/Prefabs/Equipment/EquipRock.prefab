@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3163607245116371864}
   - component: {fileID: 675036798150884856}
   - component: {fileID: 2616063757942265986}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EquipRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,19 +7,20 @@ TagManager:
   - OreNode
   - mining
   - gathering
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Player
   - CastleGate
   - Obstacle
   - Interact
-  - 
-  - 
+  - Equipment
+  - Enemy
   - 
   - 
   - 

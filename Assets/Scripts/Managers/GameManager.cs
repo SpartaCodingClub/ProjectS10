@@ -17,10 +17,14 @@ public class GameManager
         }
     }
 
-    private IEnumerator WaitForSpawn(float respwanTime)
+    private IEnumerator WaitForSpawn(float respwanTime, int amount = 1)
     {
         yield return new WaitForSeconds(respwanTime);
-        Spawn();
+
+        for (int i = 0; i < amount; i++)
+        {
+            Spawn();
+        }
     }
 
     private void Spawn()
@@ -75,6 +79,13 @@ public class GameManager
 
     private UI_Stage stageUI;
 
+    private int currentStage;
+    private int currentKill;
+    private int targetKill;
+    private int currentWave;
+
+    private readonly float timer = 6.0f;
+
     public void Initialize()
     {
         DOTween.SetTweensCapacity(200, 125);
@@ -88,27 +99,46 @@ public class GameManager
     public void Start()
     {
         Managers.Audio.Play(Clip.Music_Game);
-        Managers.UI.Show<UI_Title>();
+        Managers.UI.Show<UI_Title>().OnClosed += GameStart;
         Managers.UI.Show<UI_Build>();
+        Managers.Game.Player.enabled = false;
 
+        Managers.Instance.StartCoroutine(WaitForSpawn(0.0f, maxSpawnCount));
+    }
+
+    private void GameStart()
+    {
+        Managers.Game.Player.Init();
         stageUI = Managers.UI.Show<UI_Stage>();
-        stageUI.SetTimer(6.0f, WaveStart);
-
-        DOVirtual.DelayedCall(1.0f, () =>
-        {
-            for (int i = 0; i < maxSpawnCount; i++)
-            {
-                Spawn();
-            }
-        });
+        stageUI.SetTimer(timer, WaveStart);
     }
 
     private void WaveStart()
     {
         CurrentMap.Open();
-        DOVirtual.DelayedCall(1.0f, () =>
-        {
 
-        });
+        Managers.Enemy.StartWave(++currentWave);
+        targetKill = currentWave * 2 + (currentWave % 2 == 0 ? 1 : 0) + (currentWave % 3 == 0 ? 1 : 0);
+        stageUI.UpdateUI(0, targetKill, ++currentStage);
+
+        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
+    }
+
+    private void NextWaveReady()
+    {
+        CurrentMap.Open();
+        stageUI.SetTimer(timer, WaveStart);
+
+        currentKill = 0;
+        targetKill = 0;
+    }
+
+    public void KillMonster()
+    {
+        stageUI.UpdateUI(++currentKill, targetKill, currentStage);
+        if (currentKill == targetKill)
+        {
+            NextWaveReady();
+        }
     }
 }

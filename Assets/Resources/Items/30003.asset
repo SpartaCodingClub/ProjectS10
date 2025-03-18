@@ -21,5 +21,5 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Building: {fileID: 3408456160409054033, guid: 8ac325a37043bd14087af9c41b7d7659, type: 3}
   MaxHealth: 200
-  ResourceAmount: {x: 10, y: 10, z: 1}
+  ResourceAmount: {x: 1, y: 1, z: 1}
   BuildTime: 7
