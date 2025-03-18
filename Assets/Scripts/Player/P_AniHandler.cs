@@ -56,7 +56,6 @@ public class P_AniHandler : MonoBehaviour
     public void PlayDie()
     {
         isAnimationing = true;
-        player.PStat.CanDamage = false;
         StartCoroutine(PlayDead());
     }
     
