@@ -21,7 +21,10 @@ public class BuildingManager
         if (selectedItemData != null)
         {
             Vector3 buildPosition = GetMouseWorldPosition();
-            previewBuilding.transform.position = buildPosition;
+            if (buildPosition != Vector3.zero)
+            {
+                previewBuilding.transform.position = buildPosition;
+            }
 
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
             {
@@ -99,10 +102,12 @@ public class BuildingManager
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.NameToLayer("Ground")))
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
         {
             return hit.point;
         }
+
         return Vector3.zero;
     }
 
