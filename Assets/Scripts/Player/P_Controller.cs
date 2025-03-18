@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            PlayerAction.WarpingNavmesh();
             curMovementInput = context.ReadValue<Vector2>();
             PlayerAction.CancelBuilding();
         }
@@ -217,7 +216,7 @@ public class PlayerController : MonoBehaviour
             curSpeed = 0;
         }
         Vector3 direction = Vector3.forward * curMovementInput.y + Vector3.right * curMovementInput.x;
-        direction *= PStat.curSpeed;
+        direction *= PStat.curSpeed * curSpeed;
         direction.y = 0;
 
         float angle = Vector3.Angle(transform.forward, direction);

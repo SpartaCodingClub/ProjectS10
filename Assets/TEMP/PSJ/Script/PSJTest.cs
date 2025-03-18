@@ -9,7 +9,7 @@ public class PSJTest : InteractableObject
     private void Start()
     {
         building = GetComponent<BuildingBase>();
-        Invoke(nameof(AddBuildingAction), 3.0f);
+        Invoke(nameof(ForceTest), 3.0f);
         //InvokeRepeating(nameof(AddBuildingAction), 3.0f, 5);
     }
 
@@ -21,6 +21,6 @@ public class PSJTest : InteractableObject
 
     private void ForceTest()
     {
-
+        Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, 5));
     }
 }
