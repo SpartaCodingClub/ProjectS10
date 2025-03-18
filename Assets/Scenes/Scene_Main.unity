@@ -381,6 +381,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1540451795447426398, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 1973490047316252291, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 14
@@ -757,7 +761,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 620687231315010723, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
