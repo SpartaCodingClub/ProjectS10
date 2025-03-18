@@ -99,5 +99,20 @@ public class P_AniHandler : MonoBehaviour
         isAnimationing = false;
         yield return null;
     }
-    #endregion
+
+    float GetAnimationClipLength(string name)
+    {
+        if (animator.runtimeAnimatorController == null) return 0f;
+
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == name)
+            {
+                return clip.length;
+            }
+        }
+
+        return 0f;
+    }
 }
+    #endregion
