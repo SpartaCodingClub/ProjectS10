@@ -30,6 +30,12 @@ public class Managers : MonoBehaviour
     {
         Game.Start();
         Item.Start();
+        InvokeRepeating(nameof(SurfaceBuild), 0, 0.5f);
+    }
+
+    private void SurfaceBuild()
+    {
+        Game.NavMeshSurface.BuildNavMesh();
     }
 
     private void Update()

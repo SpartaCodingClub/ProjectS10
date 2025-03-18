@@ -902,6 +902,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7416941870249712170, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      propertyPath: offsetY
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416941870249712170, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      propertyPath: checkRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416941870249712170, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
+      propertyPath: collisionLayerMask.m_Bits
+      value: 385
+      objectReference: {fileID: 0}
     - target: {fileID: 7489665820561771529, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: m_Layer
       value: 6
