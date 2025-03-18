@@ -15,4 +15,20 @@ public class BuildingTurret : BuildingBase
         if (turretRotation != null)
             turretRotation.EnableRotation();
     }
+
+    public override void DestroyBuilding()
+    {
+        if (turretShooting != null)
+            turretShooting.DisableShooting();
+
+        base.DestroyBuilding();
+    }
+
+    public override void StartRemoving(float removeTime)
+    {
+        if (turretShooting != null)
+            turretShooting.DisableShooting();
+
+        base.StartRemoving(removeTime);
+    }
 }
