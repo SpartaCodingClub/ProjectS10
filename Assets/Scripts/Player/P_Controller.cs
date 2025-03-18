@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public P_AniHandler pAnimationHandler;
     public ProjectileHandler projectile;
     public P_Action PlayerAction;
+    public PlayerInput playerinput;
 
     [Header("회전")]
     [SerializeField] float rotateSpeed = 10f;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        this.enabled = true;
+        playerinput.enabled = true;
         PStat.Init();
     }
 
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
         pAnimationHandler = GetComponent<P_AniHandler>();
         projectile = GetComponent<ProjectileHandler>();
         PlayerAction = GetComponent<P_Action>();
+        playerinput = GetComponent<PlayerInput>();
+        Managers.Game.Player = this;
     }
 
     private void Start()
@@ -62,7 +65,6 @@ public class PlayerController : MonoBehaviour
         charControl = GetComponent<CharacterController>();
 
         StartYPos = transform.position.y;
-        Managers.Game.Player = this;
     }
 
     private void Update()

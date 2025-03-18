@@ -101,9 +101,10 @@ public class GameManager
         Managers.Audio.Play(Clip.Music_Game);
         Managers.UI.Show<UI_Title>().OnClosed += GameStart;
         Managers.UI.Show<UI_Build>();
-        Managers.Game.Player.enabled = false;
 
         Managers.Instance.StartCoroutine(WaitForSpawn(0.0f, maxSpawnCount));
+
+        Managers.Game.Player.playerinput.enabled = false;
     }
 
     private void GameStart()
