@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &187406969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187406971}
+  - component: {fileID: 187406970}
+  m_Layer: 0
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &187406970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187406969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3221d67e9ccff0f4f97c7d470bdaf1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 3777657058177572560, guid: e1f89a472fbac9b43a3c56b4edd51f46, type: 3}
+  - {fileID: 3672002046167252150, guid: 7f5b9865d8d612d4c84208256ae2fc77, type: 3}
+  - {fileID: 582065251259832796, guid: a52c1daf601d78944bcb54dc2751d8b6, type: 3}
+  - {fileID: 6985561641870403978, guid: 95a5f105eb3aeb94aa9d682fffa5d796, type: 3}
+  - {fileID: 3086623734052899188, guid: 6ab8fe0e64e9963459f2eb312fb8e5ee, type: 3}
+  miniBossEnemyPrefab: {fileID: 0}
+  bossEnemyPrefab: {fileID: 4279410003511900116, guid: fc328faac9aba8840a3289b759b6a33e, type: 3}
+  spawnAreas:
+  - serializedVersion: 2
+    x: -15
+    y: -40
+    width: 30
+    height: 20
+  gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
+  timeBetweenSpawns: 0.2
+  timeBetweenWaves: 1
+--- !u!4 &187406971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187406969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &487266703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -779,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213805889764098131, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -11.37
       objectReference: {fileID: 0}
     - target: {fileID: 4213805889764098131, guid: 1c827056f9588df478eed65e8a8ab98a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4133,3 +4194,4 @@ SceneRoots:
   - {fileID: 1723350229894342755}
   - {fileID: 705507995}
   - {fileID: 2010908890}
+  - {fileID: 187406971}

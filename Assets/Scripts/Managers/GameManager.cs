@@ -117,7 +117,7 @@ public class GameManager
         Managers.Enemy.StartWave(++currentWave);
         stageUI.UpdateUI(0, currentWave * 2, ++currentStage);
 
-        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
+        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
     }
 
     public void KillMonster()

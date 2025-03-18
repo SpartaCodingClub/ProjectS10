@@ -30,7 +30,7 @@ public class Managers : MonoBehaviour
     {
         Game.Start();
         Item.Start();
-        InvokeRepeating(nameof(SurfaceBuild), 0, 0.5f);
+        InvokeRepeating(nameof(SurfaceBuild), 1, 0.5f);
     }
 
     private void SurfaceBuild()
