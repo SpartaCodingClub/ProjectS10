@@ -65,6 +65,12 @@ public class BuildingManager
     private IEnumerator PlaceBuilding(Vector3 position, ItemData data)
     {
         // 중복 생성 방지
+        if (!HasEnoughResources(data.ResourceAmount))
+        {
+            Debug.Log("자원 부족");
+            yield break;
+        }
+
         foreach (GameObject placed in placedBuildings)
         {
             if (Vector3.Distance(placed.transform.position, position) < 0.1f)
@@ -73,6 +79,8 @@ public class BuildingManager
                 yield break;
             }
         }
+
+        DeductResources(data.ResourceAmount);
 
         yield return new WaitForSeconds(data.BuildTime);
 
@@ -86,6 +94,20 @@ public class BuildingManager
             buildingComponent.Initialize();  // 초기화
             placedBuildings.Add(newBuilding); // 설치된 건물 리스트에 추가
         }
+    }
+
+    private bool HasEnoughResources(Vector3Int cost)
+    {
+        return Managers.Item.ContainsItem((int)ItemID.BlueStone, cost.x) &&
+               Managers.Item.ContainsItem((int)ItemID.PurpleStone, cost.y) &&
+               Managers.Item.ContainsItem((int)ItemID.RedStone, cost.z);
+    }
+
+    private void DeductResources(Vector3Int cost)
+    {
+        Managers.Item.RemoveItem((int)ItemID.BlueStone, cost.x);
+        Managers.Item.RemoveItem((int)ItemID.PurpleStone, cost.y);
+        Managers.Item.RemoveItem((int)ItemID.RedStone, cost.z);
     }
 
     public void CancelBuilding()
