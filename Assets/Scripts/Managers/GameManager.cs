@@ -113,6 +113,6 @@ public class GameManager
 
         Managers.Enemy.StartWave(1);
 
-        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f)));
+        DOVirtual.DelayedCall(1.0f, () => Managers.Game.Player.ForceMovePlayer(new Vector3(0, 0, -5f), true));
     }
 }
