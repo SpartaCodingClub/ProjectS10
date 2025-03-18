@@ -70,9 +70,18 @@ public class P_AniHandler : MonoBehaviour
     IEnumerator PlayAni(string input)
     {
         animator.CrossFade(input, 0.1f);
-        yield return null;
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length);
+
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(input))
+        {
+            yield return null;
+        }
+
+        float length = animator.GetCurrentAnimatorStateInfo(0).length;
+        float speed = animator.GetCurrentAnimatorStateInfo(0).speed;
+        float adjustedLength = length / speed;
+
+        yield return new WaitForSeconds(adjustedLength);
+
         isAnimationing = false;
     }
 
