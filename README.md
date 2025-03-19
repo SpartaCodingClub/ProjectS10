@@ -122,5 +122,8 @@
 - 배경음, 효과음 등 디테일한 사운 설정 
 
 ---
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
